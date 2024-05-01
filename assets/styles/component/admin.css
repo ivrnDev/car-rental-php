@@ -1,5 +1,5 @@
 header {
-  background-color: var(--a-primary-color);
+  background-color: rgba(255, 255, 255, 0.7);
   width: 100%;
   height: auto;
   max-height: 90px;
@@ -26,8 +26,6 @@ ul#nav-list {
   flex-direction: column;
   gap: 20px;
   height: inherit;
-  
-
 }
 
 li.nav-link {
@@ -60,7 +58,7 @@ li.nav-link.active {
   width: 100vw;
 }
 .content {
-  height: inherit;
+  height: 100%;
   background-color: var(--a-body-color);
-  width: inherit;
+  width: 100%;
 }
