@@ -35,38 +35,34 @@
     </nav>
 
     <main>
-      <h1>Dashboard</h1>
-      <p>Welcome to Admin!</p>
-
-      <div class="status-container">
-        <div class="card">
+      <div class="heading-container">
+        <h1>Dashboard</h1>
+        <p>Welcome to Admin!</p>
+      </div>
+      <div class="card">
           <h2>Total Users</h2>
+          <p>0</p>
         </div>
         <div class="card">
           <h2>Pending Applications</h2>
+           <p>0</p>
         </div>
         <div class="card">
           <h2>Total Clients</h2>
+           <p>0</p>
         </div>
         <div class="card">
           <h2>Pending Clients</h2>
+           <p>0</p>
         </div>
         <div class="card">
           <h2>Total Cars</h2>
+           <p>0</p>
         </div>
         <div class="card">
           <h2>Pending Cars</h2>
+           <p>0</p>
         </div>
-        <div class="card">
-          <h2>Pending Clients</h2>
-        </div>
-        <div class="card">
-          <h2>Total Cars</h2>
-        </div>
-        <div class="card">
-          <h2>Pending Cars</h2>
-        </div>
-      </div>
     </main>
   </body>
 </html>

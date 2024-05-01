@@ -1,0 +1,42 @@
+main {
+  padding: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+.heading-container {
+  width: 100%;
+}
+.heading-container h1 {
+  background-image: var(--a-linear-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+
+.heading-container p {
+  color: var(--a-font-orange);
+  margin-top: 1%;
+  overflow: auto;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  height: 170px;
+  width: 30%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card p {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: auto;
+}

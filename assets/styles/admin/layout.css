@@ -12,7 +12,7 @@
   --a-primary-color: rgba(255, 255, 255, 0.7);
   --a-secondary-color: rgba(255, 255, 255, 0.2);
   --a-body-color: #1e1e1e;
-  --a-linear-1: linear-gradient(to right, #5c36b5, #cdc3e3);
+  --a-linear-1: linear-gradient(to left, #5c36b5, #cdc3e3);
 
   --a-font-black: black;
   --a-font-white: white;
@@ -24,6 +24,7 @@ body {
   font-family: Inter;
   height: 100vh;
   background-color: var(--a-body-color);
+  overflow: hidden;
   display: grid;
   grid-template-columns: 15% 1fr;
   grid-template-rows: minmax(10%, 12%) 1fr;
