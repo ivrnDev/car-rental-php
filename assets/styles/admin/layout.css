@@ -11,8 +11,14 @@
 :root {
   --a-primary-color: rgba(255, 255, 255, 0.7);
   --a-secondary-color: rgba(255, 255, 255, 0.2);
-  --a-body-color: #1e1e1e;
+  --a-body-color: #252F44;
   --a-linear-1: linear-gradient(to left, #5c36b5, #cdc3e3);
+  --a-table-header: rgb(28, 34, 56);
+  --a-table-body: rgba(255, 255, 255, 0.25);
+
+  --a-view-btn: #3D79EC;
+  --a-accept-btn: #58D839;
+  --a-reject-btn: #E04B41;
 
   --a-font-black: black;
   --a-font-white: white;

@@ -1,0 +1,17 @@
+.view-btn {
+  background-color: var(--a-view-btn);
+}
+.accept-btn {
+  background-color: var(--a-accept-btn);
+}
+.reject-btn {
+  background-color: var(--a-reject-btn);
+}
+
+.accept-btn, .view-btn, .reject-btn {
+  border-radius: 20px;
+  border: none;
+  padding: 7px; 
+  cursor: pointer;
+  width: 80%;
+}
