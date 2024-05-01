@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+*,:before,:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --a-primary-color: rgba(255, 255, 255, 0.7);
+  --a-secondary-color: rgba(255, 255, 255, 0.2);
+  --a-body-color: #1E1E1E;
+  --a-linear-1: linear-gradient(to right, #5C36B5, #CDC3E3);
+
+  --a-font-black: black;
+  --a-font-white: white;
+  --a-font-orange: #E7A5A5;
+  --a-font-linear-1: linear-gradient(to right, #DBD8E3, #9486B9);
+}
+
+#admin-body {
+  font-family: Inter;
+  overflow: hidden;
+}
