@@ -98,6 +98,7 @@
    <title>Sign Up</title>
    <link rel="stylesheet" href="assets/styles/user/sign-layout.css">
    <link rel="stylesheet" href="assets/styles/user/signup.css">
+   <link rel="stylesheet" href="assets/styles/component/button.css">
  </head>
 
  <body>
@@ -111,12 +112,12 @@
      <h1>Create an Account</h1>
      <form method="POST" enctype="multipart/form-data">
        <div class="left-column">
-         <input id="lastname" name="lastname" type="text" placeholder="Last Name">
-         <input id="firstname" name="firstname" type="text" placeholder="First Name">
-         <input id="middlename" name="middlename" type="text" placeholder="Middle Name">
-         <input id="contact_number" name="contact_number" type="text" placeholder="Contact ">
-         <input id="address" name="address" type="text" placeholder="Address">
-         <input id="birthdate" name="birthdate" type="date" placeholder="Date of Birth">
+         <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
+         <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
+         <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
+         <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
+         <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
+         <input id="birthdate" name="birthdate" type="date" placeholder="Date of Birth" autocomplete="off">
          <div class="gender-container">
            <div class="radio-container">
              <input type="radio" id="male" name="gender" value=0>
@@ -128,10 +129,23 @@
            </div>
          </div>
 
-         <label class="file-label" for="valid_id">VALID ID</label>
-         <label class="file-label" for="drivers_license">Driver's License</label>
-         <label class="file-label" for="proof_of_billing">Proof of Billing</label>
-         <label class="file-label" for="selfie_with_id">Selfie with ID</label>
+
+         <label class="file-label" for="drivers_license">
+           Driver's License
+           <img src="assets/images/add-image.png" alt="Add Image">
+         </label>
+         <label class="file-label" for="valid_id">
+           Valid ID
+           <img src="assets/images/add-image.png" alt="Add Image">
+         </label>
+         <label class="file-label" for="proof_of_billing">
+           Proof of Billing
+           <img src="assets/images/add-image.png" alt="Add Image">
+         </label>
+         <label class="file-label" for="selfie_with_id">
+           Selfie with ID
+           <img src="assets/images/add-image.png" alt="Add Image">
+         </label>
 
          <input type="file" name="valid_id" id="valid_id">
          <input type="file" name="drivers_license" id="drivers_license">
@@ -140,9 +154,11 @@
        </div>
 
        <div class="right-column">
-         <input id="email_address" name="email_address" type="text" placeholder="Email">
-         <input id="password" name="password" type="password" placeholder="Password">
-         <button type="submit">Submit</button>
+         <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
+         <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+         <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password"
+           autocomplete="off">
+         <button id="signup-btn" type="submit">Submit</button>
      </form>
      </div>
 

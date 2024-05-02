@@ -1,10 +1,10 @@
-
 form {
   display: flex;
   height: 80%;
 }
 
-.left-column, .right-column {
+.left-column,
+.right-column {
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -16,14 +16,24 @@ form {
 }
 
 .right-column {
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 5%;
 }
 
 input[type="file"] {
-    display: none; 
+  display: none;
 }
 
-input { 
+.left-column input,
+label,
+.gender-container {
+  border-radius: 5px;
+  height: 10%;
+}
+
+.left-column input {
   flex: 1;
 }
 
@@ -31,29 +41,20 @@ input#address {
   flex-grow: 2;
 }
 
-input, label, .gender-container {
-  border-radius: 5px;
-  height: 10%;
-}
-
 .radio-container {
   position: relative;
   display: inline-block;
   cursor: pointer;
-}
-
-.gender-container {
-  flex: 1 1 100%; 
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-}
-
-.radio-container {
   display: flex;
   align-items: center;
   width: 70%;
+}
+
+.gender-container {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .radio-container label {
@@ -62,14 +63,26 @@ input, label, .gender-container {
   width: 50%;
   padding: 2px;
   color: black;
-  font-size: 20px; 
+  font-size: 20px;
+  text-align: center;
+}
+
+.file-label img {
+  width: 25px;
+  height: auto;
 }
 
 label.file-label {
-  flex: 1;
+  flex: 0 0 48%;
   background-color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
 }
 
-
-
+.right-column input {
+  width: 70%;
+  height: 50px;
+}

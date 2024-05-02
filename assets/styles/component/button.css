@@ -15,3 +15,13 @@
   cursor: pointer;
   width: 80%;
 }
+
+#signup-btn {
+  background-color: #6ACE59;
+  padding: 5px;
+  border-radius: 10px;
+  width: 20%;
+  height: 50px;
+  font-weight: bold;
+  border: 1px solid black;
+}
