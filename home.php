@@ -1,8 +1,15 @@
  <?php 
-    $user = $_SESSION["user_id"];
-    if(!$user) {
+  require_once "functions/get-profile.php";
+  require_once "utils/OracleDb.php";
+  $db = new OracleDB();
+  
+    $userId = $_SESSION["user_id"];
+    if(!$userId) {
       header("Location: signin.php");
     }
+    $call = getProfilePicture($userId, $db);
+    echo $call;
+    
   ?>
 
  <!DOCTYPE html>
