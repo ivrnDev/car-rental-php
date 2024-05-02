@@ -3,6 +3,7 @@
 *,
 :before,
 :after {
+  font-family: Inter;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,14 +12,14 @@
 :root {
   --a-primary-color: rgba(255, 255, 255, 0.7);
   --a-secondary-color: rgba(255, 255, 255, 0.2);
-  --a-body-color: #252F44;
+  --a-body-color: #252f44;
   --a-linear-1: linear-gradient(to left, #5c36b5, #cdc3e3);
   --a-table-header: rgb(28, 34, 56);
   --a-table-body: rgba(255, 255, 255, 0.25);
 
-  --a-view-btn: #3D79EC;
-  --a-accept-btn: #58D839;
-  --a-reject-btn: #E04B41;
+  --a-view-btn: #3d79ec;
+  --a-accept-btn: #58d839;
+  --a-reject-btn: #e04b41;
 
   --a-font-black: black;
   --a-font-white: white;
@@ -27,7 +28,6 @@
 }
 
 body {
-  font-family: Inter;
   height: 100vh;
   background-color: var(--a-body-color);
   overflow: hidden;

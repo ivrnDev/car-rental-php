@@ -1,28 +1,10 @@
- <?php 
-    session_start();
-    $user = $_SESSION["user_id"];
-    echo $user;
+<?php 
+session_start();
+$logged = $_SESSION["status"] ?? false;
 
-    if(!$user) {
-      header("Location: signin.php");
-    }
-  ?>
-
- <!DOCTYPE html>
- <html lang="en">
-
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
- </head>
-
- <body>
-
-   HOMEPAGE
-
-
-
- </body>
-
- </html>
+if($logged) {
+  require_once("home.php");
+} else {
+  require_once("home.php");
+}
+?>

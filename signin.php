@@ -17,18 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ':email_address' => $email_address,
                 ':password' => $password
             ];
-            $stid = $db->executeQuery($sql);
-
-            foreach ($data as $key => $val) {
-                oci_bind_by_name($stid, $key, $data[$key]);
-            }
-            
-            if (!oci_execute($stid)) {
-                $e = oci_error($stid);
-                throw new Exception("Database query failed: " . $e['message']);
-            }
-
-            $result = oci_fetch_assoc($stid);
+            $stid = $db->executeQuery($sql, $data);
+            $result = $db->fetchRow($stid);
             if ($result) {
                 $_SESSION['status'] = true;
                 $_SESSION['user_id'] = $result['USER_ID'];
