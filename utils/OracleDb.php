@@ -2,9 +2,9 @@
 
 class OracleDB {
     private $conn;
-    private $host = 'localhost:1521/xepdb1';  
-    private $username = 'drivesation';
-    private $password = 'drivesation';
+    private static $host = 'localhost:1521/xepdb1';  
+    private static $username = 'drivesation';
+    private static $password = 'drivesation';
 
     public function __construct() {
         $this->connect();
@@ -15,10 +15,10 @@ class OracleDB {
     }
 
     private function connect() {
-        $this->conn = oci_connect($this->username, $this->password, $this->host);
+        $this->conn = oci_connect(self::$username, self::$password, self::$host);
         if (!$this->conn) {
-            $e = oci_error();
-            trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+            $error = oci_error();
+            throw new Exception('Connection failed: ' . $error['message']);
         }
     }
     private function disconnect() {
@@ -30,16 +30,39 @@ class OracleDB {
     public function isConnected() {
         return is_resource($this->conn);
     }
-
-    public function executeQuery($sql) {
-        $stid = oci_parse($this->conn, $sql);
-        if (!$stid) {
-            $e = oci_error($this->conn);
-            trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    
+    public function prepareStatement($sql) {
+         $stid = oci_parse($this->conn, $sql);
+         if (!$stid) {
+         $error = oci_error($this->conn);
+         throw new Exception('SQL Parsing Error: ' . $error['message']);
         }
-        
         return $stid;
     }
+
+    public function executeQuery($sql, array $params = []) {
+        
+        $stid = oci_parse($this->conn, $sql);
+        if (!$stid) {
+            $error = oci_error($this->conn);
+            throw new Exception('SQL Parsing Error: ' . $error['message']);
+        }
+
+        foreach ($params as $key => $value) {
+            if (!oci_bind_by_name($stid, $key, $params[$key])) {
+                $error = oci_error($stid);
+                throw new Exception('Parameter Binding Error: ' . $error['message']);
+            }
+        }
+
+            if (!oci_execute($stid)) {
+                $error = oci_error($stid);
+                oci_free_statement($stid);
+                throw new Exception('SQL Execution Error: ' . $error['message']);
+        }
+
+            return $stid;
+}
 
     public function fetchAll($stid) {
         oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
@@ -47,6 +70,13 @@ class OracleDB {
         return $res;
     }
 
+     public function fetchRow($stid) {
+        $row = oci_fetch_assoc($stid);
+        if (!$row) {
+            oci_free_statement($stid);
+        }
+        return $row;
+    }
     
 }
 ?>

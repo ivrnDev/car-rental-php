@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['email_address'], $_POST['password'])) {
         $email_address = $_POST['email_address'];
         $password = $_POST['password'];
-
         try {
             $sql = "SELECT user_id FROM \"USER\" WHERE email_address=:email_address AND password=:password";
             $data = [

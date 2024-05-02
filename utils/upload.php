@@ -14,7 +14,7 @@ function uploadSignupDocuments($file, $userId, $documentType, $documentName, $db
     if (move_uploaded_file($file["tmp_name"], $target_file)) {
        try {
         $sql = "INSERT INTO document (document_id, document_name, document_type, file_link, user_id) VALUES (document_seq.NEXTVAL, :document_name, :document_type, :file_link, :user_id)";
-        $stid = $db->executeQuery($sql);
+        $stid = $db->prepareStatement($sql);
         oci_bind_by_name($stid, ":document_name", $document_name);
         oci_bind_by_name($stid, ":document_type", $documentType);
         oci_bind_by_name($stid, ":file_link", $target_file);

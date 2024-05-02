@@ -50,7 +50,8 @@
                 ':birthdate' => $birthdate
             ];  
 
-            $stid = $db->executeQuery($sql);
+            $stid = $db->prepareStatement($sql);
+            
             foreach ($data as $key => $val) {
             oci_bind_by_name($stid, $key, $data[$key]);
             }
