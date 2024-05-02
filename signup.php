@@ -17,6 +17,7 @@
         $_POST['birthdate'],
         $_POST['gender'],
         $_POST['password'],
+        $_FILES['profile_picture'],
         $_FILES['valid_id'],
         $_FILES['drivers_license'],
         $_FILES['proof_of_billing'],
@@ -63,6 +64,7 @@
             echo "<p>User details saved successfully!</p>";
            
             $documents = [
+              'profile_picture' => 'Profile Picture',
               'valid_id' => 'Valid ID',
               'drivers_license' => 'Driver\'s License',
               'proof_of_billing' => 'Proof of Billing',
@@ -131,6 +133,10 @@
          </div>
 
 
+         <label class="file-label" for="profile_picture">
+           2 x 2 Picture
+           <img src="assets/images/add-image.png" alt="Add Image">
+         </label>
          <label class="file-label" for="drivers_license">
            Driver's License
            <img src="assets/images/add-image.png" alt="Add Image">
@@ -148,6 +154,7 @@
            <img src="assets/images/add-image.png" alt="Add Image">
          </label>
 
+         <input type="file" name="profile_picture" id="profile_picture">
          <input type="file" name="valid_id" id="valid_id">
          <input type="file" name="drivers_license" id="drivers_license">
          <input type="file" name="proof_of_billing" id="proof_of_billing">
