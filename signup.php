@@ -1,28 +1,28 @@
  <?php 
-  require_once "database/OracleDb.php";
-
+  require_once "utils/OracleDb.php";
+  require_once "utils/upload.php";
   $db = new OracleDB();
   if (!$db->isConnected()) {
-  die("Database connection failed");
+    die("Database connection failed");
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // if (isset(
-    //     $_POST['firstname'],
-    //     $_POST['lastname'],
-    //     $_POST['middlename'],
-    //     $_POST['email_address'],
-    //     $_POST['address'],
-    //     $_POST['contact_number'],
-    //     $_POST['birthdate'],
-    //     $_POST['gender'],
-    //     $_POST['password']
-    // )) {
-    // } else {
-    //     echo "<p>Missing required fields.</p>";
-    // }
-
-     try {
+    if (isset(
+        $_POST['firstname'],
+        $_POST['lastname'],
+        $_POST['middlename'],
+        $_POST['email_address'],
+        $_POST['address'],
+        $_POST['contact_number'],
+        $_POST['birthdate'],
+        $_POST['gender'],
+        $_POST['password'],
+        $_FILES['valid_id'],
+        $_FILES['drivers_license'],
+        $_FILES['proof_of_billing'],
+        $_FILES['selfie_with_id']
+    )) {
+       try {
             $first_name = $_POST['firstname'];
             $last_name = $_POST['lastname'];
             $middle_name = $_POST['middlename'];
@@ -33,7 +33,8 @@
             $gender = $_POST['gender'];
             $password = $_POST['password']; 
 
-            $sql = "INSERT INTO \"USER\" (user_id, first_name, last_name, middle_name, contact_number, address, gender, email_address, password, user_role, status, document_id, birthdate) VALUES (user_seq.NEXTVAL, :first_name, :last_name, :middle_name, :contact_number, :address, :gender, :email_address, :password, :user_role, :status, :document_id, TO_DATE(:birthdate, 'YYYY-MM-DD'))";
+            $sql = "INSERT INTO \"USER\" (user_id, first_name, last_name, middle_name, contact_number, address, gender, email_address, password, user_role, status, birthdate) VALUES (user_seq.NEXTVAL, :first_name, :last_name, :middle_name, :contact_number, :address, :gender, :email_address, :password, :user_role, :status, TO_DATE(:birthdate, 'YYYY-MM-DD'))
+            RETURNING user_id INTO :new_user_id";
             
             $data = [
                 ':first_name' => $first_name,
@@ -46,21 +47,52 @@
                 ':password' => $password,
                 ':user_role' => 0,
                 ':status' => 0,
-                ':document_id' => 1,
                 ':birthdate' => $birthdate
             ];  
 
-            $stid = $db->executeQuery($sql, $data);
+            $stid = $db->executeQuery($sql);
             foreach ($data as $key => $val) {
             oci_bind_by_name($stid, $key, $data[$key]);
-        }
+            }
+            
+            $new_user_id = 0;
+            oci_bind_by_name($stid, ":new_user_id", $new_user_id, -1, OCI_B_INT);
+            
             oci_execute($stid);
             echo "<p>User details saved successfully!</p>";
-        } catch (Exception $e) {
+           
+            $documents = [
+              'valid_id' => 'Valid ID',
+              'drivers_license' => 'Driver\'s License',
+              'proof_of_billing' => 'Proof of Billing',
+              'selfie_with_id' => 'Selfie with ID'
+             ];
+             
+             $allFilesProvided = true;
+              foreach ($documents as $inputName => $docType) {
+                if (!isset($_FILES[$inputName]) || $_FILES[$inputName]['error'] ==         UPLOAD_ERR_NO_FILE) {
+                  echo "File $docType not provided.<br>";
+                  $allFilesProvided = false;
+                }
+              }
+              if ($allFilesProvided) {
+                  foreach ($documents as $inputName => $documentName) {
+                    uploadSignupDocuments($_FILES[$inputName], $new_user_id, $inputName, $documentName, $db);
+                  }
+              } else {
+                  echo "All documents are required. Please upload each file.<br>";
+              }
+                oci_free_statement($stid);
+          } catch (Exception $e) {
             echo "<p>Error: " . $e->getMessage() . "</p>";
         }
-}
+      }
+    } else {
+        echo "<p>Missing required fields.</p>";
+    }
 ?>
+
+
 
  <!DOCTYPE html>
  <html lang="en">
@@ -81,7 +113,7 @@
    </header>
 
    <main>
-     <form method="POST">
+     <form method="POST" enctype="multipart/form-data">
        <h1>Create an Account</h1>
        <input id="lastname" name="lastname" type="text" placeholder="Last Name">
        <input id="firstname" name="firstname" type="text" placeholder="First Name">
@@ -98,6 +130,12 @@
        <input id="email_address" name="email_address" type="text" placeholder="Email">
        <input id="password" name="password" type="password" placeholder="Password">
 
+
+       Select image to upload:
+       <input type="file" name="valid_id" id="valid-id">
+       <input type="file" name="drivers_license" id="drivers-license">
+       <input type="file" name="proof_of_billing" id="proof-of-billing">
+       <input type="file" name="selfie_with_id" id="selfie-with-id">
        <button type="submit">Submit</button>
      </form>
 

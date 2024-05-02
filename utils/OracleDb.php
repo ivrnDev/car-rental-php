@@ -37,6 +37,7 @@ class OracleDB {
             $e = oci_error($this->conn);
             trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
         }
+        
         return $stid;
     }
 
