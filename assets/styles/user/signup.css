@@ -1,0 +1,75 @@
+
+form {
+  display: flex;
+  height: 80%;
+}
+
+.left-column, .right-column {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.left-column {
+  gap: 10px;
+}
+
+.right-column {
+  background-color: blue;
+}
+
+input[type="file"] {
+    display: none; 
+}
+
+input { 
+  flex: 1;
+}
+
+input#address {
+  flex-grow: 2;
+}
+
+input, label, .gender-container {
+  border-radius: 5px;
+  height: 10%;
+}
+
+.radio-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.gender-container {
+  flex: 1 1 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+
+.radio-container label {
+  background-color: white;
+  border: 1px solid black;
+  width: 50%;
+  padding: 2px;
+  color: black;
+  font-size: 20px; 
+}
+
+label.file-label {
+  flex: 1;
+  background-color: white;
+  cursor: pointer;
+}
+
+
+

@@ -1,4 +1,4 @@
-/* :before,
+:before,
 :after {
   margin: 0;
   padding: 0;
@@ -15,30 +15,33 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
+
 header {
-  visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 10%;
-  padding-inline-start: 2%;
-}
+} 
+
 #logo {
-   visibility: hidden;
   max-width: 300px;
   width: 45%;
   height: auto;
 }
 
-form {
+main {
   background-color: var(--secondary-color);
-  display: flex;
-  flex-flow: column wrap;
-  gap: 10px
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+  padding: 10px;
+  
 }
-input {
-  width: 300px;
-  height: 30px;
-} */
+
+
+
+
+

@@ -87,13 +87,8 @@
             echo "<p>Error: " . $e->getMessage() . "</p>";
         }
       }
-    } else {
-        echo "<p>Missing required fields.</p>";
     }
 ?>
-
-
-
  <!DOCTYPE html>
  <html lang="en">
 
@@ -108,36 +103,48 @@
  <body>
    <header>
      <a href="/drivesation">
-       <!-- <img id="logo" src="assets/images/logo.png" alt="Drivesation Logo"> -->
+       <img id="logo" src="assets/images/logo.png" alt="Drivesation Logo">
      </a>
    </header>
 
    <main>
+     <h1>Create an Account</h1>
      <form method="POST" enctype="multipart/form-data">
-       <h1>Create an Account</h1>
-       <input id="lastname" name="lastname" type="text" placeholder="Last Name">
-       <input id="firstname" name="firstname" type="text" placeholder="First Name">
-       <input id="middlename" name="middlename" type="text" placeholder="Middle Name">
-       <input id="address" name="address" type="text" placeholder="Address">
-       <input id="contact_number" name="contact_number" type="text" placeholder="Contact ">
-       <input id="birthdate" name="birthdate" type="date" placeholder="Date of Birth">
+       <div class="left-column">
+         <input id="lastname" name="lastname" type="text" placeholder="Last Name">
+         <input id="firstname" name="firstname" type="text" placeholder="First Name">
+         <input id="middlename" name="middlename" type="text" placeholder="Middle Name">
+         <input id="contact_number" name="contact_number" type="text" placeholder="Contact ">
+         <input id="address" name="address" type="text" placeholder="Address">
+         <input id="birthdate" name="birthdate" type="date" placeholder="Date of Birth">
+         <div class="gender-container">
+           <div class="radio-container">
+             <input type="radio" id="male" name="gender" value=0>
+             <label for="male">Male</label>
+           </div>
+           <div class="radio-container">
+             <input type="radio" id="female" name="gender" value=1>
+             <label for="female">Female</label>
+           </div>
+         </div>
 
-       <input type="radio" id="male" name="gender" value=0>
-       <label for="male">Male</label>
-       <input type="radio" id="female" name="gender" value=1>
-       <label for="female">Female</label>
+         <label class="file-label" for="valid_id">VALID ID</label>
+         <label class="file-label" for="drivers_license">Driver's License</label>
+         <label class="file-label" for="proof_of_billing">Proof of Billing</label>
+         <label class="file-label" for="selfie_with_id">Selfie with ID</label>
 
-       <input id="email_address" name="email_address" type="text" placeholder="Email">
-       <input id="password" name="password" type="password" placeholder="Password">
+         <input type="file" name="valid_id" id="valid_id">
+         <input type="file" name="drivers_license" id="drivers_license">
+         <input type="file" name="proof_of_billing" id="proof_of_billing">
+         <input type="file" name="selfie_with_id" id="selfie_with_id">
+       </div>
 
-
-       Select image to upload:
-       <input type="file" name="valid_id" id="valid-id">
-       <input type="file" name="drivers_license" id="drivers-license">
-       <input type="file" name="proof_of_billing" id="proof-of-billing">
-       <input type="file" name="selfie_with_id" id="selfie-with-id">
-       <button type="submit">Submit</button>
+       <div class="right-column">
+         <input id="email_address" name="email_address" type="text" placeholder="Email">
+         <input id="password" name="password" type="password" placeholder="Password">
+         <button type="submit">Submit</button>
      </form>
+     </div>
 
    </main>
  </body>
