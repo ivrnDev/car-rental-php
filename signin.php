@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $db->fetchRow($stid);
             if ($result) {
                 $_SESSION['user_id'] = $result['USER_ID'];
-                header("Location: /");
+                header("Location: /drivesation");
                 exit;
             } else {
                 echo "Invalid username or password";

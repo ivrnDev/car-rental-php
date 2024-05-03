@@ -1,20 +1,3 @@
- <?php 
-  require_once "functions/get-profile.php";
-  require_once "utils/OracleDb.php";
-  $db = new OracleDB();
-  
-    $userId = $_SESSION["user_id"];
-    // if(!$userId) {
-    //   header("Location: signin.php");
-    //   exit();
-    // }
-    echo $userId;
-
-    $profile_link = getProfilePicture($userId, $db);
-    $imageSrc = !empty($profile_link) ? htmlspecialchars($profile_link) : 'assets/images/default-profile.png';
-    
-  ?>
-
  <!DOCTYPE html>
  <html lang="en">
 
@@ -26,24 +9,12 @@
  </head>
 
  <body>
+   <?php 
+      require_once "assets/component/header.php";
+  ?>
 
-   <header>
-     <img src="assets/images/logo-bw.png" alt="Drivesation Logo">
-     <nav>
-       <ul>
-         <li><a href="">Home</a></li>
-         <li><a href="">About Us</a></li>
-         <li><a href="">Lease Car</a></li>
-         <li><a href="">Car List</a></li>
-         <li><a href="">Reviews</a></li>
-         <li><a href="functions/logout.php">Logout</a></li>
-       </ul>
-     </nav>
 
-     <div class="profile-container">
-       <img src="<?php echo $imageSrc; ?>" alt="Profile Picture">
-     </div>
-   </header>
+
 
    <main>
      MAIN

@@ -1,0 +1,8 @@
+.left-column img{
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+}
+.left-column ul{
+  color: white;
+}

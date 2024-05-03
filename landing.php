@@ -1,8 +1,5 @@
  <?php 
   require_once "utils/OracleDb.php";
-  echo "<pre>";
-  print_r($_SESSION);
-  echo "<pre>";
   ?>
 
  <!DOCTYPE html>

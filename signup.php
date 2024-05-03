@@ -120,7 +120,7 @@
          <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
          <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
          <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
-         <input id="birthdate" name="birthdate" type="date" placeholder="Date of Birth" autocomplete="off">
+         <input id="birthdate" name="birthdate" type="date" autocomplete="off">
          <div class="gender-container">
            <div class="radio-container">
              <input type="radio" id="male" name="gender" value=0>
