@@ -20,9 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stid = $db->executeQuery($sql, $data);
             $result = $db->fetchRow($stid);
             if ($result) {
-                $_SESSION['status'] = true;
                 $_SESSION['user_id'] = $result['USER_ID'];
-                header("Location: index.php");
+                header("Location: /");
                 exit;
             } else {
                 echo "Invalid username or password";

@@ -1,10 +1,13 @@
 <?php 
-session_start();
-$logged = $_SESSION["status"] ?? false;
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-if($logged) {
+$user = $_SESSION["user_id"] ?? null;
+
+if(!empty($user)) {
   require_once("home.php");
 } else {
-  require_once("home.php");
+  require_once("landing.php");
 }
 ?>

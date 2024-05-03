@@ -4,11 +4,14 @@
   $db = new OracleDB();
   
     $userId = $_SESSION["user_id"];
-    if(!$userId) {
-      header("Location: signin.php");
-    }
-    $call = getProfilePicture($userId, $db);
-    echo $call;
+    // if(!$userId) {
+    //   header("Location: signin.php");
+    //   exit();
+    // }
+    echo $userId;
+
+    $profile_link = getProfilePicture($userId, $db);
+    $imageSrc = !empty($profile_link) ? htmlspecialchars($profile_link) : 'assets/images/default-profile.png';
     
   ?>
 
@@ -33,11 +36,12 @@
          <li><a href="">Lease Car</a></li>
          <li><a href="">Car List</a></li>
          <li><a href="">Reviews</a></li>
+         <li><a href="functions/logout.php">Logout</a></li>
        </ul>
      </nav>
 
      <div class="profile-container">
-       <img src="assets/images/default-profile.png" alt="Default Profile">
+       <img src="<?php echo $imageSrc; ?>" alt="Profile Picture">
      </div>
    </header>
 
