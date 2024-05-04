@@ -83,25 +83,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p><?= htmlspecialchars($result['OWNER_NAME']) ?></p>
       <p><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
       <p><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
-      <p><?= "₱" . htmlspecialchars(number_format($result['AMOUNT'])) . "/ day" ?></p>
+      <p id="costDisplay"></p>
 
       <div>
         <form method="POST">
           <label for="pick_up_time">Pick up Time</label>
           <input id="pick_up_time" name="pick_up_time" type="time">
 
-          <label for="rent_date_from">Pick up Date</label>
+          <label for=" rent_date_from">Pick up Date</label>
           <input id="rent_date_from" name="rent_date_from" type="date">
 
-          <label for="rent_date_to">Return Date</label>
+          <label for=" rent_date_to">Return Date</label>
           <input id="rent_date_to" name="rent_date_to" type="date">
 
-          <button type="submit">Rent a Car</button>
+          <button type="submit" <?php if ($result['OWNER_ID'] == $userId) echo "disabled" ?>>Rent a Car</button>
         </form>
       </div>
   </main>
-  result
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const rentFromDateInput = document.getElementById('rent_date_from');
+      const rentToDateInput = document.getElementById('rent_date_to');
+      rentFromDateInput.min = new Date().toISOString().split('T')[0];;
+      rentToDateInput.min = new Date().toISOString().split('T')[0];;
+    });
+  </script>
 </body>
 
 </html>
