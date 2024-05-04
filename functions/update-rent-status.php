@@ -1,33 +1,30 @@
 <?php
+header('Content-Type: application/json');
+
 require_once "../utils/OracleDb.php";
-require_once "../utils/upload.php";
 $db = new OracleDB();
 
-if (!$db->isConnected()) {
-  die("Database connection failed");
-}
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new_status'])) {
-  $rent_id = $_POST['rent_id'];
-  $new_status = $_POST['new_status'];
-  try {
-    $rent_id = (int)  $_POST['rent_id'];
-    $new_status = (int)  $_POST['new_status'];
-    echo $rent_id;
+  $rent_id = (int)$_POST['rent_id'];
+  $new_status = (int)$_POST['new_status'];
 
+  try {
     $sql = "UPDATE rent SET status = :new_status WHERE rent_id = :rent_id";
-    $data = [
-      ':new_status' => $new_status,
-      ':rent_id' => $rent_id,
-    ];
+    $data = [':new_status' => $new_status, ':rent_id' => $rent_id];
     $db->executeQuery($sql, $data);
-    echo "Update Successfully";
-    // header("Location: /drivesation/lease-car.php");
+
+    $query = "SELECT status FROM rent WHERE rent_id = :rent_id";
+    $stid = $db->executeQuery($query, [':rent_id' => $rent_id]);
+    $updatedRow = $db->fetchRow($stid);
+
+    echo json_encode($updatedRow);
+    exit;
   } catch (Exception $e) {
-    throw new Exception("ERROR", $e->getMessage());
+    http_response_code(500);
+    echo json_encode(["error" => $e->getMessage()]);
+    exit;
   }
 } else {
   http_response_code(400);
-  echo "Invalid request. Required fields are missing.";
+  echo json_encode(["error" => "Invalid request. Required fields are missing."]);
 }

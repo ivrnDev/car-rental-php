@@ -163,7 +163,7 @@
             <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
             <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
             <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_TO'])) ?></div>
-            <div class="flex-cell">
+            <div class="flex-cell status-cell">
               <?php switch ($rent['STATUS']) {
                 case 0:
                   echo "Pending";
@@ -221,22 +221,38 @@
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'rent_id=' + encodeURIComponent(rentId) + '&new_status=' + encodeURIComponent(1)
+                body: 'rent_id=' + encodeURIComponent(rentId) + '&new_status=1'
               })
-              .then(response => {
-                if (!response.ok) throw new Error('Failed to update: ' + response.statusText);
-                return response.text();
-              })
+              .then(response => response.json())
               .then(data => {
-                alert(data);
+                if (data.error) {
+                  throw new Error(data.error);
+                }
+
+                const statusText = convertStatusCodeToText(data.STATUS);
+                const statusCell = this.closest('.flex-row').querySelector('.status-cell');
+                statusCell.textContent = statusText;
               })
               .catch(error => {
-                console.error('Error updating status:', error);
-                alert('Error updating status.');
+                console.error('Error:', error);
+                alert('Failed to update: ' + error.message);
               });
           });
         });
       });
+
+      function convertStatusCodeToText(code) {
+        const statusLookup = {
+          0: "Pending",
+          1: "Approved",
+          2: "Rejected",
+          3: "Processing",
+          4: "On Going",
+          5: "Completed",
+          default: "Unknown"
+        };
+        return statusLookup[code] || statusLookup.default;
+      }
     </script>
 
 
