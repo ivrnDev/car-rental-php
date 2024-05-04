@@ -5,9 +5,6 @@ $db = new OracleDB();
 $result = getAllCars($db);
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

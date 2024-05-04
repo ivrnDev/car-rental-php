@@ -1,6 +1,7 @@
  <?php
   require_once "assets/component/header.php";
   require_once "functions/get-cars.php";
+  require_once "functions/get-rent-list.php";
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
@@ -10,7 +11,7 @@
   }
   $db = new OracleDB();
   $carList = getUserCarList($userId, $db);
-
+  $rentList = getRentersLists($userId, $db);
   ?>
 
  <!DOCTYPE html>
@@ -22,6 +23,7 @@
    <title>Lease Car</title>
    <link rel="stylesheet" href="assets/styles/user/layout.css">
    <link rel="stylesheet" href="assets/styles/user/lease-car.css">
+   <link rel="stylesheet" href="assets/styles/component/button.css">
  </head>
 
  <body>
@@ -58,19 +60,18 @@
      <div class="car-list container">
        <h1>List of Cars</h1>
        <div class="flex-row header">
+         <div class="flex-cell"></div>
          <div class="flex-cell">ID</div>
          <div class="flex-cell">Title</div>
-         <div class="flex-cell">Description</div>
          <div class="flex-cell">Type</div>
          <div class="flex-cell">Model</div>
-         <div class="flex-cell">Color</div>
          <div class="flex-cell">Brand</div>
-         <div class="flex-cell">Plate No.</div>
-         <div class="flex-cell">Seats</div>
-         <div class="flex-cell">Gas</div>
          <div class="flex-cell">Availability</div>
          <div class="flex-cell">Status</div>
          <div class="flex-cell">Amount</div>
+         <div class="flex-cell"></div>
+         <div class="flex-cell"></div>
+         <div class="flex-cell"></div>
 
        </div>
        <?php foreach ($carList as $car) : ?>
@@ -82,9 +83,7 @@
               $links = array_map('trim', $links);
               if (count($links) >= 2) {
               ?>
-
                <img src="<?= htmlspecialchars($links[0]) ?>" alt="Car Image">
-               <img src="<?= htmlspecialchars($links[1]) ?>" alt="OR/CR Document">
              <?php
               } else {
                 echo "<p>Image links are missing.</p>";
@@ -95,11 +94,7 @@
            <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
            <div class="flex-cell"><?= $car['CAR_TYPE'] ?></div>
            <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
-           <div class="flex-cell"><?= $car['CAR_COLOR'] ?></div>
            <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
-           <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
-           <div class="flex-cell"><?= $car['SEAT_CAPACITY'] ?></div>
-           <div class="flex-cell"><?= $car['GAS_TYPE'] ?></div>
            <div class="flex-cell">
              <?php switch ($car['AVAILABILITY_STATUS']) {
                 case 0:
@@ -136,13 +131,81 @@
               } ?>
            </div>
            <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
-
+           <div class="flex-cell">
+             <button class="view-btn">View</button>
+           </div>
+           <div class="flex-cell">
+             <button class="edit-btn">Edit</button>
+           </div>
+           <div class="flex-cell">
+             <button class="delete-btn">Delete</button>
+           </div>
          </div>
        <?php endforeach; ?>
      </div>
 
      <div class="rent-list container">
-       <h1>List of Rent</h1>
+       <div class="flex-row header">
+         <div class="flex-cell">ID</div>
+         <div class="flex-cell">Pick Up Time</div>
+         <div class="flex-cell">Rent Date</div>
+         <div class="flex-cell">Return Date</div>
+         <div class="flex-cell">Status</div>
+         <div class="flex-cell">Transaction Date</div>
+         <div class="flex-cell">Client</div>
+         <div class="flex-cell"></div>
+         <div class="flex-cell"></div>
+         <div class="flex-cell"></div>
+       </div>
+       <?php foreach ($rentList as $rent) : ?>
+         <div class="flex-row">
+           <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
+           <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
+           <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
+           <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_TO'])) ?></div>
+           <div class="flex-cell">
+             <?php switch ($rent['STATUS']) {
+                case 0:
+                  echo "Pending";
+                  break;
+                case 1:
+                  echo "Approved";
+                  break;
+                case 2:
+                  echo "Rejected";
+                  break;
+                case 3:
+                  echo "Processing";
+                  break;
+                case 4:
+                  echo "On Going";
+                  break;
+                case 5:
+                  echo "Completed";
+                  break;
+                default:
+                  echo "Unknown";
+                  break;
+              } ?>
+           </div>
+
+           <div class="flex-cell">
+             <?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?>
+           </div>
+           <div class="flex-cell">
+             <?= $rent['FULL_NAME'] ?>
+           </div>
+           <div class="flex-cell">
+             <Button class="view-btn">View</Button>
+           </div>
+           <div class="flex-cell">
+             <Button class="accept-btn">Accept</Button>
+           </div>
+           <div class="flex-cell">
+             <Button class="reject-btn">Reject</Button>
+           </div>
+         </div>
+       <?php endforeach; ?>
      </div>
 
    </main>

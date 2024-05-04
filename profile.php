@@ -106,7 +106,6 @@
          <div class="flex-row header">
            <div class="flex-cell">ID</div>
            <div class="flex-cell">Title</div>
-           <div class="flex-cell">Description</div>
            <div class="flex-cell">Type</div>
            <div class="flex-cell">Model</div>
            <div class="flex-cell">Color</div>
