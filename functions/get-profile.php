@@ -53,3 +53,53 @@ function getProfileRentHistory($user_id, $db)
     return false;
   }
 }
+
+function getProfileCarLists($userId, $db)
+{
+  try {
+    $sql = "SELECT 
+    c.CAR_ID,    
+    c.CAR_MODEL,             
+    c.CAR_COLOR,             
+    c.CAR_BRAND,             
+    c.PLATE_NUMBER,          
+    c.SEAT_CAPACITY,         
+    c.GAS_TYPE,              
+    c.AVAILABILITY_STATUS,   
+    c.STATUS,                
+    c.OWNER_ID,              
+    c.AMOUNT,                
+    c.CAR_TYPE,              
+    c.CAR_TITLE,             
+    c.CAR_DESCRIPTION,
+    LISTAGG(d.file_link, ', ') WITHIN GROUP (ORDER BY d.file_link) AS file_links
+FROM Car c
+JOIN \"DOCUMENT\" d ON d.car_id = c.CAR_ID
+WHERE c.owner_id = :user_id
+GROUP BY 
+    c.CAR_ID,    
+    c.CAR_MODEL,             
+    c.CAR_COLOR,             
+    c.CAR_BRAND,             
+    c.PLATE_NUMBER,          
+    c.SEAT_CAPACITY,         
+    c.GAS_TYPE,              
+    c.AVAILABILITY_STATUS,   
+    c.STATUS,                
+    c.OWNER_ID,              
+    c.AMOUNT,                
+    c.CAR_TYPE,              
+    c.CAR_TITLE,             
+    c.CAR_DESCRIPTION";
+    $data = [':user_id' => $userId];
+    $stid = $db->executeQuery($sql, $data);
+    $carResult = $db->fetchAll($stid);
+    if ($carResult && count($carResult) > 0) {
+      return $carResult;
+    }
+    return [];
+  } catch (Exception $e) {
+    error_log($e->getMessage());
+    return false;
+  }
+}

@@ -82,7 +82,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p><?= htmlspecialchars($result['OWNER_NAME']) ?></p>
       <p><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
       <p><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
-      <p id="costDisplay"></p>
 
       <div>
         <form method="POST">

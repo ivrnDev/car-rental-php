@@ -51,3 +51,17 @@ main {
   flex: 1;
   padding: 8px;
 }
+
+.tab-button {
+    background-color: #f3f3f3; /* Light gray background for inactive buttons */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background-color: #4CAF50; 
+    color: white;
+}
+
