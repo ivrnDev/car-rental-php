@@ -1,4 +1,5 @@
  <?php
+  require_once "assets/component/header.php";
   require_once "utils/OracleDb.php";
   require_once "utils/upload.php";
   session_start();
@@ -10,6 +11,8 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset(
+      $_POST['car_title'],
+      $_POST['car_description'],
       $_POST['car_model'],
       $_POST['plate_number'],
       $_POST['car_color'],
@@ -22,6 +25,8 @@
       $_FILES['car_image'],
     )) {
       try {
+        $car_title = $_POST['car_title'];
+        $car_description = $_POST['car_description'];
         $car_model = $_POST['car_model'];
         $plate_number = $_POST['plate_number'];
         $car_color = $_POST['car_color'];
@@ -33,9 +38,11 @@
         $orcr = $_FILES['orcr'];
         $orcr = $_FILES['car_image'];
 
-        $sql = "INSERT INTO Car (car_id, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id) VALUES (car_seq.NEXTVAL, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id) RETURNING car_id INTO :new_car_id";
+        $sql = "INSERT INTO Car (car_id, car_title, car_description, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id) VALUES (car_seq.NEXTVAL, :car_title, :car_description, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id) RETURNING car_id INTO :new_car_id";
 
         $data = [
+          ':car_title' => $car_title,
+          ':car_description' => $car_description,
           ':car_model' => $car_model,
           ':plate_number' => $plate_number,
           ':car_color' => $car_color,
@@ -106,14 +113,13 @@
  </head>
 
  <body>
-   <?php
-    require_once "assets/component/header.php";
-    ?>
    <main>
      <div class="lease-form container">
        <h1>Lease Car</h1>
        <p>Input the required fields</p>
        <form id="createCarForm" method="POST" enctype="multipart/form-data">
+         <input id="car_title" name="car_title" type="text" placeholder="Car Title" autocomplete="off">
+         <input id="car_description" name="car_description" type="text" placeholder="Description" autocomplete="off">
          <input id="car_model" name="car_model" type="text" placeholder="Car Model" autocomplete="off">
          <input id="plate_number" name="plate_number" type="text" placeholder="Plate Number" autocomplete="off">
          <input id="car_color" name="car_color" type="text" placeholder="Car Color" autocomplete="off">
