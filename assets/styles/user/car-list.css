@@ -1,0 +1,18 @@
+main {
+  padding: 5% 2%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 25px;
+  justify-content: flex-start;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  flex: 0 0 calc(25% - 20px);
+  height: 350px;
+  overflow: hidden;
+  
+}

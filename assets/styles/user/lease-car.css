@@ -1,5 +1,5 @@
 main {
-  overflow: auto;
+  /* overflow: auto; */
   padding: 3% 7%;
   display: flex;
   flex-direction: column;
