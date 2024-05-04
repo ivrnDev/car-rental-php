@@ -1,8 +1,15 @@
  <?php
-  session_start();
-  if (empty($_SESSION['user_id'])) {
+  require_once "assets/component/header.php";
+  require_once "functions/get-cars.php";
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  $userId = $_SESSION['user_id'];
+  if (empty($userId)) {
     header("Location: /drivesation/signin.php");
   }
+  $db = new OracleDB();
+  $carList = getUserCarList($userId, $db);
 
   ?>
 
@@ -19,8 +26,6 @@
 
  <body>
    <main>
-     <?php require_once "assets/component/header.php"; ?>
-
      <div class="lease-form container">
        <h1>Lease Car</h1>
        <p>Input the required fields</p>
@@ -52,6 +57,88 @@
 
      <div class="car-list container">
        <h1>List of Cars</h1>
+       <div class="flex-row header">
+         <div class="flex-cell">ID</div>
+         <div class="flex-cell">Title</div>
+         <div class="flex-cell">Description</div>
+         <div class="flex-cell">Type</div>
+         <div class="flex-cell">Model</div>
+         <div class="flex-cell">Color</div>
+         <div class="flex-cell">Brand</div>
+         <div class="flex-cell">Plate No.</div>
+         <div class="flex-cell">Seats</div>
+         <div class="flex-cell">Gas</div>
+         <div class="flex-cell">Availability</div>
+         <div class="flex-cell">Status</div>
+         <div class="flex-cell">Amount</div>
+
+       </div>
+       <?php foreach ($carList as $car) : ?>
+         <div class="flex-row">
+           <div class="flex-cell">
+             <?php
+              $fileLinks = $car['FILE_LINKS'];
+              $links = explode(',', $fileLinks);
+              $links = array_map('trim', $links);
+              if (count($links) >= 2) {
+              ?>
+
+               <img src="<?= htmlspecialchars($links[0]) ?>" alt="Car Image">
+               <img src="<?= htmlspecialchars($links[1]) ?>" alt="OR/CR Document">
+             <?php
+              } else {
+                echo "<p>Image links are missing.</p>";
+              }
+              ?>
+           </div>
+           <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
+           <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
+           <div class="flex-cell"><?= $car['CAR_TYPE'] ?></div>
+           <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
+           <div class="flex-cell"><?= $car['CAR_COLOR'] ?></div>
+           <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
+           <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
+           <div class="flex-cell"><?= $car['SEAT_CAPACITY'] ?></div>
+           <div class="flex-cell"><?= $car['GAS_TYPE'] ?></div>
+           <div class="flex-cell">
+             <?php switch ($car['AVAILABILITY_STATUS']) {
+                case 0:
+                  echo "Pending";
+                  break;
+                case 1:
+                  echo "Available";
+                  break;
+                case 2:
+                  echo "On Lease";
+                  break;
+                case 3:
+                  echo "Maintenance";
+                  break;
+                default:
+                  echo "Unknown";
+                  break;
+              } ?>
+           </div>
+           <div class="flex-cell">
+             <?php switch ($car['STATUS']) {
+                case 0:
+                  echo "Pending";
+                  break;
+                case 1:
+                  echo "Approve";
+                  break;
+                case 2:
+                  echo "Rejected";
+                  break;
+                default:
+                  echo "Unknown";
+                  break;
+              } ?>
+           </div>
+           <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
+
+         </div>
+       <?php endforeach; ?>
      </div>
 
      <div class="rent-list container">

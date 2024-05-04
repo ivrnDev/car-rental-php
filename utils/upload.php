@@ -35,14 +35,14 @@ function uploadCarDocuments($file, $carId, $documentType, $documentName, $db)
     mkdir("../uploads/car/$carId", 0777, true);
   }
 
-  $target_dir = "../uploads/car/$carId/";
+  $target_dir = "uploads/car/$carId/";
   $fileExtension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
   $dateTime = date('YmdHis');
   $document_name = $carId . "_" . $documentType . "-" . $dateTime . "." . $fileExtension;
   $target_file = $target_dir . $document_name;
 
-  if (move_uploaded_file($file["tmp_name"], $target_file)) {
+  if (move_uploaded_file($file["tmp_name"], "../uploads/car/" . $carId . "/" . $document_name)) {
     try {
       $sql = "INSERT INTO document (document_id, document_name, document_type, file_link, car_id) VALUES (document_seq.NEXTVAL, :document_name, :document_type, :file_link, :car_id)";
       $stid = $db->prepareStatement($sql);

@@ -1,6 +1,6 @@
  <?php
   require_once "assets/component/header.php";
-  require_once "functions/get-profile.php";
+  require_once "functions/get-cars.php";
   require_once "utils/OracleDb.php";
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -11,7 +11,7 @@
   $imageSrc = !empty($profile_link) ? htmlspecialchars($profile_link) : 'assets/images/default-profile.png';
   $profile_info = getProfileInfo($userId, $db);
   $rent_history = getProfileRentHistory($userId, $db);
-  $carList = getProfileCarLists($userId, $db);
+  $carList = getUserCarList($userId, $db);
   ?>
 
  <!DOCTYPE html>
