@@ -44,12 +44,10 @@ main h2 {
   height: 60px;
   align-items: center;
   font-size: 15px;
-  
 }
 
 .flex-row {
   display: flex;
-  
 }
 
 .flex-cell {

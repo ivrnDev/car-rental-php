@@ -47,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $db->executeQuery($sql, $data);
 
       echo "<p>Rent successfully!</p>";
-      oci_free_statement($stid);
     } catch (Exception $e) {
       throw new Exception("EROR", $e->getMessage());
     }
