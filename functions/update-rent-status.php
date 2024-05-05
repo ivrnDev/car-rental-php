@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
     $query = "SELECT status FROM rent WHERE rent_id = :rent_id";
     $stid = $db->executeQuery($query, [':rent_id' => $rent_id]);
     $updatedRow = $db->fetchRow($stid);
-
+    
     echo json_encode($updatedRow);
     exit;
   } catch (Exception $e) {
