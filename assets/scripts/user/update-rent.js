@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateRentStatus(rentId, carId, newStatus, button) {
-    console.log({ rentId, carId, newStatus, button })
     fetch('api/update-rent-status.php', {
       method: 'POST',
       headers: {
@@ -71,43 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Failed to update: ' + error.message);
       });
   }
-
-  //View Button
-  const viewBtn = document.querySelectorAll('.view-btn');
-  viewBtn.forEach(button => {
-    button.addEventListener('click', () => {
-      const userId = button.getAttribute('data-user-id');
-      const carId = button.getAttribute('data-car-id');
-      const rentId = button.getAttribute('data-rent-id');
-      sendRentView(carId, userId, rentId);
-
-    })
-  })
-
 });
 
-function sendRentView(carId, userId, rentId) {
-  fetch('api/get-rent-view.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `carId=${encodeURIComponent(carId)}&userId=${encodeURIComponent(userId)}&rentId=${encodeURIComponent(rentId)}`
 
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-
-}
 
 function hideRowButtons(button) {
   const buttons = button.closest('.flex-row').querySelectorAll('.accept-btn, .reject-btn');

@@ -1,6 +1,7 @@
   <?php
   require_once "assets/component/header.php";
-  require_once "assets/component/modals/confirmation.-modal.php";
+  require_once "assets/component/modals/confirmation-modal.php";
+  require_once "assets/component/rent/view-rent-info.php";
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
   if (session_status() == PHP_SESSION_NONE) {
@@ -237,6 +238,7 @@
       </div>
 
     </main>
+    <script src="assets/scripts/user/view-rent-info.js"></script>
     <script src="assets/scripts/user/update-car-availability.js"></script>
     <script src="assets/scripts/user/update-rent.js"></script>
 
