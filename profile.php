@@ -23,6 +23,7 @@
    <title>Profile</title>
    <link rel="stylesheet" href="assets/styles/user/layout.css">
    <link rel="stylesheet" href="assets/styles/user/profile.css">
+   <link rel="stylesheet" href="assets/styles/component/button.css">
  </head>
 
  <body>
@@ -171,34 +172,7 @@
        </div>
      </div>
    </main>
-   <script>
-     document.addEventListener('DOMContentLoaded', function() {
-       function showSection(sectionId, elem) {
-         document.querySelectorAll('.content-section').forEach(function(section) {
-           section.style.display = 'none';
-         });
-
-         document.querySelectorAll('.tab-button').forEach(function(button) {
-           button.classList.remove('active');
-         });
-
-         elem.classList.add('active');
-
-         // Show the specified section
-         document.getElementById(sectionId).style.display = 'block'; // Changed to getElementById
-       }
-
-       // Attach event listeners directly via JavaScript for better control
-       document.querySelector('.rentHistoryBtn').addEventListener('click', function() {
-         showSection('rentHistory', this);
-       });
-       document.querySelector('.carListedBtn').addEventListener('click', function() {
-         showSection('carListed', this);
-       });
-
-       document.querySelector('.rentHistoryBtn').click(); // Simulate click on Rent History button
-     });
-   </script>
+   <script src="./assets/scripts/user/profile-history.js"></script>
  </body>
 
  </html>
