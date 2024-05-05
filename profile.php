@@ -1,6 +1,6 @@
  <?php
   require_once "assets/component/header.php";
-  require_once "assets/component/modals/confirmation.-modal.php";
+  require_once "assets/component/modals/confirmation-modal.php";
   require_once "functions/get-cars.php";
   require_once "utils/OracleDb.php";
   if (session_status() == PHP_SESSION_NONE) {
@@ -23,7 +23,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Profile</title>
    <link rel="stylesheet" href="assets/styles/user/layout.css">
-   <link rel="stylesheet" href="assets/styles/component/confirmation-modal.css">
    <link rel="stylesheet" href="assets/styles/user/profile.css">
    <link rel="stylesheet" href="assets/styles/component/table.css">
    <link rel="stylesheet" href="assets/styles/component/button.css">
