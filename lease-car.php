@@ -189,6 +189,9 @@
                     case 5:
                       echo "Completed";
                       break;
+                    case 6:
+                      echo "Cancelled";
+                      break;
                     default:
                       echo "Unknown";
                       break;
@@ -203,10 +206,10 @@
                 </div>
                 <?php if (!in_array($rent['STATUS'], [1, 2])) :
                 ?>
-                  <div class="flex-cell">
+                  <div class="flex-cell action-btn">
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1>Accept</button>
                   </div>
-                  <div class="flex-cell">
+                  <div class="flex-cell action-btn">
                     <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2>Reject</button>
                   </div>
                 <?php else : ?>
@@ -222,7 +225,7 @@
       </div>
 
     </main>
-    <script src="assets/scripts/user/lease-car.js"></script>
+    <script src="assets/scripts/user/update-rent.js"></script>
 
 
 
