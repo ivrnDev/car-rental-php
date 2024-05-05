@@ -210,7 +210,7 @@
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1 data-car-id="<?= $rent['CAR_ID'] ?>">Accept</button>
                   </div>
                   <div class="flex-cell action-btn">
-                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2 data-car-id="<?= $rent['CAR_ID'] ?>">Reject</button>
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2>Reject</button>
                   </div>
                 <?php elseif ($rent['STATUS'] == 3) : ?>
                   <div class="flex-cell action-btn">

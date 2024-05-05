@@ -20,32 +20,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const carId = currentButton.getAttribute('data-car-id');
     const statusCode = currentButton.getAttribute('data-value');
     popup.style.display = 'none';
-    updateRentStatus(rentId, statusCode, currentButton);
-
-    if (carId) {
-      const convert = {
-        1: 2,
-        5: 1,
-        6: 1,
-      }
-      if (statusCode in convert) {
-        const result = updateCarAvailability(carId, convert[statusCode]);
-        alert(result)
-      }
+    updateRentStatus(rentId, carId, statusCode, currentButton);
+    const convert = {
+      1: 2,
+      5: 1,
+      6: 1,
     }
+    if (statusCode in convert) {
+      const result = updateCarAvailability(carId, convert[statusCode]);
+      alert(result)
+    }
+
   });
 
   confirmNo.addEventListener('click', function () {
     popup.style.display = 'none';
   });
 
-  function updateRentStatus(rentId, newStatus, button) {
+  function updateRentStatus(rentId, carId, newStatus, button) {
     fetch('functions/update-rent-status.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: 'rent_id=' + encodeURIComponent(rentId) + '&new_status=' + newStatus
+      body: `rent_id=${encodeURIComponent(rentId)}&new_status=${encodeURIComponent(newStatus)}&car_id=${encodeURIComponent(carId)}`
+
     })
       .then(response => response.json())
       .then(data => {
