@@ -4,7 +4,6 @@
   --a-reject-btn: #e04b41;
 }
 
-
 .view-btn {
   background-color: var(--a-view-btn);
 }
@@ -20,30 +19,9 @@
   border: none;
   padding: 7px; 
   cursor: pointer;
-  width: 80%;
-}
-
-.view-btn {
-  background-color: var(--a-view-btn);
-}
-.edit-btn {
-  background-color: var(--a-accept-btn);
-}
-.delete-btn {
-  background-color: var(--a-reject-btn);
-}
-
-.view-btn, .edit-btn, .delete-btn {
-  border-radius: 20px;
-  border: none;
-  padding: 7px; 
-  cursor: pointer;
   width: 100%;
-  color: white;
+  color: rgb(241, 241, 241);
 }
-
-
-
 
 #signup-btn {
   background-color: #6ACE59;

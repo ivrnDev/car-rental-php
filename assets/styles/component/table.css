@@ -1,0 +1,46 @@
+.flex-table {
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid black;
+  height: 100%;
+  overflow: auto;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  /* width: 1200px; */
+}
+
+.flex-row.header {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+.flex-body {
+  /* display: block; */
+}
+
+.flex-cell {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.flex-cell img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.flex-row:hover {
+  background-color: #e9e9e9; /* Highlight row on hover for better readability */
+}
