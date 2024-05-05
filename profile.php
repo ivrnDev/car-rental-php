@@ -1,5 +1,6 @@
  <?php
   require_once "assets/component/header.php";
+  require_once "assets/component/modals/confirmation.-modal.php";
   require_once "functions/get-cars.php";
   require_once "utils/OracleDb.php";
   if (session_status() == PHP_SESSION_NONE) {
@@ -22,7 +23,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Profile</title>
    <link rel="stylesheet" href="assets/styles/user/layout.css">
+   <link rel="stylesheet" href="assets/styles/component/confirmation-modal.css">
    <link rel="stylesheet" href="assets/styles/user/profile.css">
+   <link rel="stylesheet" href="assets/styles/component/table.css">
    <link rel="stylesheet" href="assets/styles/component/button.css">
  </head>
 
@@ -54,55 +57,72 @@
            <div class="flex-cell">Return Date</div>
            <div class="flex-cell">Status</div>
            <div class="flex-cell">Transaction Date</div>
-           <div class="flex-cell">Car Owner</div>
-           <div class="flex-cell">Car Details</div>
+           <div class="flex-cell">Details</div>
+           <div class="flex-cell"></div>
            <div class="flex-cell"></div>
          </div>
-         <?php foreach ($rent_history as $rent) : ?>
-           <div class="flex-row">
-             <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
-             <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
-             <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
-             <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_TO'])) ?></div>
-             <div class="flex-cell">
-               <?php switch ($rent['STATUS']) {
-                  case 0:
-                    echo "Pending";
-                    break;
-                  case 1:
-                    echo "Approved";
-                    break;
-                  case 2:
-                    echo "Rejected";
-                    break;
-                  case 3:
-                    echo "Processing";
-                    break;
-                  case 4:
-                    echo "On Going";
-                    break;
-                  case 5:
-                    echo "Completed";
-                    break;
-                  default:
-                    echo "Unknown";
-                    break;
-                } ?>
-             </div>
+         <div class="flex-body">
+           <?php foreach ($rent_history as $rent) : ?>
+             <div class="flex-row">
+               <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
+               <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
+               <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
+               <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_TO'])) ?></div>
+               <div class="flex-cell status-cell">
+                 <?php switch ($rent['STATUS']) {
+                    case 0:
+                      echo "Pending";
+                      break;
+                    case 1:
+                      echo "Approved";
+                      break;
+                    case 2:
+                      echo "Rejected";
+                      break;
+                    case 3:
+                      echo "Processing";
+                      break;
+                    case 4:
+                      echo "On Going";
+                      break;
+                    case 5:
+                      echo "Completed";
+                      break;
+                    case 6:
+                      echo "Cancelled";
+                      break;
+                    default:
+                      echo "Unknown";
+                      break;
+                  } ?>
+               </div>
 
-             <div class="flex-cell"><?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?></div>
-             <div class="flex-cell">
-               <Button class="view-btn">View</Button>
+               <div class="flex-cell"><?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?></div>
+
+               <div class="flex-cell">
+                 <Button class="view-btn">View</Button>
+               </div>
+               <?php if ($rent['STATUS'] == 0) :
+                ?>
+                 <div class="flex-cell action-btn">
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=6>Cancel</button>
+                 </div>
+               <?php elseif ($rent['STATUS'] == 1) : ?>
+                 <div class="flex-cell action-btn">
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=3>Process</button>
+                 </div>
+                 <div class="flex-cell action-btn">
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=3>Cancel</button>
+                 </div>
+               <?php else : ?>
+                 <div class="flex-cell"></div>
+                 <div class="flex-cell"></div>
+               <?php endif; ?>
              </div>
-             <div class="flex-cell">
-               <Button class="accept-btn">Accept</Button>
-             </div>
-             <div class="flex-cell">
-               <Button class="reject-btn">Reject</Button>
-             </div>
-           </div>
-         <?php endforeach; ?>
+           <?php endforeach; ?>
+         </div>
        </div>
+
        <div id="carListed" class="content-section">
          <div class="flex-row header">
            <div class="flex-cell">ID</div>
@@ -173,6 +193,7 @@
      </div>
    </main>
    <script src="./assets/scripts/user/profile-history.js"></script>
+   <script src="./assets/scripts/user/update-rent.js"></script>
  </body>
 
  </html>
