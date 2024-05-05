@@ -204,7 +204,7 @@
                 <div class="flex-cell">
                   <Button class="view-btn">View</Button>
                 </div>
-                <?php if (!in_array($rent['STATUS'], [1, 2])) :
+                <?php if ($rent['STATUS'] == 0) :
                 ?>
                   <div class="flex-cell action-btn">
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1>Accept</button>
@@ -212,6 +212,18 @@
                   <div class="flex-cell action-btn">
                     <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2>Reject</button>
                   </div>
+                <?php elseif ($rent['STATUS'] == 3) : ?>
+                  <div class="flex-cell action-btn">
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=4>Picked Up</button>
+                  </div>
+                  <div class="flex-cell action-btn">
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=6>Cancel</button>
+                  </div>
+                <?php elseif ($rent['STATUS'] == 4) : ?>
+                  <div class="flex-cell action-btn">
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=5>Complete</button>
+                  </div>
+                  <div class="flex-cell"></div>
                 <?php else : ?>
                   <div class="flex-cell"></div>
                   <div class="flex-cell"></div>
