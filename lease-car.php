@@ -1,8 +1,8 @@
   <?php
   require_once "assets/component/header.php";
+  require_once "assets/component/modals/confirmation.-modal.php";
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
-  require_once "assets/component/modals/confirmation.-modal.php";
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
@@ -23,7 +23,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lease Car</title>
     <link rel="stylesheet" href="assets/styles/user/layout.css">
-    <link rel="stylesheet" href="assets/styles/component/confirmation-modal.css">
     <link rel="stylesheet" href="assets/styles/component/button.css">
     <link rel="stylesheet" href="assets/styles/component/table.css">
     <link rel="stylesheet" href="assets/styles/user/lease-car.css">
@@ -158,7 +157,7 @@
             <div class="flex-cell">Return Date</div>
             <div class="flex-cell">Status</div>
             <div class="flex-cell">Transaction Date</div>
-            <div class="flex-cell">Client</div>
+            <div class="flex-cell"></div>
             <div class="flex-cell"></div>
             <div class="flex-cell"></div>
           </div>
@@ -202,11 +201,12 @@
                   <?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?>
                 </div>
                 <div class="flex-cell">
-                  <Button class="view-btn">View</Button>
+                  <Button class="view-btn" data-car-id="<?= $rent['CAR_ID'] ?>" data-user-id="<?= $rent['USER_ID'] ?>" data-rent-id="<?= $rent['RENT_ID'] ?>">View</Button>
                 </div>
+
                 <?php if ($rent['STATUS'] == 0) :
                 ?>
-                  <div class="flex-cell action-btn">
+                  <div class=" flex-cell action-btn">
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1 data-car-id="<?= $rent['CAR_ID'] ?>">Accept</button>
                   </div>
                   <div class="flex-cell action-btn">

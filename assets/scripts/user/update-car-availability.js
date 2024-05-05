@@ -1,6 +1,6 @@
 async function updateCarAvailability(car_id, newStatus) {
   try {
-    const response = await fetch('functions/update-car-availability.php', {
+    const response = await fetch('api/update-car-availability.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

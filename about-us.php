@@ -9,8 +9,9 @@
 </head>
 
 <body>
-  <?php 
-      require_once "assets/component/header.php";
+  <?php
+  require_once "assets/component/header.php";
+
   ?>
 
   About US
