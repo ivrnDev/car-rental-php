@@ -52,18 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.error) {
           throw new Error(data.error);
         }
-        data.forEach(rent => {
-          const rentRow = document.querySelector(`[data-rent-id="${rent.RENT_ID}"]`);
-          const statusCell = rentRow.querySelector('.status-cell');
-          const statusText = convertStatusCodeToText(rent.STATUS);
-          statusCell.textContent = statusText;
-          if (rent.STATUS === "2") { //If status is rejected
-            hideAllButtonsInRow(rentRow);
-          } else {
-            hideRowButtons(button);
-          }
-        });
-
+        const statusText = convertStatusCodeToText(data.STATUS);
+        const statusCell = button.closest('.flex-row').querySelector('.status-cell');
+        statusCell.textContent = statusText;
+        disableRowButtons(button);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -73,14 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function hideRowButtons(button) {
+function disableRowButtons(button) {
   const buttons = button.closest('.flex-row').querySelectorAll('.accept-btn, .reject-btn');
   buttons.forEach(btn => btn.style.display = "none");
-}
-
-function hideAllButtonsInRow(row) {
-  const buttons = row.querySelectorAll('.accept-btn, .reject-btn');
-  buttons.forEach(btn => btn.style.display = 'none');
 }
 
 function convertStatusCodeToText(code) {

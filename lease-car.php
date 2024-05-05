@@ -164,7 +164,7 @@
           </div>
           <div class="flex-body">
             <?php foreach ($rentList as $rent) : ?>
-              <div class="flex-row">
+              <div class="flex-row" data-rent-id="<?= $rent['RENT_ID'] ?>">
                 <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
                 <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
                 <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
