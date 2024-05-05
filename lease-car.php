@@ -207,21 +207,21 @@
                 <?php if ($rent['STATUS'] == 0) :
                 ?>
                   <div class="flex-cell action-btn">
-                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1>Accept</button>
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1 data-car-id="<?= $rent['CAR_ID'] ?>">Accept</button>
                   </div>
                   <div class="flex-cell action-btn">
-                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2>Reject</button>
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2 data-car-id="<?= $rent['CAR_ID'] ?>">Reject</button>
                   </div>
                 <?php elseif ($rent['STATUS'] == 3) : ?>
                   <div class="flex-cell action-btn">
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=4>Picked Up</button>
                   </div>
                   <div class="flex-cell action-btn">
-                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=6>Cancel</button>
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=6 data-car-id="<?= $rent['CAR_ID'] ?>">Cancel</button>
                   </div>
                 <?php elseif ($rent['STATUS'] == 4) : ?>
                   <div class="flex-cell action-btn">
-                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=5>Complete</button>
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=5 data-car-id="<?= $rent['CAR_ID'] ?>">Complete</button>
                   </div>
                   <div class="flex-cell"></div>
                 <?php else : ?>
@@ -237,6 +237,7 @@
       </div>
 
     </main>
+    <script src="assets/scripts/user/update-car-availability.js"></script>
     <script src="assets/scripts/user/update-rent.js"></script>
 
 

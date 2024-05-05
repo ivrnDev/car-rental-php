@@ -17,9 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   confirmYes.addEventListener('click', function () {
     const rentId = currentButton.getAttribute('data-rent-id');
+    const carId = currentButton.getAttribute('data-car-id');
     const statusCode = currentButton.getAttribute('data-value');
     popup.style.display = 'none';
     updateRentStatus(rentId, statusCode, currentButton);
+
+    if (carId) {
+      const convert = {
+        1: 2,
+        5: 1,
+        6: 1,
+      }
+      if (statusCode in convert) {
+        const result = updateCarAvailability(carId, convert[statusCode]);
+        alert(result)
+      }
+    }
   });
 
   confirmNo.addEventListener('click', function () {
@@ -70,3 +83,4 @@ function convertStatusCodeToText(code) {
   };
   return statusLookup[code] || statusLookup.default;
 }
+
