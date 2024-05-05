@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmYes = document.getElementById('confirmYes');
   const confirmNo = document.getElementById('confirmNo');
 
-  const processButtons = document.querySelectorAll('.acceptBtn, .rejectBtn');
+  const processButtons = document.querySelectorAll('.accept-btn, .reject-btn');
   let currentButton;
 
   processButtons.forEach(button => {
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusCode = currentButton.getAttribute('data-value');
     popup.style.display = 'none';
     updateRentStatus(rentId, statusCode, currentButton);
-    currentButton.disable = true;
   });
 
   confirmNo.addEventListener('click', function () {
@@ -52,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function disableRowButtons(button) {
-  const buttons = button.closest('.flex-row').querySelectorAll('.actionBtn');
-  buttons.forEach(btn => btn.disabled = true);
+  const buttons = button.closest('.flex-row').querySelectorAll('.accept-btn, .reject-btn');
+  buttons.forEach(btn => btn.style.display = "none");
 }
 
 function convertStatusCodeToText(code) {
