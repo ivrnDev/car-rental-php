@@ -42,6 +42,9 @@
   color: white;
 }
 
+
+
+
 #signup-btn {
   background-color: #6ACE59;
   padding: 5px;
@@ -59,3 +62,4 @@
   background-color: var(--rent-button);
   padding: 1% 10%;
 }
+

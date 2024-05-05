@@ -2,6 +2,7 @@
   require_once "assets/component/header.php";
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
+  require_once "assets/component/modals/confirmation.-modal.php";
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
@@ -22,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lease Car</title>
     <link rel="stylesheet" href="assets/styles/user/layout.css">
+    <link rel="stylesheet" href="assets/styles/component/confirmation-modal.css">
     <link rel="stylesheet" href="assets/styles/component/button.css">
     <link rel="stylesheet" href="assets/styles/user/lease-car.css">
   </head>
@@ -199,10 +201,10 @@
               <Button class="view-btn">View</Button>
             </div>
             <div class="flex-cell">
-              <Button class="accept-btn acceptBtn" data-rent-id="<?= $rent['RENT_ID'] ?>">Accept</Button>
+              <Button class="accept-btn acceptBtn actionBtn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1 <?= in_array($rent['STATUS'], [1, 2]) ? 'disabled' : '' ?>>Accept</Button>
             </div>
             <div class="flex-cell">
-              <Button class="reject-btn rejectBtn" data-rent-id="<?= $rent['RENT_ID'] ?>">Reject</Button>
+              <Button class="reject-btn rejectBtn actionBtn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2 <?= in_array($rent['STATUS'], [1, 2]) ? 'disabled' : '' ?>>Reject</Button>
             </div>
           </div>
         <?php endforeach; ?>
