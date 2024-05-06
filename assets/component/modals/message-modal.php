@@ -8,7 +8,7 @@
 
 <style>
   .modal {
-    /* display: none; */
+    display: none;
     position: fixed;
     z-index: 101;
     left: 0;

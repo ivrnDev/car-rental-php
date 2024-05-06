@@ -36,14 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        showMessageModal("Deleted", "Car has been deleted successfully");
         return response.json();
       })
       .then(data => {
-        if (response.status == 200) {
-          showMessageModal("Deleted Successfully");
-        } else {
-          showMessageModal("Failed to delete");
-        }
       })
       .catch(error => {
         console.error('Error:', error);
