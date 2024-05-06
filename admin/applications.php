@@ -1,6 +1,18 @@
 <?php
 require_once "../assets/component/admin-nav.php";
 require_once "../assets/component/admin-header.php";
+require_once "../utils/OracleDb.php";
+require_once "../functions/get-all-client.php";
+
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+$adminId = $_SESSION['admin_id'];
+if (empty($adminId)) {
+  header("Location: /drivesation/signin.php");
+}
+$db = new OracleDB();
+$users = getAllClient($db);
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +33,7 @@ require_once "../assets/component/admin-header.php";
     <h2>Application</h2>
     <div class="flex-table">
       <div class="flex-row header">
+        <div class="flex-cell"></div>
         <div class="flex-cell">ID</div>
         <div class="flex-cell">Last Name</div>
         <div class="flex-cell">First Name</div>
@@ -30,22 +43,27 @@ require_once "../assets/component/admin-header.php";
         <div class="flex-cell"></div>
         <div class="flex-cell"></div>
       </div>
-      <div class="flex-row">
-        <div class="flex-cell">Data 4</div>
-        <div class="flex-cell">Data 5</div>
-        <div class="flex-cell">Data 5</div>
-        <div class="flex-cell">Data 5</div>
-        <div class="flex-cell">Data 5</div>
-        <div class="flex-cell">
-          <Button class="view-btn">View</Button>
+      <?php foreach ($users as $user) : ?>
+        <div class="flex-row">
+          <div class="flex-cell">
+            <img src="../<?= htmlspecialchars($user['FILE_LINK']) ?>" alt="Profile Picture">
+          </div>
+          <div class="flex-cell"><?= $user['USER_ID'] ?></div>
+          <div class="flex-cell"><?= $user['LAST_NAME'] ?></div>
+          <div class="flex-cell"><?= $user['FIRST_NAME'] ?></div>
+          <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
+          <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
+          <div class="flex-cell">
+            <Button class="view-btn">View</Button>
+          </div>
+          <div class="flex-cell">
+            <Button class="accept-btn">Accept</Button>
+          </div>
+          <div class="flex-cell">
+            <Button class="reject-btn">Reject</Button>
+          </div>
         </div>
-        <div class="flex-cell">
-          <Button class="accept-btn">Accept</Button>
-        </div>
-        <div class="flex-cell">
-          <Button class="reject-btn">Reject</Button>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
 
   </main>
