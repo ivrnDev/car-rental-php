@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
     $fetchAllStatusStid = $db->executeQuery($fetchAllStatusSql);
     $allStatuses = $db->fetchAll($fetchAllStatusStid);
 
+    http_response_code(200);
     echo json_encode($allStatuses);
     exit;
   } catch (Exception $e) {

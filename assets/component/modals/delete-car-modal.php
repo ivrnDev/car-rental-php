@@ -1,9 +1,9 @@
-<div id="confirmationPopup" class="popup-overlay" style="display: none;">
-  <div class="popup-content">
+<div id="confirmDeletePopUp" class="popup-overlay" style="display: none;">
+  <div class="delete-popup-content">
     <h4>Confirm Action</h4>
-    <p>Are you sure you want to proceed?</p>
-    <button id="confirmYes" class="popup-button">Yes</button>
-    <button id="confirmNo" class="popup-button">No</button>
+    <p>Are you sure you want to delete car?</p>
+    <button id="confirmDeleteYes" class="popup-button">Yes</button>
+    <button id="confirmDeleteNo" class="popup-button">No</button>
   </div>
 </div>
 
@@ -21,7 +21,7 @@
     z-index: 101;
   }
 
-  .popup-content {
+  .delete-popup-content {
     background: white;
     padding: 20px;
     border-radius: 10px;

@@ -1,6 +1,8 @@
   <?php
   require_once "assets/component/header.php";
   require_once "assets/component/modals/confirmation-modal.php";
+  require_once "assets/component/modals/message-modal.php";
+  // require_once "assets/component/modals/delete-car-modal.php";
   require_once "assets/component/rent/view-rent-info.php";
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
@@ -141,8 +143,8 @@
               <div class="flex-cell">
                 <button class="accept-btn">Edit</button>
               </div>
-              <div class="flex-cell">
-                <button class="reject-btn">Delete</button>
+              <div class="flex-cell delete-car">
+                <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>
               </div>
             </div>
           <?php endforeach; ?>
@@ -201,7 +203,7 @@
                 <div class="flex-cell">
                   <?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?>
                 </div>
-                <div class="flex-cell">
+                <div class="flex-cell view-rent">
                   <Button class="view-btn" data-car-id="<?= $rent['CAR_ID'] ?>" data-user-id="<?= $rent['USER_ID'] ?>" data-rent-id="<?= $rent['RENT_ID'] ?>">View</Button>
                 </div>
 
@@ -238,9 +240,10 @@
       </div>
 
     </main>
-    <script src="assets/scripts/user/view-rent-info.js"></script>
-    <script src="assets/scripts/user/update-car-availability.js"></script>
-    <script src="assets/scripts/user/update-rent.js"></script>
+    <script src="assets/scripts/modal/message-modal.js"></script>
+    <script src="assets/scripts/user/rent-list.js"></script>
+    <!-- <script src="assets/scripts/user/car-list.js"></script> -->
+
 
 
 

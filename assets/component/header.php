@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
   ?>
   <header>
     <a href="/drivesation" class="logo">
-      <img src="assets/images/logo-bw.png" alt="Drivesation Logo">
+      <img src="assets/images/logo-bw.png" alt="Drivesation Logo" width="100px" height="100px">
     </a>
 
     <nav>
