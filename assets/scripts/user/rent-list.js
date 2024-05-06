@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusCode = currentButton.getAttribute('data-value');
     popup.style.display = 'none';
 
-    updateRentStatus(rentId, carId, statusCode, currentButton);
+    updateRentStatus(rentId, carId, statusCode);
     const convert = {
       1: 2, // On Lease
       5: 1, // Available
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   //Send to server
-  function updateRentStatus(rentId, carId, newStatus, button) {
+  function updateRentStatus(rentId, carId, newStatus) {
     fetch('api/update-rent-status.php', {
       method: 'POST',
       headers: {
@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then(response => {
         if (response.ok) {
+          setTimeout(() => {
+            location.reload();
+          }, (700));
           showMessageModal("Success", `${convertStatusToResponse(newStatus, rentId)}`);
           return response.json();
         } else {
@@ -62,19 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.error) {
           throw new Error(data.error);
         }
-        data.forEach(rent => {
-          const rentRow = document.querySelector(`[data-rent-id="${rent.RENT_ID}"]`);
-          const statusCell = rentRow.querySelector('.status-cell');
-          const statusText = convertStatusCodeToText(rent.STATUS);
-          statusCell.textContent = statusText;
-          if (rent.STATUS === "2") { //If status is rejected
-            hideAllButtonsInRow(rentRow);
-          } else {
-            hideRowButtons(button);
-          }
-
-        });
-
       })
       .catch(error => {
         console.error('Error:', error);
@@ -82,32 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-
-
-
-  function hideRowButtons(button) {
-    const buttons = button.closest('.flex-row').querySelectorAll('.accept-btn, .reject-btn');
-    buttons.forEach(btn => btn.style.display = "none");
-  }
-
-  function hideAllButtonsInRow(row) {
-    const buttons = row.querySelectorAll('.accept-btn, .reject-btn');
-    buttons.forEach(btn => btn.style.display = 'none');
-  }
-
-  function convertStatusCodeToText(code) {
-    const statusLookup = {
-      0: "Pending",
-      1: "Approved",
-      2: "Rejected",
-      3: "Processing",
-      4: "On Going",
-      5: "Completed",
-      6: "Cancelled",
-      default: "Unknown"
-    };
-    return statusLookup[code] || statusLookup.default;
-  }
 
   function convertStatusToResponse(code, rentId) {
     const statusLookup = {
@@ -219,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => {
         console.error('Error:', error);
       });
-
   }
 });
 

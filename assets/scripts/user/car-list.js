@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        deleteRows(currentDeleteButton);
+        setTimeout(() => {
+          location.reload();
+        }, (700));
         showMessageModal("Deleted", "Car has been deleted successfully");
         return response.json();
       })
@@ -47,10 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(error => {
         console.error('Error:', error);
       });
-  }
-  function deleteRows(button) {
-    const row = button.closest('.flex-row');
-    row.style.display = "none";
   }
 
 
@@ -118,9 +116,4 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
   }
-
-
-
-
-
 })
