@@ -36,7 +36,7 @@ main {
   background-color: var(--secondary-color);
   width: 80%;
   height: 80%;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 10px;
   
 }

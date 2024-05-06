@@ -115,23 +115,38 @@
      <h1>Create an Account</h1>
      <form id="signup-form" method="POST" enctype="multipart/form-data">
        <div class="left-column">
-         <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
-         <span class="error-message" id="lastname-error"></span>
+         <div class="input-container">
+           <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
+           <span class="error-message" id="lastname-error"></span>
+         </div>
 
-         <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
-         <span class="error-message" id="firstname-error"></span>
+         <div class="input-container">
+           <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
+           <span class="error-message" id="firstname-error"></span>
+         </div>
 
-         <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
-         <span class="error-message" id="middlename-error"></span>
+         <div class="input-container">
+           <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
+           <span class="error-message" id="middlename-error"></span>
+         </div>
 
-         <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
-         <span class="error-message" id="contact_number-error"></span>
+         <div class="input-container">
+           <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
+           <span class="error-message" id="contact_number-error"></span>
+         </div>
 
-         <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
-         <span class="error-message" id="address-error"></span>
+         <div class="input-container">
+           <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
+           <span class="error-message" id="address-error"></span>
+         </div>
 
-         <input id="birthdate" name="birthdate" type="date" autocomplete="off">
-         <span class="error-message" id="birthdate-error"></span>
+         <div class="birthdate-container">
+           <label for="birthdate">Birthdate</label>
+           <div id="birthdate-input-container">
+             <input id="birthdate" name="birthdate" type="date" autocomplete="off">
+             <span class="error-message" id="birthdate-error"></span>
+           </div>
+         </div>
 
          <div class="gender-container">
            <div class="radio-container">
@@ -144,28 +159,28 @@
            </div>
          </div>
 
-         <label class="file-label" for="profile_picture" id="profile_picture_label">2 x 2 Picture
-           <span id="profile_picture_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Image"></label>
-         <label class="file-label" for="drivers_license" id="drivers_license_label">
-           Driver's License
-           <span id="drivers_license_name">No file chosen</span>
-           <img src="assets/images/add-image.png" alt="Add Image">
-         </label>
-         <label class="file-label" for="valid_id" id="valid_id_label">
-           Valid ID
-           <span id="valid_id_name">No file chosen</span>
-           <img src="assets/images/add-image.png" alt="Add Image">
-         </label>
-         <label class="file-label" for="proof_of_billing" id="proof_of_billing_label">
-           Proof of Billing
-           <span id="proof_of_billing_name">No file chosen</span>
-           <img src="assets/images/add-image.png" alt="Add Image">
-         </label>
-         <label class="file-label" for="selfie_with_id" id="selfie_with_id_label">
-           Selfie with ID
-           <span id="selfie_with_id_name">No file chosen</span>
-           <img src="assets/images/add-image.png" alt="Add Image">
-         </label>
+           <label class="file-label" for="profile_picture" id="profile_picture_label">2 x 2 Picture
+             <span id="profile_picture_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Image"></label>
+           <label class="file-label" for="drivers_license" id="drivers_license_label">
+             Driver's License
+             <span id="drivers_license_name">No file chosen</span>
+             <img src="assets/images/add-image.png" alt="Add Image">
+           </label>
+           <label class="file-label" for="valid_id" id="valid_id_label">
+             Valid ID
+             <span id="valid_id_name">No file chosen</span>
+             <img src="assets/images/add-image.png" alt="Add Image">
+           </label>
+           <label class="file-label" for="proof_of_billing" id="proof_of_billing_label">
+             Proof of Billing
+             <span id="proof_of_billing_name">No file chosen</span>
+             <img src="assets/images/add-image.png" alt="Add Image">
+           </label>
+           <label class="file-label" for="selfie_with_id" id="selfie_with_id_label">
+             Selfie with ID
+             <span id="selfie_with_id_name">No file chosen</span>
+             <img src="assets/images/add-image.png" alt="Add Image">
+           </label>
 
          <input type="file" name="profile_picture" id="profile_picture">
          <input type="file" name="valid_id" id="valid_id">
@@ -175,13 +190,22 @@
        </div>
 
        <div class="right-column">
-         <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
-         <span class="error-message" id="email_address-error"></span>
-         <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
-         <span class="error-message" id="password-error"></span>
-         <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
-         <span class="error-message" id="confirm-password-error"></span>
-         <button id="signup-btn" type="submit">Submit</button>
+         <div class="input-container">
+           <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
+           <span class="error-message" id="email_address-error"></span>
+         </div>
+
+         <div class="input-container">
+           <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+           <span class="error-message" id="password-error"></span>
+         </div>
+
+         <div class="input-container">
+           <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
+           <span class="error-message" id="confirm-password-error"></span>
+         </div>
+         <button id="signup-btn" type="submit">SIGN UP</button>
+         <a href="signin.php">Already have an account?</a>
      </form>
      </div>
 

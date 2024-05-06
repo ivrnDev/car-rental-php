@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputFields = form.querySelectorAll('input:not([type="file"])');
   const fileInputFields = form.querySelectorAll('input[type="file"]');
 
-
-
   // Check file inputs and update labels
   fileInputFields.forEach(input => {
     input.addEventListener('change', function () {
