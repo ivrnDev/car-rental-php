@@ -54,3 +54,10 @@ form {
 .rent-list .flex-cell:nth-child(6) { flex: 1.5; } /* Transaction Date */
 .rent-list .flex-cell:nth-child(7) { flex: 1; } /* Client */
 .rent-list .flex-cell:nth-child(8) { flex: 1; } /* View Button */
+
+
+#orcr-img {
+  width: 50px;
+  height: auto;
+  
+}

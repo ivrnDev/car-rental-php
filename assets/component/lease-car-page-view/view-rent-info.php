@@ -24,11 +24,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 101;
   }
 
   .view-rent-overlay .content {
-    background-color: red;
     position: absolute;
     top: 50%;
     left: 50%;

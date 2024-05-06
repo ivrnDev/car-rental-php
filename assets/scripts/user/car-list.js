@@ -106,10 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <p>${carData.CAR_ID}</p>
         <p>${carData.CAR_ID}</p>
         <p>${carData.CAR_ID}</p>
-        <img src="${carORCR.FILE_LINK}" alt="${carData.CAR_TITLE} orcr">
+        <img src="${carORCR.FILE_LINK}" alt="${carData.CAR_TITLE} orcr" id="orcr-img">
         `
-
-
       })
       .catch(error => {
         console.error('Error:', error);
