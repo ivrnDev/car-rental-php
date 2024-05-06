@@ -4,32 +4,37 @@ require_once "utils/OracleDb.php";
 $db = new OracleDB();
 
 if (!$db->isConnected()) {
-    die("Database connection failed");
+  die("Database connection failed");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['email_address'], $_POST['password'])) {
-        $email_address = $_POST['email_address'];
-        $password = $_POST['password'];
-        try {
-            $sql = "SELECT user_id FROM \"USER\" WHERE email_address=:email_address AND password=:password";
-            $data = [
-                ':email_address' => $email_address,
-                ':password' => $password
-            ];
-            $stid = $db->executeQuery($sql, $data);
-            $result = $db->fetchRow($stid);
-            if ($result) {
-                $_SESSION['user_id'] = $result['USER_ID'];
-                header("Location: /drivesation");
-                exit;
-            } else {
-                echo "Invalid username or password";
-            }
-        } catch (Exception $e) {
-            echo "<p>Error: " . $e->getMessage() . "</p>";
+  if (isset($_POST['email_address'], $_POST['password'])) {
+    $email_address = $_POST['email_address'];
+    $password = $_POST['password'];
+    try {
+      $sql = "SELECT user_id, user_role FROM \"USER\" WHERE email_address=:email_address AND password=:password AND status = 1";
+      $data = [
+        ':email_address' => $email_address,
+        ':password' => $password
+      ];
+      $stid = $db->executeQuery($sql, $data);
+      $result = $db->fetchRow($stid);
+      if ($result) {
+        if ($result['USER_ROLE'] == 1) {
+          $_SESSION['admin_id'] = $result['USER_ID'];
+          header("Location: /drivesation/admin/dashboard.php");
+          exit;
         }
+        $_SESSION['user_id'] = $result['USER_ID'];
+        header("Location: /drivesation");
+        exit;
+      } else {
+        echo "Invalid username or password";
+      }
+    } catch (Exception $e) {
+      echo "<p>Error: " . $e->getMessage() . "</p>";
     }
+  }
 }
 ?>
 

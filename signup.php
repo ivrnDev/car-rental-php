@@ -1,4 +1,4 @@
- <?php 
+ <?php
   require_once "utils/OracleDb.php";
   require_once "utils/upload.php";
   $db = new OracleDB();
@@ -8,90 +8,90 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset(
-        $_POST['firstname'],
-        $_POST['lastname'],
-        $_POST['middlename'],
-        $_POST['email_address'],
-        $_POST['address'],
-        $_POST['contact_number'],
-        $_POST['birthdate'],
-        $_POST['gender'],
-        $_POST['password'],
-        $_FILES['profile_picture'],
-        $_FILES['valid_id'],
-        $_FILES['drivers_license'],
-        $_FILES['proof_of_billing'],
-        $_FILES['selfie_with_id']
+      $_POST['firstname'],
+      $_POST['lastname'],
+      $_POST['middlename'],
+      $_POST['email_address'],
+      $_POST['address'],
+      $_POST['contact_number'],
+      $_POST['birthdate'],
+      $_POST['gender'],
+      $_POST['password'],
+      $_FILES['profile_picture'],
+      $_FILES['valid_id'],
+      $_FILES['drivers_license'],
+      $_FILES['proof_of_billing'],
+      $_FILES['selfie_with_id']
     )) {
-       try {
-            $first_name = $_POST['firstname'];
-            $last_name = $_POST['lastname'];
-            $middle_name = $_POST['middlename'];
-            $email_address = $_POST['email_address'];
-            $address = $_POST['address'];
-            $contact_number = $_POST['contact_number'];
-            $birthdate = $_POST['birthdate'];
-            $gender = $_POST['gender'];
-            $password = $_POST['password']; 
+      try {
+        $first_name = $_POST['firstname'];
+        $last_name = $_POST['lastname'];
+        $middle_name = $_POST['middlename'];
+        $email_address = $_POST['email_address'];
+        $address = $_POST['address'];
+        $contact_number = $_POST['contact_number'];
+        $birthdate = $_POST['birthdate'];
+        $gender = $_POST['gender'];
+        $password = $_POST['password'];
 
-            $sql = "INSERT INTO \"USER\" (user_id, first_name, last_name, middle_name, contact_number, address, gender, email_address, password, user_role, status, birthdate) VALUES (user_seq.NEXTVAL, :first_name, :last_name, :middle_name, :contact_number, :address, :gender, :email_address, :password, :user_role, :status, TO_DATE(:birthdate, 'YYYY-MM-DD'))
+        $sql = "INSERT INTO \"USER\" (user_id, first_name, last_name, middle_name, contact_number, address, gender, email_address, password, user_role, status, birthdate) VALUES (user_seq.NEXTVAL, :first_name, :last_name, :middle_name, :contact_number, :address, :gender, :email_address, :password, :user_role, :status, TO_DATE(:birthdate, 'YYYY-MM-DD'))
             RETURNING user_id INTO :new_user_id";
-            
-            $data = [
-                ':first_name' => $first_name,
-                ':last_name' => $last_name,
-                ':middle_name' => $middle_name,
-                ':contact_number' => $contact_number,
-                ':address' => $address,
-                ':gender' => $gender,
-                ':email_address' => $email_address,
-                ':password' => $password,
-                ':user_role' => 0,
-                ':status' => 0,
-                ':birthdate' => $birthdate
-            ];  
 
-            $stid = $db->prepareStatement($sql);
-            
-            foreach ($data as $key => $val) {
-            oci_bind_by_name($stid, $key, $data[$key]);
-            }
-            
-            $new_user_id = 0;
-            oci_bind_by_name($stid, ":new_user_id", $new_user_id, -1, OCI_B_INT);
-            
-            oci_execute($stid);
-            echo "<p>User details saved successfully!</p>";
-           
-            $documents = [
-              'profile_picture' => 'Profile Picture',
-              'valid_id' => 'Valid ID',
-              'drivers_license' => 'Driver\'s License',
-              'proof_of_billing' => 'Proof of Billing',
-              'selfie_with_id' => 'Selfie with ID'
-             ];
-             
-             $allFilesProvided = true;
-              foreach ($documents as $inputName => $docType) {
-                if (!isset($_FILES[$inputName]) || $_FILES[$inputName]['error'] ==         UPLOAD_ERR_NO_FILE) {
-                  echo "File $docType not provided.<br>";
-                  $allFilesProvided = false;
-                }
-              }
-              if ($allFilesProvided) {
-                  foreach ($documents as $inputName => $documentName) {
-                    uploadSignupDocuments($_FILES[$inputName], $new_user_id, $inputName, $documentName, $db);
-                  }
-              } else {
-                  echo "All documents are required. Please upload each file.<br>";
-              }
-                oci_free_statement($stid);
-          } catch (Exception $e) {
-            echo "<p>Error: " . $e->getMessage() . "</p>";
+        $data = [
+          ':first_name' => $first_name,
+          ':last_name' => $last_name,
+          ':middle_name' => $middle_name,
+          ':contact_number' => $contact_number,
+          ':address' => $address,
+          ':gender' => $gender,
+          ':email_address' => $email_address,
+          ':password' => $password,
+          ':user_role' => 0,
+          ':status' => 0,
+          ':birthdate' => $birthdate
+        ];
+
+        $stid = $db->prepareStatement($sql);
+
+        foreach ($data as $key => $val) {
+          oci_bind_by_name($stid, $key, $data[$key]);
         }
+
+        $new_user_id = 0;
+        oci_bind_by_name($stid, ":new_user_id", $new_user_id, -1, OCI_B_INT);
+
+        oci_execute($stid);
+        echo "<p>User details saved successfully!</p>";
+
+        $documents = [
+          'profile_picture' => 'Profile Picture',
+          'valid_id' => 'Valid ID',
+          'drivers_license' => 'Driver\'s License',
+          'proof_of_billing' => 'Proof of Billing',
+          'selfie_with_id' => 'Selfie with ID'
+        ];
+
+        $allFilesProvided = true;
+        foreach ($documents as $inputName => $docType) {
+          if (!isset($_FILES[$inputName]) || $_FILES[$inputName]['error'] ==         UPLOAD_ERR_NO_FILE) {
+            echo "File $docType not provided.<br>";
+            $allFilesProvided = false;
+          }
+        }
+        if ($allFilesProvided) {
+          foreach ($documents as $inputName => $documentName) {
+            uploadSignupDocuments($_FILES[$inputName], $new_user_id, $inputName, $documentName, $db);
+          }
+        } else {
+          echo "All documents are required. Please upload each file.<br>";
+        }
+        oci_free_statement($stid);
+      } catch (Exception $e) {
+        echo "<p>Error: " . $e->getMessage() . "</p>";
       }
     }
-?>
+  }
+  ?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -115,19 +115,19 @@
      <h1>Create an Account</h1>
      <form method="POST" enctype="multipart/form-data">
        <div class="left-column">
-         <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
-         <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
-         <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
-         <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
-         <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
-         <input id="birthdate" name="birthdate" type="date" autocomplete="off">
+         <input required id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
+         <input required id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
+         <input required id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
+         <input required id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
+         <input required id="address" name="address" type="text" placeholder="Address" autocomplete="off">
+         <input required id="birthdate" name="birthdate" type="date" autocomplete="off">
          <div class="gender-container">
            <div class="radio-container">
-             <input type="radio" id="male" name="gender" value=0>
+             <input required type="radio" id="male" name="gender" value=0>
              <label for="male">Male</label>
            </div>
            <div class="radio-container">
-             <input type="radio" id="female" name="gender" value=1>
+             <input required type="radio" id="female" name="gender" value=1>
              <label for="female">Female</label>
            </div>
          </div>
@@ -154,23 +154,41 @@
            <img src="assets/images/add-image.png" alt="Add Image">
          </label>
 
-         <input type="file" name="profile_picture" id="profile_picture">
-         <input type="file" name="valid_id" id="valid_id">
-         <input type="file" name="drivers_license" id="drivers_license">
-         <input type="file" name="proof_of_billing" id="proof_of_billing">
-         <input type="file" name="selfie_with_id" id="selfie_with_id">
+         <input required type="file" name="profile_picture" id="profile_picture">
+         <input required type="file" name="valid_id" id="valid_id">
+         <input required type="file" name="drivers_license" id="drivers_license">
+         <input required type="file" name="proof_of_billing" id="proof_of_billing">
+         <input required type="file" name="selfie_with_id" id="selfie_with_id">
        </div>
 
        <div class="right-column">
-         <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
-         <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
-         <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password"
-           autocomplete="off">
+         <input required id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
+         <input required id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+         <input required id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
          <button id="signup-btn" type="submit">Submit</button>
      </form>
      </div>
 
    </main>
+
+   <script>
+     document.addEventListener("DOMContentLoaded", function() {
+       const form = document.getElementById('signup-form');
+       const passwordInput = document.getElementById('password');
+       const confirmPasswordInput = document.getElementById('confirm-password');
+
+       form.addEventListener('submit', function(event) {
+         // Check if passwords match
+         if (passwordInput.value !== confirmPasswordInput.value) {
+           // Prevent form submission
+           event.preventDefault();
+           // Alert or inform the user
+           alert('Passwords do not match. Please try again.');
+         }
+       });
+     });
+   </script>
+
  </body>
 
  </html>

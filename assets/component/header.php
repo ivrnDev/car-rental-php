@@ -1,16 +1,16 @@
-  <?php 
+  <?php
   require_once "functions/get-profile.php";
   require_once "utils/OracleDb.php";
-if (session_status() == PHP_SESSION_NONE) {
+  if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
+  }
   $db = new OracleDB();
-  
-    $userId = $_SESSION["user_id"];
 
-    $profile_link = getProfilePicture($userId, $db);
-    $imageSrc = !empty($profile_link) ? htmlspecialchars($profile_link) : 'assets/images/default-profile.png';
-    
+  $userId = $_SESSION["user_id"];
+
+  $profile_link = getProfilePicture($userId, $db);
+  $imageSrc = !empty($profile_link) ? htmlspecialchars($profile_link) : 'assets/images/default-profile.png';
+
   ?>
   <header>
     <a href="/drivesation" class="logo">
@@ -24,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <li><a href="lease-car.php">Lease Car</a></li>
         <li><a href="car-list.php">Car List</a></li>
         <li><a href="reviews.php">Reviews</a></li>
-        <li><a href="functions/logout.php">Logout</a></li>
+        <li><a href="/drivesation/functions/logout-user.php">Logout</a></li>
       </ul>
     </nav>
 
