@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        deleteRows(currentDeleteButton);
         showMessageModal("Deleted", "Car has been deleted successfully");
         return response.json();
       })
@@ -47,7 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Error:', error);
       });
   }
-
+  function deleteRows(button) {
+    const row = button.closest('.flex-row');
+    row.style.display = "none";
+  }
 
 
   //View Car Information
@@ -114,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
   }
+
 
 
 
