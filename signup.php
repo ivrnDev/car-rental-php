@@ -113,82 +113,80 @@
 
    <main>
      <h1>Create an Account</h1>
-     <form method="POST" enctype="multipart/form-data">
+     <form id="signup-form" method="POST" enctype="multipart/form-data">
        <div class="left-column">
-         <input required id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
-         <input required id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
-         <input required id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
-         <input required id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
-         <input required id="address" name="address" type="text" placeholder="Address" autocomplete="off">
-         <input required id="birthdate" name="birthdate" type="date" autocomplete="off">
+         <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
+         <span class="error-message" id="lastname-error"></span>
+
+         <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
+         <span class="error-message" id="firstname-error"></span>
+
+         <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
+         <span class="error-message" id="middlename-error"></span>
+
+         <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
+         <span class="error-message" id="contact_number-error"></span>
+
+         <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
+         <span class="error-message" id="address-error"></span>
+
+         <input id="birthdate" name="birthdate" type="date" autocomplete="off">
+         <span class="error-message" id="birthdate-error"></span>
+
          <div class="gender-container">
            <div class="radio-container">
-             <input required type="radio" id="male" name="gender" value=0>
+             <input type="radio" id="male" name="gender" value=0 checked>
              <label for="male">Male</label>
            </div>
            <div class="radio-container">
-             <input required type="radio" id="female" name="gender" value=1>
+             <input type="radio" id="female" name="gender" value=1>
              <label for="female">Female</label>
            </div>
          </div>
 
-
-         <label class="file-label" for="profile_picture">
-           2 x 2 Picture
-           <img src="assets/images/add-image.png" alt="Add Image">
-         </label>
-         <label class="file-label" for="drivers_license">
+         <label class="file-label" for="profile_picture" id="profile_picture_label">2 x 2 Picture
+           <span id="profile_picture_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Image"></label>
+         <label class="file-label" for="drivers_license" id="drivers_license_label">
            Driver's License
+           <span id="drivers_license_name">No file chosen</span>
            <img src="assets/images/add-image.png" alt="Add Image">
          </label>
-         <label class="file-label" for="valid_id">
+         <label class="file-label" for="valid_id" id="valid_id_label">
            Valid ID
+           <span id="valid_id_name">No file chosen</span>
            <img src="assets/images/add-image.png" alt="Add Image">
          </label>
-         <label class="file-label" for="proof_of_billing">
+         <label class="file-label" for="proof_of_billing" id="proof_of_billing_label">
            Proof of Billing
+           <span id="proof_of_billing_name">No file chosen</span>
            <img src="assets/images/add-image.png" alt="Add Image">
          </label>
-         <label class="file-label" for="selfie_with_id">
+         <label class="file-label" for="selfie_with_id" id="selfie_with_id_label">
            Selfie with ID
+           <span id="selfie_with_id_name">No file chosen</span>
            <img src="assets/images/add-image.png" alt="Add Image">
          </label>
 
-         <input required type="file" name="profile_picture" id="profile_picture">
-         <input required type="file" name="valid_id" id="valid_id">
-         <input required type="file" name="drivers_license" id="drivers_license">
-         <input required type="file" name="proof_of_billing" id="proof_of_billing">
-         <input required type="file" name="selfie_with_id" id="selfie_with_id">
+         <input type="file" name="profile_picture" id="profile_picture">
+         <input type="file" name="valid_id" id="valid_id">
+         <input type="file" name="drivers_license" id="drivers_license">
+         <input type="file" name="proof_of_billing" id="proof_of_billing">
+         <input type="file" name="selfie_with_id" id="selfie_with_id">
        </div>
 
        <div class="right-column">
-         <input required id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
-         <input required id="password" name="password" type="password" placeholder="Password" autocomplete="off">
-         <input required id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
+         <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
+         <span class="error-message" id="email_address-error"></span>
+         <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+         <span class="error-message" id="password-error"></span>
+         <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
+         <span class="error-message" id="confirm-password-error"></span>
          <button id="signup-btn" type="submit">Submit</button>
      </form>
      </div>
 
    </main>
-
-   <script>
-     document.addEventListener("DOMContentLoaded", function() {
-       const form = document.getElementById('signup-form');
-       const passwordInput = document.getElementById('password');
-       const confirmPasswordInput = document.getElementById('confirm-password');
-
-       form.addEventListener('submit', function(event) {
-         // Check if passwords match
-         if (passwordInput.value !== confirmPasswordInput.value) {
-           // Prevent form submission
-           event.preventDefault();
-           // Alert or inform the user
-           alert('Passwords do not match. Please try again.');
-         }
-       });
-     });
-   </script>
-
+   <script src="assets/scripts/user/signup.js"></script>
  </body>
 
  </html>
