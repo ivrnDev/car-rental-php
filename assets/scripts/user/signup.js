@@ -84,4 +84,25 @@ document.addEventListener("DOMContentLoaded", function () {
       input.classList.remove('input-error');
     }
   }
+
+  const birthdateInput = document.getElementById('birthdate');
+  const today = new Date();
+  const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+
+  const formatDate = function (date) {
+    let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  };
+
+
+  birthdateInput.max = formatDate(maxDate);
+  birthdateInput.min = formatDate(minDate); 
 });
