@@ -80,71 +80,73 @@
             <div class="flex-cell"></div>
 
           </div>
-          <?php foreach ($carList as $car) : ?>
-            <div class="flex-row">
-              <div class="flex-cell">
-                <?php
-                $fileLinks = $car['FILE_LINKS'];
-                $links = explode(',', $fileLinks);
-                $links = array_map('trim', $links);
-                if (count($links) >= 2) {
-                ?>
-                  <img src="<?= htmlspecialchars($links[0]) ?>" alt="Car Image">
-                <?php
-                } else {
-                  echo "<p>Image links are missing.</p>";
-                }
-                ?>
+          <div class="flex-body">
+            <?php foreach ($carList as $car) : ?>
+              <div class="flex-row">
+                <div class="flex-cell">
+                  <?php
+                  $fileLinks = $car['FILE_LINKS'];
+                  $links = explode(',', $fileLinks);
+                  $links = array_map('trim', $links);
+                  if (count($links) >= 2) {
+                  ?>
+                    <img src="<?= htmlspecialchars($links[0]) ?>" alt="Car Image">
+                  <?php
+                  } else {
+                    echo "<p>Image links are missing.</p>";
+                  }
+                  ?>
+                </div>
+                <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
+                <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
+                <div class="flex-cell"><?= $car['CAR_TYPE'] ?></div>
+                <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
+                <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
+                <div class="flex-cell">
+                  <?php switch ($car['AVAILABILITY_STATUS']) {
+                    case 0:
+                      echo "Pending";
+                      break;
+                    case 1:
+                      echo "Available";
+                      break;
+                    case 2:
+                      echo "On Lease";
+                      break;
+                    case 3:
+                      echo "Maintenance";
+                      break;
+                    default:
+                      echo "Unknown";
+                      break;
+                  } ?>
+                </div>
+                <div class="flex-cell">
+                  <?php switch ($car['STATUS']) {
+                    case 0:
+                      echo "Pending";
+                      break;
+                    case 1:
+                      echo "Approve";
+                      break;
+                    case 2:
+                      echo "Rejected";
+                      break;
+                    default:
+                      echo "Unknown";
+                      break;
+                  } ?>
+                </div>
+                <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
+                <div class="flex-cell view-car">
+                  <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>">View</button>
+                </div>
+                <div class="flex-cell delete-car">
+                  <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>
+                </div>
               </div>
-              <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
-              <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
-              <div class="flex-cell"><?= $car['CAR_TYPE'] ?></div>
-              <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
-              <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
-              <div class="flex-cell">
-                <?php switch ($car['AVAILABILITY_STATUS']) {
-                  case 0:
-                    echo "Pending";
-                    break;
-                  case 1:
-                    echo "Available";
-                    break;
-                  case 2:
-                    echo "On Lease";
-                    break;
-                  case 3:
-                    echo "Maintenance";
-                    break;
-                  default:
-                    echo "Unknown";
-                    break;
-                } ?>
-              </div>
-              <div class="flex-cell">
-                <?php switch ($car['STATUS']) {
-                  case 0:
-                    echo "Pending";
-                    break;
-                  case 1:
-                    echo "Approve";
-                    break;
-                  case 2:
-                    echo "Rejected";
-                    break;
-                  default:
-                    echo "Unknown";
-                    break;
-                } ?>
-              </div>
-              <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
-              <div class="flex-cell view-car">
-                <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>">View</button>
-              </div>
-              <div class="flex-cell delete-car">
-                <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>
-              </div>
-            </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
+          </div>
         </div>
       </div>
 
