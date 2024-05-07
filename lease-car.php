@@ -2,7 +2,6 @@
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
   require_once "assets/component/header.php";
-  require_once "assets/component/modals/confirmation-modal.php";
   require_once "assets/component/modals/message-modal.php";
   require_once "assets/component/modals/delete-car-modal.php";
   require_once "assets/component/lease-car-page-view/view-rent-info.php";

@@ -1,8 +1,8 @@
 <div id="messageModal" class="modal">
   <div class="message-modal-content">
     <span class="message-close-button">×</span>
-    <h1 class="message-modal-header">Success</h1>
-    <p class="message-modal-text">Rent #5 has been rejected</p>
+    <h1 class="message-modal-header"></h1>
+    <p class="message-modal-text"></p>
   </div>
 </div>
 

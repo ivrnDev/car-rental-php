@@ -3,6 +3,8 @@ require_once "../assets/component/admin-nav.php";
 require_once "../assets/component/admin-header.php";
 require_once "../utils/OracleDb.php";
 require_once "../functions/get-all-client.php";
+require_once "../assets/component/modals/confirmation-modal.php";
+require_once "../assets/component/modals/message-modal.php";
 
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
@@ -56,17 +58,19 @@ $users = getAllClient($db);
           <div class="flex-cell">
             <Button class="view-btn">View</Button>
           </div>
-          <div class="flex-cell">
-            <Button class="accept-btn">Accept</Button>
+          <div class="flex-cell action-btn">
+            <Button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</Button>
           </div>
-          <div class="flex-cell">
-            <Button class="reject-btn">Reject</Button>
+          <div class="flex-cell action-btn">
+            <Button class="reject-btn" data-status=2 data-user-id="<?= $user['USER_ID'] ?>">Reject</Button>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
 
   </main>
+  <script src="../assets/scripts/modal/message-modal.js"></script>
+  <script src="../assets/scripts/admin/applications.js"></script>
 
 
 
