@@ -1,0 +1,64 @@
+main {
+    padding: 3%;
+  }
+  
+  main h2 {
+    background-image: var(--a-linear-1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: block;
+  }
+  
+  .flex-table {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 15px;
+    gap: 20px;
+    text-align: center;
+    height: 70%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+  }
+  
+  .header {
+    box-shadow: 0 2px 10px black;
+    font-weight: bold;
+    background-color: var(--a-table-header);
+    color: var(--a-font-orange);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .flex-row:nth-child(2) {
+    margin-top: 20px;
+  }
+  
+  .flex-row:nth-child(n+2){
+    background-color: var(--a-table-body);
+    padding: 10px;
+    border-radius: 50px;
+    height: 60px;
+    align-items: center;
+    font-size: 15px;
+  }
+  
+  .flex-row {
+    display: flex;
+  }
+  
+  .flex-cell {
+    flex: 1;
+    padding: 8px;
+  }
+  
+  .flex-cell img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
