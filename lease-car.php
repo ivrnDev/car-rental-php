@@ -206,6 +206,7 @@
       </div>
 
       <div class="rent-list container">
+        <h1>List of Rents</h1>
         <div class="flex-table">
           <div class="flex-row header">
             <div class="flex-cell">ID</div>

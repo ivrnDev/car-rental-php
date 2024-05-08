@@ -1,8 +1,16 @@
+/* layout.css */
+body {
+  font-family: "Jomhuria", sans-serif;
+  margin: 0;
+}
+
+/* car-list.css */
 main {
   padding: 5% 2%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 15px;
   gap: 15px 25px;
   justify-content: flex-start;
 }
@@ -11,8 +19,69 @@ main {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px black;
-  flex: 0 0 calc(25% - 20px);
   height: 350px;
+  flex: 0 0 calc(25% - 20px);
   overflow: hidden;
-  
+  width: 400px; 
+  margin-bottom: 30px; 
+  position: relative; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.card-content {
+  padding: 20px;
+  position: relative; /* Add positioning to the card-content */
+  flex-grow: 1; /* Allow card-content to grow to fill available space */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card h1 {
+  margin-top: 10;
+  text-align: center;
+}
+
+.row-items {
+  margin-top: 10px; /* Adjust this for spacing between rows */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row-items .car-type,
+.row-items .capacity {
+  display: flex;
+  align-items: center;
+}
+
+.row-items p {
+  margin-left: 5px; /* Adjust this for spacing between icon and text */
+  margin-bottom: 0; /* Remove margin-bottom */
+}
+
+.icons {
+  justify-content: center;
+}
+
+#rent-button {
+  position: absolute; /* Position the button absolutely */
+  bottom: 10px; /* Adjust bottom spacing */
+  right: 10px; /* Adjust right spacing */
+  padding: 10px 20px; /* Adjust padding */
+  background-color: #007bff;
+  color: white; /* Change text color to white */
+  text-align: center;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+#rent-button:hover {
+  background-color: #0056b3;
 }
