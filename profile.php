@@ -94,7 +94,13 @@
                   } ?>
                </div>
 
-               <div class="flex-cell"><?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?></div>
+               <div class="flex-cell">
+                 <?php
+                  $originalFormat = 'd-M-y h.i.s.u A';
+                  $dateTime = DateTime::createFromFormat($originalFormat, $rent['TRANSACTION_DATE']);
+                  echo $dateTime->format('M d, Y g:i A')
+                  ?>
+               </div>
 
                <div class="flex-cell">
                  <button class="view-btn" data-car-id=<?= $rent['CAR_ID'] ?>>View</button>

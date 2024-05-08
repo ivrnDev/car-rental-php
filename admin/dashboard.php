@@ -1,6 +1,9 @@
 <?php
 require_once "../assets/component/admin-nav.php";
 require_once "../assets/component/admin-header.php";
+require_once "../functions/analytics.php";
+require_once "../utils/OracleDb.php";
+
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
@@ -8,6 +11,11 @@ $adminId = $_SESSION['admin_id'];
 if (empty($adminId)) {
   header("Location: /drivesation/signin.php");
 }
+
+$db = new OracleDB();
+$analytics = getAnalytics($db);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +30,9 @@ if (empty($adminId)) {
 </head>
 
 <body>
-  
 
-  
+
+
 
   <main>
     <div class="heading-container">
@@ -33,28 +41,33 @@ if (empty($adminId)) {
     </div>
     <div class="card">
       <h2>Total Users</h2>
-      <p>0</p>
+      <p><?= $analytics['TOTAL_USERS']?></p>
     </div>
     <div class="card">
       <h2>Pending Applications</h2>
-      <p>0</p>
-    </div>
-    <div class="card">
-      <h2>Total Clients</h2>
-      <p>0</p>
-    </div>
-    <div class="card">
-      <h2>Pending Clients</h2>
-      <p>0</p>
+      <p><?= $analytics['PENDING_APPLICANTS']?></p>
+
     </div>
     <div class="card">
       <h2>Total Cars</h2>
-      <p>0</p>
+      <p><?= $analytics['TOTAL_CARS']?></p>
     </div>
     <div class="card">
       <h2>Pending Cars</h2>
-      <p>0</p>
+      <p><?= $analytics['PENDING_CARS']?></p>
     </div>
+    <div class="card">
+      <h2>Completed Rentals</h2>
+      <p><?= $analytics['COMPLETED_RENTALS']?></p>
+    </div>
+    <div class="card">
+      <h2>Pending Rentals</h2>
+      <p><?= $analytics['PENDING_RENTALS']?></p>
+    </div>
+    <div class="card">
+      <h2>Available Cars</h2>
+      <p><?= $analytics['AVAILABLE_CARS']?></p>
+
   </main>
 </body>
 

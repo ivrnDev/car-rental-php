@@ -57,53 +57,56 @@ $rentList = getAllRenters($db);
           <div class="flex-cell">Return Date</div>
           <div class="flex-cell">Status</div>
           <div class="flex-cell">Transaction Date</div>
-          <div class="flex-cell"></div>
         </div>
         <?php if (empty($rentList)) : ?>
-        <div class="flex-row no-data-row">
-          <div class="flex-cell" colspan="9">No available data</div>
-        </div>
-      <?php else : ?>
-        <?php foreach ($rentList as $rent) : ?>
-          <div class="flex-row" data-rent-id="<?= $rent['RENT_ID'] ?>">
-            <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
-            <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
-            <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
-            <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_TO'])) ?></div>
-            <div class="flex-cell status-cell">
-              <?php switch ($rent['STATUS']) {
-                case 0:
-                  echo "Pending";
-                  break;
-                case 1:
-                  echo "Approved";
-                  break;
-                case 2:
-                  echo "Rejected";
-                  break;
-                case 3:
-                  echo "Processing";
-                  break;
-                case 4:
-                  echo "On Going";
-                  break;
-                case 5:
-                  echo "Completed";
-                  break;
-                case 6:
-                  echo "Cancelled";
-                  break;
-                default:
-                  echo "Unknown";
-                  break;
-              } ?>
-            </div>
-
-            <div class="flex-cell">
-              <?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?>
-            </div>
+          <div class="flex-row no-data-row">
+            <div class="flex-cell" colspan="9">No available data</div>
           </div>
-        <?php endforeach; ?>
+        <?php else : ?>
+          <?php foreach ($rentList as $rent) : ?>
+            <div class="flex-row" data-rent-id="<?= $rent['RENT_ID'] ?>">
+              <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
+              <div class="flex-cell"><?= date('h:i A', strtotime($rent['PICK_UP_TIME'])) ?></div>
+              <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_FROM'])) ?></div>
+              <div class="flex-cell"><?= date('F d, Y', strtotime($rent['RENT_DATE_TO'])) ?></div>
+              <div class="flex-cell status-cell">
+                <?php switch ($rent['STATUS']) {
+                  case 0:
+                    echo "Pending";
+                    break;
+                  case 1:
+                    echo "Approved";
+                    break;
+                  case 2:
+                    echo "Rejected";
+                    break;
+                  case 3:
+                    echo "Processing";
+                    break;
+                  case 4:
+                    echo "On Going";
+                    break;
+                  case 5:
+                    echo "Completed";
+                    break;
+                  case 6:
+                    echo "Cancelled";
+                    break;
+                  default:
+                    echo "Unknown";
+                    break;
+                } ?>
+              </div>
+
+              <div class="flex-cell">
+                <?php
+                $originalFormat = 'd-M-y h.i.s.u A';
+                $dateTime = DateTime::createFromFormat($originalFormat, $rent['TRANSACTION_DATE']);
+                echo $dateTime->format('M d, Y g:i A')
+                ?>
+              </div>
+            </div>
+          <?php endforeach; ?>
         <?php endif ?>
 
       </div>
