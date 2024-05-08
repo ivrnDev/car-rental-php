@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const acceptBtn = document.querySelectorAll('.accept-btn')
-  const rejectBtn = document.querySelectorAll('.accept-btn');
+  const spinner = document.getElementById('loadingSpinner');
   const popup = document.getElementById('confirmationPopup');
   const confirmYes = document.getElementById('confirmYes');
   const confirmNo = document.getElementById('confirmNo')
   const actionBtnContainers = document.querySelectorAll('.action-btn')
   let currentButton;
-
+  
   actionBtnContainers.forEach(container => {
     const buttons = container.querySelectorAll('button');
     buttons.forEach(button => {
@@ -21,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userId = currentButton.getAttribute('data-user-id');
     const status = currentButton.getAttribute('data-status');
     updateUserStatus(userId, status);
+    popup.style.display = 'none';
   })
 
   confirmNo.addEventListener('click', function () {
@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const updateUserStatus = (user_id, status) => {
+    
+    spinner.style.display = 'flex'; // Show spinner
+
     fetch('/drivesation/api/update-user-status.php', {
       method: 'POST',
       headers: {
@@ -35,14 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: `user_id=${encodeURIComponent(user_id)}&status=${encodeURIComponent(status)}`
     }).then(response => {
+      spinner.style.display = 'none';
       if (response.ok) {
-        setTimeout(() => {
-          location.reload();
-        }, (700));
-        showMessageModal("", `Success`);
         return response.json();
       } else {
-        showMessageModal(`Server Error`);
+        showMessageModal(`Internal Server Error`);
         throw new Error('Failed to update rent status.');
       }
     })
@@ -50,8 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.error) {
           throw new Error(data.error);
         }
+        showMessageModal(`${data.header}`, `${data.message}`);
+
       })
       .catch(error => {
+        spinner.style.display = 'none';
         console.error('Error:', error);
       });
   }

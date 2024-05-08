@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 class Mailer
 {
@@ -21,7 +21,7 @@ class Mailer
     $this->mail->Host       = 'smtp.gmail.com';
     $this->mail->SMTPAuth   = true;
     $this->mail->Username   = 'qcucooperatives@gmail.com';
-    $this->mail->Password   = 'vdhj rgtb wjaz vnfa';  
+    $this->mail->Password   = 'vdhj rgtb wjaz vnfa';
     $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $this->mail->Port       = 587;
 
@@ -32,7 +32,7 @@ class Mailer
   public function sendEmail($to, $name, $subject, $body, $altBody = '')
   {
     try {
-      $this->mail->addAddress($to, $name);  
+      $this->mail->addAddress($to, $name);
 
       $this->mail->Subject = $subject;
       $this->mail->Body    = $body;

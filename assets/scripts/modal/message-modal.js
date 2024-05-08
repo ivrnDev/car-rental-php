@@ -11,4 +11,5 @@ function showMessageModal(header, message) {
 
 messageCloseButton.addEventListener('click', () => {
   messageModal.style.display = 'none';
+  location.reload();
 });

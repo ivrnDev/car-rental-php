@@ -5,7 +5,7 @@ require_once "../utils/OracleDb.php";
 require_once "../functions/get-all-client.php";
 require_once "../assets/component/modals/confirmation-modal.php";
 require_once "../assets/component/modals/message-modal.php";
-
+require_once "../assets/component/loading.php";
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
@@ -27,7 +27,6 @@ $users = getAllClient($db);
   <link rel="stylesheet" href="../assets/styles/admin/layout.css">
   <link rel="stylesheet" href="../assets/styles/admin/applications.css">
   <link rel="stylesheet" href="../assets/styles/component/button.css">
-
 </head>
 
 <body id="admin-body">
