@@ -1,19 +1,4 @@
-<?php
 
-require_once "utils/mailer.php";
-
-$mailer = new Mailer();
-$message = "Hello, this is a custom test mail.";
-$subject = "Test Mail";
-$recipientEmail = "villamoraivanren@gmail.com";
-$recipientName = "Ivan Ren Villamora";
-$html = "<h1>SAMPLE</h1>
-<p>AHAHAAHAH<p>";
-$result = $mailer->sendEmail($recipientEmail, $recipientName, $subject, $html, $message);
-echo $result;
-
-
-?>
 
 
 <!DOCTYPE html>
