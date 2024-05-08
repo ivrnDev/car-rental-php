@@ -15,17 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
     $db->executeQuery($sql, $data);
 
     //Reject all other rents
-    if ($new_status == 1) {
-      $rejectStatusSql = "UPDATE rent SET status = 2 WHERE car_id = :car_id AND rent_id != :rent_id AND status = 0";
+    if ($new_status == 1 || $new_status == 3) {
+      $rejectStatusSql = "UPDATE rent SET status = 2 WHERE car_id = :car_id AND rent_id != :rent_id";
       $db->executeQuery($rejectStatusSql, [':car_id' => $car_id, ':rent_id' => $rent_id]);
     }
 
-    $fetchAllStatusSql = "SELECT rent_id, status FROM rent";
-    $fetchAllStatusStid = $db->executeQuery($fetchAllStatusSql);
-    $allStatuses = $db->fetchAll($fetchAllStatusStid);
 
     http_response_code(200);
-    echo json_encode($allStatuses);
+    echo json_encode(['message' => 'Success']);
     exit;
   } catch (Exception $e) {
     http_response_code(500);

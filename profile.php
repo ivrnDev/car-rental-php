@@ -1,6 +1,8 @@
  <?php
   require_once "assets/component/header.php";
   require_once "assets/component/modals/confirmation-modal.php";
+  require_once "assets/component/modals/message-modal.php";
+  require_once "assets/component/loading.php";
   require_once "functions/get-cars.php";
   require_once "utils/OracleDb.php";
   if (session_status() == PHP_SESSION_NONE) {
@@ -97,19 +99,20 @@
                <div class="flex-cell"><?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?></div>
 
                <div class="flex-cell">
-                 <Button class="view-btn">View</Button>
+                 <button class="view-btn">View</button>
                </div>
                <?php if ($rent['STATUS'] == 0) :
                 ?>
                  <div class="flex-cell action-btn">
-                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=6>Cancel</button>
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=6 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
                  </div>
+                 <div class="flex-cell"></div>
                <?php elseif ($rent['STATUS'] == 1) : ?>
                  <div class="flex-cell action-btn">
-                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=3>Process</button>
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=3 data-car-id=<?= $rent['CAR_ID'] ?>>Process</button>
                  </div>
                  <div class="flex-cell action-btn">
-                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=3>Cancel</button>
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=6 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
                  </div>
                <?php else : ?>
                  <div class="flex-cell"></div>
@@ -190,6 +193,7 @@
      </div>
    </main>
    <script src="./assets/scripts/user/profile-history.js"></script>
+   <script src="assets/scripts/modal/message-modal.js"></script>
  </body>
 
  </html>

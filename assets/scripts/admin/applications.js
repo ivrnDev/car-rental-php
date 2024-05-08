@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   confirmYes.addEventListener('click', () => {
     const userId = currentButton.getAttribute('data-user-id');
     const status = currentButton.getAttribute('data-status');
-    updateUserStatus(userId, status);
+    updateRentStatus(userId, status);
     popup.style.display = 'none';
   })
 
@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     popup.style.display = 'none';
   });
 
-  const updateUserStatus = (user_id, status) => {
+  const updateRentStatus = (user_id, status) => {
     spinner.style.display = 'flex'; // Show spinner
 
-    fetch('/drivesation/api/update-user-status.php', {
+    fetch('/drivesation/api/update-rent-status.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
