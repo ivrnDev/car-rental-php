@@ -141,6 +141,11 @@ input {
   border: 1px solid red;
 }
 
+.flex-table {
+  margin-top: 20px;
+  height: 85%;
+}
+
 /* List of Cars */
 .rent-list .flex-cell:nth-child(1) {
   flex: 0.5;
@@ -166,3 +171,4 @@ input {
 .rent-list .flex-cell:nth-child(8) {
   flex: 1;
 } /* View Button */
+
