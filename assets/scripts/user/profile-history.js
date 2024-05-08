@@ -83,7 +83,70 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
+  //View Rent History
+  const viewCarBtn = document.querySelectorAll('.view-btn');
+  const viewCarOverlay = document.querySelector('.view-car-overlay');
+  const viewCarExit = document.querySelector('.view-car-x');
+  const viewCar = document.querySelector('.view-car');
 
+  viewCarExit.addEventListener('click', () => {
+    viewCarOverlay.style.display = 'none';
+    viewCar.innerHTML = '';
+  })
+
+  viewCarBtn.forEach(button => {
+    button.addEventListener('click', () => {
+      viewCarOverlay.style.display = 'flex';
+    })
+  })
+
+  viewCarBtn.forEach(button => {
+    button.addEventListener('click', () => {
+      const carId = button.getAttribute('data-car-id');
+      getRentView(carId);
+    })
+  })
+
+  function getRentView(car_id) {
+    fetch('api/get-car-view.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `car_id=${encodeURIComponent(car_id)}`
+
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const { carData, carDocument } = data;
+        const carImage = carDocument.find(data => data.DOCUMENT_TYPE === "car_image");
+        const carORCR = carDocument.find(data => data.DOCUMENT_TYPE === "orcr");
+        viewCar.innerHTML = `
+        <h1>Car Details</h1>
+        <img src="${carImage.FILE_LINK}" alt="${carData.CAR_TITLE} car-image">
+        <p>${carData.CAR_ID}</p>
+        <p>${carData.CAR_TITLE}</p>
+        <p>${carData.PLATE_NUMBER}</p>
+        <p>${carData.SEAT_CAPACITY}</p>
+        <p>${carData.GAS_TYPE}</p>
+        <p>${carData.CAR_COLOR}</p>
+        <p>${carData.CAR_DESCRIPTION}</p>
+        <p>${carData.CAR_ID}</p>
+        <p>${carData.CAR_ID}</p>
+        <p>${carData.CAR_ID}</p>
+        <img src="${carORCR.FILE_LINK}" alt="${carData.CAR_TITLE} orcr" id="orcr-img">
+        `
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+  }
 
 
 

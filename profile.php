@@ -5,6 +5,8 @@
   require_once "assets/component/loading.php";
   require_once "functions/get-cars.php";
   require_once "utils/OracleDb.php";
+  require_once "assets/component/profile-page-view/view-car-info.php";
+
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
@@ -31,18 +33,14 @@
  <body>
    <main>
      <div class="left-column">
-       <img src="<? $profile_info['FILE_LINK'] ?>" alt="profile_picture">
-       <?php
-        if (!empty($profile_info)) {
-          echo '<ul>';
-          foreach ($profile_info as $key => $value) {
-            echo '<li>' . htmlspecialchars($value) . '</li>';
-          }
-          echo '</ul>';
-        } else {
-          echo '<p>No profile information available.</p>';
-        }
-        ?>
+       <img src="<?= $profile_info['FILE_LINK'] ?>" alt="profile_picture">
+       <h1><?= $profile_info['FULLNAME'] ?></h1>
+       <p><?= $profile_info['USER_ID'] ?></p>
+       <p><?= $profile_info['ADDRESS'] ?></p>
+       <p>Phone:</p>
+       <p><?= $profile_info['CONTACT_NUMBER'] ?></p>
+       <p>Email:</p>
+       <p><?= $profile_info['EMAIL_ADDRESS'] ?></p>
      </div>
      <div class="right-column">
        <button class="tab-button rentHistoryBtn">Rent History</button>
@@ -99,7 +97,7 @@
                <div class="flex-cell"><?= date('M d, Y g:i A', strtotime($rent['TRANSACTION_DATE'])) ?></div>
 
                <div class="flex-cell">
-                 <button class="view-btn">View</button>
+                 <button class="view-btn" data-car-id=<?= $rent['CAR_ID'] ?>>View</button>
                </div>
                <?php if ($rent['STATUS'] == 0) :
                 ?>

@@ -20,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
       $db->executeQuery($rejectStatusSql, [':car_id' => $car_id, ':rent_id' => $rent_id]);
     }
 
-
     http_response_code(200);
     echo json_encode(['message' => 'Success']);
     exit;
