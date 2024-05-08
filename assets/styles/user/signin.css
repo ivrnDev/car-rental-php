@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: all 0.2 linear;
+}
+
+body {
+  background-color: rgba(219, 216, 227, 1);
+}
+
+.logo {
+  position: absolute;
+  margin-top: 30px;
+  width: 300px;
+  height: 90px;
+  top: -30px;
+  padding-left: 30px;
+  object-fit: cover;
+}
+/*****FOR LOG IN******/
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  font: 800 40px "Titillium Web", sans-serif;
+  color: rgba(42, 36, 56, 1);
+  white-space: pre-wrap;
+  font-weight: 800px;
+  font-size: 37px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-section1 {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 0px;
+}
+
+.login-container {
+  display: flex;
+}
+
+.login-container1 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  padding: 27px 43px 40px 39px;
+  background: rgba(92, 84, 112, 0.25);
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-container .input-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  padding-left: 7px;
+  font: 900 16px "Titillium Web", sans-serif;
+  color: rgba(42, 36, 56, 1);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vertical-spacing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.login-button {
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  min-width: 144px;
+  height: 27px;
+  font: 800 16px "Titillium Web", sans-serif;
+  color: rgba(37, 47, 68, 1);
+  cursor: pointer;
+  background: rgba(106, 206, 89, 1);
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.account-signup-prompt {
+  font: 600 16px "Titillium Web", sans-serif;
+  color: rgba(37, 47, 68, 1);
+  font-size: 10px;
+}
+
+.signup-link {
+  text-decoration: underline;
+  font: 900 20px "Titillium Web", sans-serif;
+  font-size: large;
+  display: block;
+  color: rgba(37, 47, 68, 1);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  width: fit-content;
+}
+.dont {
+  font: georgia;
+  font-size: medium;
+  margin-top: 30%;
+}
+
+.car-log-in {
+  width: 95 0px;
+  height: 480px;
+  margin-left: 60px;
+  margin-top: -130px;
+ 
+}
+.input-box {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.featured-content-section {
+  position: absolute;
+  right: 0px;
+  top: 25px;
+}
+
+.text-container {
+  padding-right: 150px;
+  padding-left: 118px;
+  
+}
+
+.gradient-text-heading {
+  max-width: 600px;
+  font: 900 40px sans-serif;
+  text-align: left;
+  
+
+  white-space: pre-wrap;
+  background: linear-gradient(
+    96.42deg,
+    rgba(42, 36, 56, 1) 1.18%,
+    rgba(119, 102, 158, 1) 90.22%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 100px;
+  margin-left: 60px;
+
+  text-shadow: 2px 2px 4px rgba(83, 60, 120, 0.5);
+}

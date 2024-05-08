@@ -20,7 +20,11 @@ function getProfileInfo($user_id, $db)
 {
   try {
     $sql = "SELECT  
-    NVL(FIRST_NAME, '') || ' ' || NVL(MIDDLE_NAME, '') || ' ' || NVL(LAST_NAME, '') AS FULLNAME, USER_ID, ADDRESS, CONTACT_NUMBER, EMAIL_ADDRESS, BIRTHDATE FROM \"USER\" WHERE user_id = :user_id";
+    NVL(u.FIRST_NAME, '') || ' ' || NVL(u.MIDDLE_NAME, '') || ' ' || NVL(u.LAST_NAME, '') AS FULLNAME, u.USER_ID, u.ADDRESS, u.CONTACT_NUMBER, u.EMAIL_ADDRESS, u.BIRTHDATE, d.file_link 
+    FROM \"DOCUMENT\" d
+    JOIN \"USER\" u ON d.user_id = u.user_id
+    WHERE u.user_id = :user_id AND d.document_type = 'profile_picture'";
+
     $data = [':user_id' => $user_id];
     $stid = $db->executeQuery($sql, $data);
     $result = $db->fetchRow($stid);
@@ -53,5 +57,3 @@ function getProfileRentHistory($user_id, $db)
     return false;
   }
 }
-
-

@@ -2,7 +2,7 @@
 require_once "assets/component/header.php";
 require_once "functions/get-cars.php";
 $db = new OracleDB();
-$result = getAllCars($db);
+$result = getAvailableCars($db);
 ?>
 
 <!DOCTYPE html>

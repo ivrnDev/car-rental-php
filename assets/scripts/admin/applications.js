@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const actionBtnContainers = document.querySelectorAll('.action-btn')
   let currentButton;
 
-
   actionBtnContainers.forEach(container => {
     const buttons = container.querySelectorAll('button');
     buttons.forEach(button => {
@@ -42,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         return response.json();
       } else {
+        showMessageModal('error', 'Error', 'Internal Server Error');
         throw new Error('Failed to update rent status.');
       }
     })
@@ -49,11 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.error) {
           throw new Error(data.error);
         }
-        if (data.status) {
-          showMessageModal('success', data.header, data.body)
-        } else {
-          showMessageModal('initial', data.header, data.body)
-        }
+        showMessageModal(data.status == 1 ? "success" : "error", `${data.header}`, `${data.body}`);
+
       })
       .catch(error => {
         spinner.style.display = 'none';

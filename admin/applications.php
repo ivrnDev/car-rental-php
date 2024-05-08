@@ -10,7 +10,6 @@ require_once "../assets/component/modals/confirmation-modal.php";
 require_once "../assets/component/modals/message-modal.php";
 require_once "../assets/component/loading.php";
 
-
 $adminId = $_SESSION['admin_id'];
 if (empty($adminId)) {
   header("Location: /drivesation/signin.php");

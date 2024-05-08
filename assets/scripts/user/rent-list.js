@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
       //Update Car Availability Status
       const result = updateCarAvailability(carId, convert[statusCode]);
     }
-
   });
 
   confirmNo.addEventListener('click', function () {
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   //Send to server
-  function updateRentStatus(rentId, carId, newStatus) {
+  function updateRentStatus(carId, newStatus) {
     fetch('api/update-rent-status.php', {
       method: 'POST',
       headers: {

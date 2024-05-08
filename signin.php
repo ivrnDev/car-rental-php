@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In</title>
-  <link rel="stylesheet" href="assets/styles/user/sign-layout.css">
+  <link rel="stylesheet" href="assets/styles/user/sign-layout.cs">
   <link rel="stylesheet" href="assets/styles/user/signin.css">
 </head>
 
@@ -59,13 +59,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <main>
     <form method="POST">
-      <input id="email_address" name="email_address" type="text" placeholder="Email Address" autocomplete="off">
-      <input id="password" name="password" type="text" placeholder="Password" autocomplete="off">
-      <button type="submit">Login</button>
-
+      <div class="login-section1">
+        <div class="login-section">
+          <div class="login-container1">
+            <div class="vertical-flex-container">
+              <p class="login">LOGIN</p>
+              <div class="vertical-button-container">
+                <div class="vertical-flex-container">
+                  <div class="content-wrapper">
+                    <input type="text" placeholder="Email" class="input-box" name="email_address">
+                  </div>
+                  <div class="vertical-spacing-container">
+                    <input type="password" placeholder="Password" class="input-box" name="password">
+                    <button class="login-button">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="account-prompt-section">
+              <div class="account-signup-prompt">
+                <p class="dont">Don't have an account yet?</p>
+                <p class="signup-prompt-text-style"><a href="#" class="signup-link">Sign up</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
-  </main>
-  <img src="/assets/images/login-car.png" alt="Car Image">
+    <div class="featured-content-section">
+      <div class="text-container">
+        <p class="gradient-text-heading">BOOK ANYTIME,<br />ANYWHERE.</p>
+      </div>
+      <div class="negative-margin-top">
+        <img src="assets/images/car_in_log_in.png" class="car-log-in" />
+      </div>
+    </div>
+    </div>
+</div>
+
+
+
 
 </body>
 

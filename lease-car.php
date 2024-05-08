@@ -115,6 +115,12 @@
                     case 3:
                       echo "Maintenance";
                       break;
+                    case 4:
+                      echo "Rejected";
+                      break;
+                    case 5:
+                      echo "Cancelled";
+                      break;
                     default:
                       echo "Unknown";
                       break;
@@ -126,10 +132,13 @@
                       echo "Pending";
                       break;
                     case 1:
-                      echo "Approve";
+                      echo "Approved";
                       break;
                     case 2:
                       echo "Rejected";
+                      break;
+                    case 2:
+                      echo "Cancelled";
                       break;
                     default:
                       echo "Unknown";
@@ -236,7 +245,6 @@
           </div>
         </div>
       </div>
-
     </main>
     <script src="assets/scripts/modal/message-modal.js"></script>
     <script src="assets/scripts/user/rent-list.js"></script>

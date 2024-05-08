@@ -8,8 +8,6 @@
   }
   $db = new OracleDB();
   $userId = $_SESSION["user_id"];
-  $profile_link = getProfilePicture($userId, $db);
-  $imageSrc = !empty($profile_link) ? htmlspecialchars($profile_link) : 'assets/images/default-profile.png';
   $profile_info = getProfileInfo($userId, $db);
   $rent_history = getProfileRentHistory($userId, $db);
   $carList = getUserCarList($userId, $db);
@@ -31,7 +29,7 @@
  <body>
    <main>
      <div class="left-column">
-       <img src="<?php echo $imageSrc ?>" alt="">
+       <img src="<? $profile_info['FILE_LINK'] ?>" alt="profile_picture">
        <?php
         if (!empty($profile_info)) {
           echo '<ul>';
@@ -192,7 +190,6 @@
      </div>
    </main>
    <script src="./assets/scripts/user/profile-history.js"></script>
-   <script src="./assets/scripts/user/update-rent.js"></script>
  </body>
 
  </html>
