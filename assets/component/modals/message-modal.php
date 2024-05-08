@@ -6,6 +6,8 @@
   </div>
 </div>
 
+
+
 <style>
   .modal {
     display: none;
@@ -16,42 +18,66 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-
+    justify-content: center;
+    align-items: center;
   }
 
   .message-modal-content {
+    border-radius: 10px;
     position: relative;
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
+    height: 20%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    /* align-items: center; */
   }
-
-  .message-modal-content p {
-    margin-left: 40px;
-  }
-
-
 
   .message-close-button {
     position: absolute;
-    top: 0;
-    right: 10;
+    top: 10px;
+    right: 15px;
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .message-close-button:hover,
   .message-close-button:focus {
     color: black;
     text-decoration: none;
-    cursor: pointer;
+  }
+
+  .message-modal-header {
+    color: #333;
+    /* Subtle text color for the header */
+    margin-bottom: 10px;
+  }
+
+  .message-modal-text {
+    color: #666;
+    margin-left: 10px;
+    /* text-align: center; */
+  }
+
+  /* Success and error specific styles */
+  .success {
+    color: #4CAF50;
+    /* Green for success */
+  }
+
+  .error {
+    color: #D32F2F;
+    /* Red for error */
+  }
+
+  .initial {
+    color: #333;
   }
 </style>

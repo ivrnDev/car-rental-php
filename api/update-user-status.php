@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['user
   $user_id = (int)$_POST['user_id'];
   try {
     $sql = "UPDATE \"USER\" set status  = :status WHERE user_id = :user_id";
-    $getUserSql = "SELECT email_address, NVL(FIRST_NAME, '') || NVL(LAST_NAME, '') as FULL_NAME FROM \"USER\" WHERE user_id = :user_id";
+    $getUserSql = "SELECT email_address, NVL(FIRST_NAME, '') || ' ' || NVL(LAST_NAME, '') as FULL_NAME FROM \"USER\" WHERE user_id = :user_id";
 
     $updateData = [':status' => $status, ':user_id' => $user_id];
     $updateStid = $db->executeQuery($sql, $updateData);
@@ -78,12 +78,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['user
     $result = $mailer->sendEmail($recipientEmail, $recipientName, $subject, $message);
 
     $responseHeader = $status == 1 ? "Approved" : "Rejected";
-    $responseBody = $status == 1 ? "User" . $user_id . "has been approved" : "User" . $user_id . "has been rejected";
+    $responseBody = $status == 1 ? "Applicant No. " . $user_id . " has been approved." : "Applicant No. " . $user_id . " has been rejected.";
 
     if ($result) {
-      echo json_encode(["header" => $responseHeader, "message" => $responseBody]);
+      echo json_encode(["header" => $responseHeader, "body" => $responseBody, 'status' => $status]);
     } else {
-      echo json_encode(["message" => "Status updated, but email failed to send."]);
+      echo json_encode(["header" => "Status Updated", "body" => "Status updated, but email failed to send."]);
     }
     exit;
   } catch (Exception $e) {

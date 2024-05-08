@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmNo = document.getElementById('confirmNo')
   const actionBtnContainers = document.querySelectorAll('.action-btn')
   let currentButton;
-  
+
+
   actionBtnContainers.forEach(container => {
     const buttons = container.querySelectorAll('button');
     buttons.forEach(button => {
@@ -28,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const updateUserStatus = (user_id, status) => {
-    
     spinner.style.display = 'flex'; // Show spinner
 
     fetch('/drivesation/api/update-user-status.php', {
@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         return response.json();
       } else {
-        showMessageModal(`Internal Server Error`);
         throw new Error('Failed to update rent status.');
       }
     })
@@ -50,8 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.error) {
           throw new Error(data.error);
         }
-        showMessageModal(`${data.header}`, `${data.message}`);
-
+        if (data.status) {
+          showMessageModal('success', data.header, data.body)
+        } else {
+          showMessageModal('initial', data.header, data.body)
+        }
       })
       .catch(error => {
         spinner.style.display = 'none';

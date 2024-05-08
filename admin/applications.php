@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 require_once "../assets/component/admin-nav.php";
 require_once "../assets/component/admin-header.php";
 require_once "../utils/OracleDb.php";
@@ -6,9 +9,8 @@ require_once "../functions/get-all-client.php";
 require_once "../assets/component/modals/confirmation-modal.php";
 require_once "../assets/component/modals/message-modal.php";
 require_once "../assets/component/loading.php";
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
+
+
 $adminId = $_SESSION['admin_id'];
 if (empty($adminId)) {
   header("Location: /drivesation/signin.php");
@@ -17,6 +19,7 @@ $db = new OracleDB();
 $users = getAllClient($db);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,8 +71,8 @@ $users = getAllClient($db);
     </div>
 
   </main>
-  <script src="../assets/scripts/modal/message-modal.js"></script>
   <script src="../assets/scripts/admin/applications.js"></script>
+  <script src="../assets/scripts/modal/message-modal.js"></script>
 
 
 

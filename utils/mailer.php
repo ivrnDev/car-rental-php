@@ -25,7 +25,7 @@ class Mailer
     $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $this->mail->Port       = 587;
 
-    $this->mail->setFrom('qcucooperatives@gmail.com', 'Drivesation Admin');
+    $this->mail->setFrom('qcucooperatives@gmail.com', 'Drivesation');
     $this->mail->isHTML(true);
   }
 
