@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="account-prompt-section">
               <div class="account-signup-prompt">
                 <p class="dont">Don't have an account yet?</p>
-                <p class="signup-prompt-text-style"><a href="#" class="signup-link">Sign up</a></p>
+                <p class="signup-prompt-text-style"><a href="signup.php" class="signup-link">Sign up</a></p>
               </div>
             </div>
           </div>

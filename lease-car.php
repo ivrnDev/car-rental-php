@@ -2,6 +2,10 @@
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
+  $userId = $_SESSION['user_id'];
+  if (empty($userId)) {
+    header("Location: /drivesation/signin.php");
+  }
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
   require_once "assets/component/header.php";
@@ -12,10 +16,7 @@
   require_once "assets/component/lease-car-page-view/view-rent-info.php";
   require_once "assets/component/lease-car-page-view/view-car-info.php";
 
-  $userId = $_SESSION['user_id'];
-  if (empty($userId)) {
-    header("Location: /drivesation/signin.php");
-  }
+
   $db = new OracleDB();
   $carList = getUserCarList($userId, $db);
   $rentList = getRentersLists($userId, $db);
@@ -39,29 +40,72 @@
       <div class="lease-form container">
         <h1>Lease Car</h1>
         <p>Input the required fields</p>
+
         <form id="createCarForm" method="POST" action="functions/create-car.php" enctype="multipart/form-data">
-          <input id="car_title" name="car_title" type="text" placeholder="Car Title" autocomplete="off">
-          <input required id="car_description" name="car_description" type="text" placeholder="Description" autocomplete="off">
-          <input required id="car_model" name="car_model" type="text" placeholder="Car Model" autocomplete="off">
-          <input required id="plate_number" name="plate_number" type="text" placeholder="Plate Number" autocomplete="off">
-          <input required id="car_color" name="car_color" type="text" placeholder="Car Color" autocomplete="off">
-          <input required id="car_brand" name="car_brand" type="text" placeholder="Car Brand" autocomplete="off">
-          <input required id="gas_type" name="gas_type" type="text" placeholder="Gas Type" autocomplete="off">
-          <input required id="seat_capacity" name="seat_capacity" type="number" placeholder="Seat Capacity" autocomplete="off">
-          <input required id="car_type" name="car_type" type="text" placeholder="Car Type" autocomplete="off">
-          <input required id="amount" name="amount" type="number" placeholder="Amount" autocomplete="off">
-          <label class="file-label" for="car_image">
-            Car Image
-            <img src="assets/images/add-image.png" alt="Add Image">
-          </label>
-          <label class="file-label" for="orcr">
-            OR/CR
-            <img src="assets/images/add-image.png" alt="Add Image">
-          </label>
+
+          <div class="left-column">
+            <div class="input-container">
+              <input id="car_title" name="car_title" type="text" placeholder="Car Title" autocomplete="off">
+              <span class="error-message" id="car_title-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="car_model" name="car_model" type="text" placeholder="Car Model" autocomplete="off">
+              <span class="error-message" id="car_model-error"></span>
+            </div>
+            <div class="input-container">
+              <textarea required id="car_description" name="car_description" type="" placeholder="Description" autocomplete="off" rows="4" cols="40"></textarea>
+              <span class="error-message" id="car_description-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="plate_number" name="plate_number" type="text" placeholder="Plate Number" autocomplete="off">
+              <span class="error-message" id="plate_number-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="car_color" name="car_color" type="text" placeholder="Car Color" autocomplete="off">
+              <span class="error-message" id="car_color-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="car_brand" name="car_brand" type="text" placeholder="Car Brand" autocomplete="off">
+              <span class="error-message" id="car_brand-error"></span>
+            </div>
+            <h3>INPUT THE FOLLOWING DOCUMENTS:</h3>
+            <label class="file-label" for="car_image" id="car_image_label">
+              Car Image
+              <span id="car_image_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Image"></label>
+            </label>
+            <label class="file-label" for="orcr" id="orcr_label">
+              OR/CR
+              <span id="orcr_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Image"></label>
+            </label>
+          </div>
+
+
+          <div class="right-column">
+            <div class="input-container">
+              <input required id="gas_type" name="gas_type" type="text" placeholder="Gas Type" autocomplete="off">
+              <span class="error-message" id="gas_type-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="seat_capacity" name="seat_capacity" type="number" placeholder="Seat Capacity" autocomplete="off">
+              <span class="error-message" id="seat_capacity-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="car_type" name="car_type" type="text" placeholder="Car Type" autocomplete="off">
+              <span class="error-message" id="car_type-error"></span>
+            </div>
+            <div class="input-container">
+              <input required id="amount" name="amount" type="number" placeholder="Amount" autocomplete="off">
+              <span class="error-message" id="amount-error"></span>
+            </div>
+
+            <button id="createCarBtn" class="accept-btn" type="submit">CONFIRM</button>
+
+          </div>
+
+
 
           <input required type="file" name="car_image" id="car_image">
           <input required type="file" name="orcr" id="orcr">
-          <button id="createCarBtn" type="submit">CONFIRM</button>
         </form>
       </div>
 
@@ -250,6 +294,7 @@
       </div>
     </main>
     <script src="assets/scripts/modal/message-modal.js"></script>
+    <script src="assets/scripts/user/lease-form.js"></script>
     <script src="assets/scripts/user/rent-list.js"></script>
     <script src="assets/scripts/user/car-list.js"></script>
 

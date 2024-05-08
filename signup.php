@@ -112,52 +112,53 @@
    </header>
 
    <main>
-     <h1>Create an Account</h1>
-     <form id="signup-form" method="POST" enctype="multipart/form-data">
-       <div class="left-column">
-         <div class="input-container">
-           <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
-           <span class="error-message" id="lastname-error"></span>
-         </div>
-
-         <div class="input-container">
-           <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
-           <span class="error-message" id="firstname-error"></span>
-         </div>
-
-         <div class="input-container">
-           <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
-           <span class="error-message" id="middlename-error"></span>
-         </div>
-
-         <div class="input-container">
-           <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
-           <span class="error-message" id="contact_number-error"></span>
-         </div>
-
-         <div class="input-container">
-           <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
-           <span class="error-message" id="address-error"></span>
-         </div>
-
-         <div class="birthdate-container">
-           <label for="birthdate">Birthdate</label>
-           <div id="birthdate-input-container">
-             <input id="birthdate" name="birthdate" type="date" autocomplete="off">
-             <span class="error-message" id="birthdate-error"></span>
+     <div class="signup-container">
+       <h1>Create an Account</h1>
+       <form id="signup-form" method="POST" enctype="multipart/form-data">
+         <div class="left-column">
+           <div class="input-container">
+             <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
+             <span class="error-message" id="lastname-error"></span>
            </div>
-         </div>
 
-         <div class="gender-container">
-           <div class="radio-container">
-             <input type="radio" id="male" name="gender" value=0 checked>
-             <label for="male">Male</label>
+           <div class="input-container">
+             <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
+             <span class="error-message" id="firstname-error"></span>
            </div>
-           <div class="radio-container">
-             <input type="radio" id="female" name="gender" value=1>
-             <label for="female">Female</label>
+
+           <div class="input-container">
+             <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
+             <span class="error-message" id="middlename-error"></span>
            </div>
-         </div>
+
+           <div class="input-container">
+             <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
+             <span class="error-message" id="contact_number-error"></span>
+           </div>
+
+           <div class="input-container">
+             <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
+             <span class="error-message" id="address-error"></span>
+           </div>
+
+           <div class="birthdate-container">
+             <label for="birthdate">Birthdate</label>
+             <div id="birthdate-input-container">
+               <input id="birthdate" name="birthdate" type="date" autocomplete="off">
+               <span class="error-message" id="birthdate-error"></span>
+             </div>
+           </div>
+
+           <div class="gender-container">
+             <div class="radio-container">
+               <input type="radio" id="male" name="gender" value=0 checked>
+               <label for="male">Male</label>
+             </div>
+             <div class="radio-container">
+               <input type="radio" id="female" name="gender" value=1>
+               <label for="female">Female</label>
+             </div>
+           </div>
 
            <label class="file-label" for="profile_picture" id="profile_picture_label">2 x 2 Picture
              <span id="profile_picture_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Image"></label>
@@ -182,31 +183,31 @@
              <img src="assets/images/add-image.png" alt="Add Image">
            </label>
 
-         <input type="file" name="profile_picture" id="profile_picture">
-         <input type="file" name="valid_id" id="valid_id">
-         <input type="file" name="drivers_license" id="drivers_license">
-         <input type="file" name="proof_of_billing" id="proof_of_billing">
-         <input type="file" name="selfie_with_id" id="selfie_with_id">
-       </div>
-
-       <div class="right-column">
-         <div class="input-container">
-           <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
-           <span class="error-message" id="email_address-error"></span>
+           <input type="file" name="profile_picture" id="profile_picture">
+           <input type="file" name="valid_id" id="valid_id">
+           <input type="file" name="drivers_license" id="drivers_license">
+           <input type="file" name="proof_of_billing" id="proof_of_billing">
+           <input type="file" name="selfie_with_id" id="selfie_with_id">
          </div>
 
-         <div class="input-container">
-           <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
-           <span class="error-message" id="password-error"></span>
-         </div>
+         <div class="right-column">
+           <div class="input-container">
+             <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
+             <span class="error-message" id="email_address-error"></span>
+           </div>
 
-         <div class="input-container">
-           <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
-           <span class="error-message" id="confirm-password-error"></span>
-         </div>
-         <button id="signup-btn" type="submit">SIGN UP</button>
-         <a href="signin.php">Already have an account?</a>
-     </form>
+           <div class="input-container">
+             <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+             <span class="error-message" id="password-error"></span>
+           </div>
+
+           <div class="input-container">
+             <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
+             <span class="error-message" id="confirm-password-error"></span>
+           </div>
+           <button id="signup-btn" type="submit">SIGN UP</button>
+           <a href="signin.php">Already have an account?</a>
+       </form>
      </div>
 
    </main>
