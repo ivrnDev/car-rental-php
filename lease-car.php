@@ -1,14 +1,17 @@
   <?php
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
   require_once "functions/get-cars.php";
   require_once "functions/get-rent-list.php";
   require_once "assets/component/header.php";
   require_once "assets/component/modals/message-modal.php";
+  require_once "assets/component/loading.php";
   require_once "assets/component/modals/delete-car-modal.php";
+  require_once "assets/component/modals/confirmation-modal.php";
   require_once "assets/component/lease-car-page-view/view-rent-info.php";
   require_once "assets/component/lease-car-page-view/view-car-info.php";
-  if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  }
+
   $userId = $_SESSION['user_id'];
   if (empty($userId)) {
     header("Location: /drivesation/signin.php");

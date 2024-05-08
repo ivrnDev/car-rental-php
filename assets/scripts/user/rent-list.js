@@ -1,5 +1,6 @@
 //Update rent status
 document.addEventListener('DOMContentLoaded', () => {
+  const spinner = document.getElementById('loadingSpinner');
   const popup = document.getElementById('confirmationPopup');
   const confirmYes = document.getElementById('confirmYes');
   const confirmNo = document.getElementById('confirmNo');
@@ -39,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   //Send to server
-  function updateRentStatus(carId, newStatus) {
+  function updateRentStatus(rentId, carId, newStatus) {
+    spinner.style.display = 'flex'; // Show spinner
     fetch('api/update-rent-status.php', {
       method: 'POST',
       headers: {
@@ -49,14 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
       .then(response => {
+        spinner.style.display = 'none'; 
         if (response.ok) {
-          setTimeout(() => {
-            location.reload();
-          }, (700));
-          showMessageModal("Success", `${convertStatusToResponse(newStatus, rentId)}`);
+          showMessageModal('', "Success", `${convertStatusToResponse(newStatus, rentId)}`);
           return response.json();
         } else {
-          showMessageModal(`Server Error`);
+          showMessageModal('', 'Error', `Server Error`);
           throw new Error('Failed to update rent status.');
         }
       })
@@ -66,20 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch(error => {
+        spinner.style.display = 'none';
         console.error('Error:', error);
-        alert('Failed to update: ' + error.message);
       });
   }
 
 
   function convertStatusToResponse(code, rentId) {
     const statusLookup = {
-      1: `Rent #${rentId} has been approved`,
-      2: `Rent #${rentId} has been rejected`,
-      3: `Rent #${rentId} is now processing`,
-      4: `Rent #${rentId} is now on going`,
-      5: `Rent ${rentId} is now completed`,
-      6: `Rent #{rentId} has been cancelled`,
+      1: `Rent No. ${rentId} has been approved`,
+      2: `Rent No. ${rentId} has been rejected`,
+      3: `Rent No. ${rentId} is now processing`,
+      4: `Rent No. ${rentId} is now on going`,
+      5: `Rent No. ${rentId} is now completed`,
+      6: `Rent No. {rentId} has been cancelled`,
       default: "Unknown"
     };
     return statusLookup[code] || statusLookup.default;

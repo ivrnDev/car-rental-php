@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const spinner = document.getElementById('loadingSpinner');
 
-  //Delete Button
   const deleteBtn = document.querySelectorAll('.delete-car .reject-btn');
   const confirmDeleteModal = document.getElementById('confirmDeletePopUp');
   const confirmDeleteYes = document.getElementById('confirmDeleteYes');
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   function updateCarDeleteStatus(car_id, delete_status) {
+    spinner.style.display = 'flex';
     fetch('api/update-car-delete.php', {
       method: 'POST',
       headers: {
@@ -35,18 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     })
       .then(response => {
+        spinner.style.display = 'none';
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        setTimeout(() => {
-          location.reload();
-        }, (700));
-        showMessageModal("Deleted", "Car has been deleted successfully");
+        showMessageModal('error', "Deleted", "Car has been deleted successfully");
         return response.json();
       })
       .then(data => {
       })
       .catch(error => {
+        spinner.style.display = 'none';
         console.error('Error:', error);
       });
   }
