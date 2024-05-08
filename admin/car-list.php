@@ -49,85 +49,91 @@ $cars = getAllCars($db);
         <div class="flex-cell"></div>
         <div class="flex-cell"></div>
       </div>
-      <?php foreach ($cars as $car) : ?>
-        <div class="flex-row">
-          <div class="flex-cell">
-            <img src="../<?= htmlspecialchars($car['FILE_LINK']) ?>" alt="Car Profile">
-          </div>
-          <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
-          <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
-          <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
-          <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
-          <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
-          <div class="flex-cell"><?= "₱ " . number_format($car['AMOUNT']) ?></div>
-          <div class="flex-cell">
-            <?php switch ($car['AVAILABILITY_STATUS']) {
-              case 0:
-                echo "Pending";
-                break;
-              case 1:
-                echo "Available";
-                break;
-              case 2:
-                echo "On Lease";
-                break;
-              case 3:
-                echo "Maintenance";
-                break;
-              case 4:
-                echo "Rejected";
-                break;
-              case 5:
-                echo "Cancelled";
-                break;
-              default:
-                echo "Unknown";
-                break;
-            } ?>
-          </div>
-          <div class="flex-cell">
-            <?php switch ($car['STATUS']) {
-              case 0:
-                echo "Pending";
-                break;
-              case 1:
-                echo "Approved";
-                break;
-              case 2:
-                echo "Rejected";
-                break;
-              case 3:
-                echo "Cancelled";
-                break;
-              default:
-                echo "Unknown";
-                break;
-            } ?>
-          </div>
-          <div class="flex-cell">
-            <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?>>View</button>
-          </div>
-
-          <?php if ($car['STATUS'] == 0) : ?>
-            <div class="flex-cell action-btn">
-              <button class="accept-btn" data-status=1 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=1>Accept</button>
-            </div>
-            <div class="flex-cell action-btn">
-              <button class="reject-btn" data-status=2 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=4>Reject</button>
-            </div>
-
-          <?php elseif ($car['STATUS'] == 1) : ?>
-            <div class="flex-cell action-btn">
-              <button class="reject-btn" data-status=3 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=5>Cancel</button>
-            </div>
-          <?php else : ?>
-            <div class="flex-cell action-btn">
-            </div>
-            <div class="flex-cell action-btn">
-            </div>
-          <?php endif; ?>
+      <?php if (empty($rentList)) : ?>
+        <div class="flex-row no-data-row">
+          <div class="flex-cell" colspan="9">No available data</div>
         </div>
-      <?php endforeach; ?>
+      <?php else : ?>
+        <?php foreach ($cars as $car) : ?>
+          <div class="flex-row">
+            <div class="flex-cell">
+              <img src="../<?= htmlspecialchars($car['FILE_LINK']) ?>" alt="Car Profile">
+            </div>
+            <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
+            <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
+            <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
+            <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
+            <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
+            <div class="flex-cell"><?= "₱ " . number_format($car['AMOUNT']) ?></div>
+            <div class="flex-cell">
+              <?php switch ($car['AVAILABILITY_STATUS']) {
+                case 0:
+                  echo "Pending";
+                  break;
+                case 1:
+                  echo "Available";
+                  break;
+                case 2:
+                  echo "On Lease";
+                  break;
+                case 3:
+                  echo "Maintenance";
+                  break;
+                case 4:
+                  echo "Rejected";
+                  break;
+                case 5:
+                  echo "Cancelled";
+                  break;
+                default:
+                  echo "Unknown";
+                  break;
+              } ?>
+            </div>
+            <div class="flex-cell">
+              <?php switch ($car['STATUS']) {
+                case 0:
+                  echo "Pending";
+                  break;
+                case 1:
+                  echo "Approved";
+                  break;
+                case 2:
+                  echo "Rejected";
+                  break;
+                case 3:
+                  echo "Cancelled";
+                  break;
+                default:
+                  echo "Unknown";
+                  break;
+              } ?>
+            </div>
+            <div class="flex-cell">
+              <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?>>View</button>
+            </div>
+
+            <?php if ($car['STATUS'] == 0) : ?>
+              <div class="flex-cell action-btn">
+                <button class="accept-btn" data-status=1 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=1>Accept</button>
+              </div>
+              <div class="flex-cell action-btn">
+                <button class="reject-btn" data-status=2 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=4>Reject</button>
+              </div>
+
+            <?php elseif ($car['STATUS'] == 1) : ?>
+              <div class="flex-cell action-btn">
+                <button class="reject-btn" data-status=3 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=5>Cancel</button>
+              </div>
+            <?php else : ?>
+              <div class="flex-cell action-btn">
+              </div>
+              <div class="flex-cell action-btn">
+              </div>
+            <?php endif; ?>
+          </div>
+        <?php endforeach; ?>
+      <?php endif ?>
     </div>
 
   </main>

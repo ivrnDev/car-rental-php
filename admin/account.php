@@ -60,22 +60,28 @@ $users = getAllClients($db);
           <div class="flex-cell">Gender</div>
           <div class="flex-cell"></div>
         </div>
-        <?php foreach ($users as $user) : ?>
-          <div class="flex-row">
-            <div class="flex-cell">
-              <img src="../<?= htmlspecialchars($user['FILE_LINK']) ?>" alt="Profile Picture">
-            </div>
-            <div class="flex-cell"><?= $user['USER_ID'] ?></div>
-            <div class="flex-cell"><?= $user['LAST_NAME'] ?></div>
-            <div class="flex-cell"><?= $user['FIRST_NAME'] ?></div>
-            <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
-            <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
-            <div class="flex-cell"><?= $user['GENDER'] == 0 ? "Male" : "Female" ?></div>
-            <div class="flex-cell">
-              <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
-            </div>
+        <?php if (empty($users)) : ?>
+          <div class="flex-row no-data-row">
+            <div class="flex-cell" colspan="9">No available data</div>
           </div>
-        <?php endforeach; ?>
+        <?php else : ?>
+          <?php foreach ($users as $user) : ?>
+            <div class="flex-row">
+              <div class="flex-cell">
+                <img src="../<?= htmlspecialchars($user['FILE_LINK']) ?>" alt="Profile Picture">
+              </div>
+              <div class="flex-cell"><?= $user['USER_ID'] ?></div>
+              <div class="flex-cell"><?= $user['LAST_NAME'] ?></div>
+              <div class="flex-cell"><?= $user['FIRST_NAME'] ?></div>
+              <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
+              <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
+              <div class="flex-cell"><?= $user['GENDER'] == 0 ? "Male" : "Female" ?></div>
+              <div class="flex-cell">
+                <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php endif  ?>
       </div>
 
     </main>

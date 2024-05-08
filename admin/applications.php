@@ -47,27 +47,34 @@ $users = getAllApplicants($db);
         <div class="flex-cell"></div>
         <div class="flex-cell"></div>
       </div>
-      <?php foreach ($users as $user) : ?>
-        <div class="flex-row">
-          <div class="flex-cell">
-            <img src="../<?= htmlspecialchars($user['FILE_LINK']) ?>" alt="Profile Picture">
-          </div>
-          <div class="flex-cell"><?= $user['USER_ID'] ?></div>
-          <div class="flex-cell"><?= $user['LAST_NAME'] ?></div>
-          <div class="flex-cell"><?= $user['FIRST_NAME'] ?></div>
-          <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
-          <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
-          <div class="flex-cell">
-            <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
-          </div>
-          <div class="flex-cell action-btn">
-            <Button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</Button>
-          </div>
-          <div class="flex-cell action-btn">
-            <Button class="reject-btn" data-status=2 data-user-id="<?= $user['USER_ID'] ?>">Reject</Button>
-          </div>
+
+      <?php if (empty($users)) : ?>
+        <div class="flex-row no-data-row">
+          <div class="flex-cell" colspan="9">No available data</div>
         </div>
-      <?php endforeach; ?>
+      <?php else : ?>
+        <?php foreach ($users as $user) : ?>
+          <div class="flex-row">
+            <div class="flex-cell">
+              <img src="../<?= htmlspecialchars($user['FILE_LINK']) ?>" alt="Profile Picture">
+            </div>
+            <div class="flex-cell"><?= $user['USER_ID'] ?></div>
+            <div class="flex-cell"><?= $user['LAST_NAME'] ?></div>
+            <div class="flex-cell"><?= $user['FIRST_NAME'] ?></div>
+            <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
+            <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
+            <div class="flex-cell">
+              <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
+            </div>
+            <div class="flex-cell action-btn">
+              <Button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</Button>
+            </div>
+            <div class="flex-cell action-btn">
+              <Button class="reject-btn" data-status=2 data-user-id="<?= $user['USER_ID'] ?>">Reject</Button>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif ?>
     </div>
 
   </main>

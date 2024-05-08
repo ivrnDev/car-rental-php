@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateRentStatus = (user_id, status) => {
     spinner.style.display = 'flex'; // Show spinner
 
-    fetch('/drivesation/api/update-rent-status.php', {
+    fetch('/drivesation/api/update-user-status.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

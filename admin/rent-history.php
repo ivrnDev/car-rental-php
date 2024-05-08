@@ -59,6 +59,11 @@ $rentList = getAllRenters($db);
           <div class="flex-cell">Transaction Date</div>
           <div class="flex-cell"></div>
         </div>
+        <?php if (empty($rentList)) : ?>
+        <div class="flex-row no-data-row">
+          <div class="flex-cell" colspan="9">No available data</div>
+        </div>
+      <?php else : ?>
         <?php foreach ($rentList as $rent) : ?>
           <div class="flex-row" data-rent-id="<?= $rent['RENT_ID'] ?>">
             <div class="flex-cell"><?= $rent['RENT_ID'] ?></div>
@@ -99,6 +104,7 @@ $rentList = getAllRenters($db);
             </div>
           </div>
         <?php endforeach; ?>
+        <?php endif ?>
 
       </div>
 
