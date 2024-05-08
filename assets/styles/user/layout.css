@@ -23,21 +23,23 @@ body {
 }
 
 /* HEADER */
-header {
+.landing-header {
   display: flex;
   width: 100%;
   height: var(--header-height);
-  justify-content: space-around;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: green;
   z-index: 100;
+  align-items: center;
+  padding-inline: 4%;
+  background-color: green;
 }
 
-.logo img {
-  width: 50%;
-  height: auto;
+.logo {
+  width: 300px;
+  height: 100%;
 }
 
 nav ul {
@@ -46,7 +48,6 @@ nav ul {
   height: 100%;
   align-items: center;
 }
-
 nav ul li {
   list-style: none;
 }
@@ -54,6 +55,41 @@ nav ul li {
 nav ul li a {
   text-decoration: none;
   color: white;
+}
+
+.signing-container {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.signing-container a {
+  text-decoration: none;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.signing-container a:nth-child(1) {
+  color: white;
+  background-color: #5c5470;
+  border-radius: 15px;
+}
+
+.signing-container a:nth-child(2) {
+  color: black;
+  background-color: #dbd8e3;
+  border-radius: 15px;
+}
+
+/* Hover effects */
+.signing-container a:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .profile-container {
@@ -66,6 +102,21 @@ nav ul li a {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+/* Home Header */
+.home-header {
+  display: flex;
+  width: 100%;
+  height: var(--header-height);
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  align-items: center;
+  padding-inline: 4%;
+  background-color: green;
 }
 
 /* MAIN */
