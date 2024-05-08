@@ -8,6 +8,7 @@ require_once "../utils/OracleDb.php";
 require_once "../functions/get-all-client.php";
 require_once "../assets/component/modals/confirmation-modal.php";
 require_once "../assets/component/modals/message-modal.php";
+require_once "../assets/component/admin-page-view/profile-view.php";
 require_once "../assets/component/loading.php";
 
 $adminId = $_SESSION['admin_id'];
@@ -15,7 +16,7 @@ if (empty($adminId)) {
   header("Location: /drivesation/signin.php");
 }
 $db = new OracleDB();
-$users = getAllClient($db);
+$users = getAllApplicants($db);
 
 ?>
 
@@ -57,7 +58,7 @@ $users = getAllClient($db);
           <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
           <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
           <div class="flex-cell">
-            <Button class="view-btn">View</Button>
+            <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
           </div>
           <div class="flex-cell action-btn">
             <Button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</Button>

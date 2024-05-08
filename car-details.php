@@ -71,17 +71,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <main>
     <div class="card">
       <img src="<?= $result['FILE_LINK']; ?>" alt="<?= $result['CAR_TITLE'] ?>">
-      <h1><?= htmlspecialchars($result['CAR_TITLE']); ?></h1>
-      <p><?= htmlspecialchars($result['CAR_TYPE']) ?></p>
-      <p><?= htmlspecialchars($result['SEAT_CAPACITY']) ?></p>
-      <p><?= htmlspecialchars($result['CAR_MODEL']) ?></p>
-      <p><?= htmlspecialchars($result['CAR_COLOR']) ?></p>
-      <p><?= htmlspecialchars($result['PLATE_NUMBER']) ?></p>
-      <p><?= htmlspecialchars($result['GAS_TYPE']) ?></p>
-      <p><?= htmlspecialchars($result['CAR_DESCRIPTION']) ?></p>
-      <p><?= htmlspecialchars($result['OWNER_NAME']) ?></p>
-      <p><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
-      <p><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
+      <h1 class="car-title"><?= htmlspecialchars($result['CAR_TITLE']); ?></h1>
+      <p class="car-type>"><?= htmlspecialchars($result['CAR_TYPE']) ?></p>
+      <p class="seat-cap>"><?= htmlspecialchars($result['SEAT_CAPACITY']) ?></p>
+      <p class="car-model"><?= htmlspecialchars($result['CAR_MODEL']) ?></p>
+      <p class="car-color"><?= htmlspecialchars($result['CAR_COLOR']) ?></p>
+      <p class="plate"><?= htmlspecialchars($result['PLATE_NUMBER']) ?></p>
+      <p class="gas"><?= htmlspecialchars($result['GAS_TYPE']) ?></p>
+      <p class="car-des"><?= htmlspecialchars($result['CAR_DESCRIPTION']) ?></p>
+      <p class="owner-name"><?= htmlspecialchars($result['OWNER_NAME']) ?></p>
+      <p class="contact"><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
+      <p class="email"><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
 
       <div>
         <form method="POST">

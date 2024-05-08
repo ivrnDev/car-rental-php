@@ -10,7 +10,6 @@ if (empty($adminId)) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
