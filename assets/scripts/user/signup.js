@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
   submitButton.addEventListener('click', function (event) {
     event.preventDefault();
     let isValid = validateForm();
@@ -73,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('confirm-password-error').textContent = 'Passwords do not match';
       hasError = true;
     }
-
     return !hasError; // Return true if there is no error
   }
   function clearError(input) {
@@ -104,5 +102,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   birthdateInput.max = formatDate(maxDate);
-  birthdateInput.min = formatDate(minDate); 
+  birthdateInput.min = formatDate(minDate);
 });

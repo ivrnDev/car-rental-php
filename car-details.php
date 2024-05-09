@@ -1,59 +1,25 @@
 <?php
-require_once "assets/component/header.php";
-require_once "functions/get-cars.php";
-
-if (isset($_GET['car_id'])) {
-  $car_id = htmlspecialchars($_GET['car_id']);
-  $db = new OracleDB();
-  $result = getCarDetails($car_id, $db);
-  if (empty($result)) {
-    header("Location: /drivesation/car-list.php");
-  }
-} else {
-  throw new Exception("Error: No Parameters");
-}
-
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
-}
-$userId = $_SESSION['user_id'];
-$db = new OracleDB();
-if (!$db->isConnected()) {
-  die("Database connection failed");
-}
+  require_once "assets/component/header.php";
+  require_once "functions/get-cars.php";
+  require_once "utils/OracleDb.php";
+  require_once "assets/component/modals/message-modal.php";
+  require_once "assets/component/loading.php";
+  require_once "assets/component/modals/confirmation-modal.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset(
-    $_POST['pick_up_time'],
-    $_POST['rent_date_from'],
-    $_POST['rent_date_to'],
-  )) {
-    try {
-      $pick_up_time = $_POST['pick_up_time'];
-      $rent_date_from = $_POST['rent_date_from'];
-      $rent_date_to = $_POST['rent_date_to'];
-
-      $sql = "INSERT INTO Rent (rent_id, user_id, owner_id, car_id, pick_up_time, rent_date_from, rent_date_to, status, transaction_date) VALUES (rent_seq.NEXTVAL, :user_id, :owner_id, :car_id, :pick_up_time, TO_DATE(:rent_date_from, 'YYYY-MM-DD'), TO_DATE(:rent_date_to, 'YYYY-MM-DD'), 0, SYSDATE)";
-
-      $data = [
-        ':user_id' => $userId,
-        ':owner_id' => $result['OWNER_ID'],
-        ':car_id' => $result['CAR_ID'],
-        ':pick_up_time' => $pick_up_time,
-        ':rent_date_from' => $rent_date_from,
-        ':rent_date_to' => $rent_date_to,
-      ];
-
-      $db->executeQuery($sql, $data);
-
-      echo "<p>Rent successfully!</p>";
-    } catch (Exception $e) {
-      throw new Exception("EROR", $e->getMessage());
+  if (isset($_GET['car_id'])) {
+    $car_id = htmlspecialchars($_GET['car_id']);
+    $db = new OracleDB();
+    $result = getCarDetails($car_id, $db);
+    if (empty($result)) {
+      header("Location: /drivesation/car-list.php");
     }
   } else {
-    throw new Exception("Input required fields");
+    throw new Exception("Error: No Parameters");
   }
 }
+$userId = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -69,83 +35,94 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <main>
-    <div class="card">
+    <form method="POST" id="rent-car">
+      <div class="card">
+        <img id="car_image" src="<?= $result['FILE_LINK']; ?>" alt="<?= $result['CAR_TITLE'] ?>">
+        <div class="info">
+          <div class="first-line">
+            <div class="type">
+              <p class="car-type>"><?= htmlspecialchars($result['CAR_TYPE']) ?></p>
+            </div>
 
-      <img src="<?= $result['FILE_LINK']; ?>" alt="<?= $result['CAR_TITLE'] ?>">
+            <div class="seat">
+              <p class="seat-cap>">Seats: <?= htmlspecialchars($result['SEAT_CAPACITY']) ?></p>
+            </div>
+          </div>
 
-      <div class="info">
+          <div class="form-group">
+            <div class="time input-container">
+              <label for="pick_up_time" id="pick_up_time_label">Pick up Time</label>
+              <input id="pick_up_time" name="pick_up_time" type="time">
+            </div>
+            <span class="error-message" id="pick_up_time-error"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="date input-container">
+              <label for="rent_date_from" id="rent_date_from_label">Pick up Date</label>
+              <input id="rent_date_from" name="rent_date_from" type="date">
+            </div>
+            <span class="error-message" id="rent_date_from-error"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="return-date input-container">
+              <label for="rent_date_to" id="rent_date_to_label">Return Date</label>
+              <input id="rent_date_to" name="rent_date_to" type="date">
+            </div>
+            <span class="error-message" id="rent_date_to-error"></span>
+          </div>
+
+
+          <div class="carowner">
+            <p>CAR OWNER </p>
+          </div>
+
+          <div class="owner-info">
+
+            <p class="owner-name"><?= htmlspecialchars($result['OWNER_NAME']) ?></p>
+            <p class="email"><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
+            <p class="contact"><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
+          </div>
 
 
 
-        <div class="first-line">
-          <div class="type">
-            <p class="car-type>"><?= htmlspecialchars($result['CAR_TYPE']) ?></p>
+
+
+          <div class="rent">
+            <div class="price">
+              <p>PRICE </p>
+            </div>
+            <div class="amount">
+              <p class="car-amount"><?= "₱" . number_format($result['AMOUNT']) ?></p>
+            </div>
+            <div class="button">
+              <button id="rentCarBtn" data-user-id="<?= $userId ?>" data-owner-id="<?= $result['OWNER_ID'] ?>" data-car-id="<?= $result['CAR_ID'] ?>" <?php if ($result['OWNER_ID'] == $userId) echo "disabled" ?>>Rent a Car</button>
+            </div>
+          </div>
+
+
+          <div class="car-title">
+            <p class="contact"><?= htmlspecialchars($result['CAR_TITLE']) ?></p>
+          </div>
+
+          <div class="description">
+            <div class="text">
+              <p>CAR DESCRIPTION</p>
+            </div>
+            <p class="contact"><?= htmlspecialchars($result['CAR_DESCRIPTION']) ?></p>
           </div>
         </div>
-
-        <p class="seat-cap>"><?= htmlspecialchars($result['SEAT_CAPACITY']) ?></p>
-        <p class="car-model"><?= htmlspecialchars($result['CAR_MODEL']) ?></p>
-        <p class="car-color"><?= htmlspecialchars($result['CAR_COLOR']) ?></p>
-        <p class="plate"><?= htmlspecialchars($result['PLATE_NUMBER']) ?></p>
-        <p class="gas"><?= htmlspecialchars($result['GAS_TYPE']) ?></p>
-        <p class="car-des"><?= htmlspecialchars($result['CAR_DESCRIPTION']) ?></p>
-        <p class="owner-name"><?= htmlspecialchars($result['OWNER_NAME']) ?></p>
-        <p class="contact"><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
-        <p class="email"><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
+      </div>
+      </div>
+      </div>
 
       </div>
-    </div>
-    <div>
+    </form>
 
-      <form method="POST">
-        <label for="pick_up_time">Pick up Time</label>
-        <input id="pick_up_time" name="pick_up_time" type="time">
-
-        <label for=" rent_date_from">Pick up Date</label>
-        <input id="rent_date_from" name="rent_date_from" type="date">
-
-        <label for=" rent_date_to">Return Date</label>
-        <input id="rent_date_to" name="rent_date_to" type="date">
-
-        <button type="submit" <?php if ($result['OWNER_ID'] == $userId) echo "disabled" ?>>Rent a Car</button>
-
-
-      </form>
-    </div>
   </main>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const rentFromDateInput = document.getElementById('rent_date_from');
-      const rentToDateInput = document.getElementById('rent_date_to');
+  <script src="assets/scripts/modal/message-modal.js"></script>
+  <script src="assets/scripts/user/car-details.js"></script>
 
-      const today = new Date().toISOString().split('T')[0];
-      rentFromDateInput.min = today;
-      rentToDateInput.min = today;
-
-      rentFromDateInput.addEventListener('change', function() {
-        const fromDate = new Date(rentFromDateInput.value);
-        fromDate.setDate(fromDate.getDate() + 1); // Adding one day to the pick-up date
-        const nextDay = fromDate.toISOString().split('T')[0];
-
-        rentToDateInput.min = nextDay;
-
-        if (rentToDateInput.value && rentToDateInput.value < rentToDateInput.min) {
-          rentToDateInput.value = nextDay;
-        }
-      });
-
-      rentToDateInput.addEventListener('change', function() {
-        const toDate = new Date(rentToDateInput.value);
-        toDate.setDate(toDate.getDate() - 1);
-        const previousDay = toDate.toISOString().split('T')[0];
-
-        rentFromDateInput.max = previousDay;
-
-        if (rentFromDateInput.value && rentFromDateInput.value > rentFromDateInput.max) {
-          rentFromDateInput.value = previousDay;
-        }
-      });
-    });
-  </script>
 
 </html>
