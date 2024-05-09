@@ -43,7 +43,11 @@ $result = getAvailableCars($db);
           </div>
         </div>
 
-        <a id="rent-button" href="car-details.php?car_id=<?= urlencode($car['CAR_ID']) ?>">Rent</a>
+        <?php if (empty($userId)) : ?>
+          <a id="rent-button" href="signin.php">Rent</a>
+        <?php else : ?>
+          <a id="rent-button" href="car-details.php?car_id=<?= urlencode($car['CAR_ID']) ?>">Rent</a>
+        <?php endif  ?>
 
       </div>
       </div>

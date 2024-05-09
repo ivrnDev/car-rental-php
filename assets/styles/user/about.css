@@ -1,0 +1,253 @@
+.hero-section {
+  box-sizing: border-box;
+  min-width: 1200px;
+  height: 200px;
+  padding: 99px 48px 58px 85px;
+  background: url('/assets/images/about_us_bg.png') no-repeat 50% / cover;
+  border: none;
+}
+
+.majestic-heading {
+  position: absolute;
+  font: 400 128px Jomhuria;
+  top: 110px;
+  right: 70%;
+  white-space: pre-wrap;
+  background: linear-gradient(
+    258.64deg,
+    rgba(206, 197, 232, 1) 37.74%,
+    rgba(80, 49, 163, 1) 147.84%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/*************** ANBOUT US TEXT*******************/
+.premier-car-rentals-styles {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 1440px;
+  padding: 20px 65px 20px;
+}
+
+.flex-container-with-text-aligned-left {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.image-container {
+  box-sizing: border-box;
+  display: block;
+  width: 197px;
+  max-width: initial;
+  height: 196px;
+  clip-path: undefined;
+  border: none;
+  mix-blend-mode: normal;
+  object-fit: cover;
+}
+
+.drive-station-description {
+  display: grid;
+  max-width: 900px;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  margin-left: 30px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+}
+
+.fleet-heading-style {
+  flex: 0 0 auto;
+  font: 400 54px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.brand-statement {
+  flex: 0 0 auto;
+  margin-top: -0.45px;
+  font: 400 24px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+  margin-right: 20px;
+}
+
+.car-rental-info-section {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  column-gap: 10px;
+  row-gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 170px;
+}
+
+.mission-section {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  column-gap: 5px;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 350px;
+}
+
+.mission-container {
+  flex: auto;
+}
+
+.mission-statement-style2 {
+  font: 400 54px Jomhuria;
+  color: rgba(219, 216, 227, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+  margin-top: 20px;
+}
+
+.mission-statement-style {
+  padding-right: 4px;
+  padding-left: 4px;
+  margin-top: 10px;
+}
+
+.mission-statement-style1 {
+  box-sizing: border-box;
+  max-width: 350px;
+  font: 400 24px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.mission-engagement-text-style {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  font: 400 54px Jomhuria;
+  color: rgba(219, 216, 227, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+  margin-top: 40px;
+}
+
+.mission-engagement-text-style1 {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  margin-top: -2.75px;
+  font: 400 24px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.card-section {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  max-width: 350px;
+  padding-bottom: 8.5px;
+}
+
+.community-engagement-section {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.community-engagement-heading {
+  flex: 0 0 auto;
+  font: 400 54px Jomhuria;
+  color: rgba(219, 216, 227, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.community-engagement-text {
+  flex: 0 0 auto;
+  align-self: stretch;
+  margin-top: 11.5px;
+  font: 400 24px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.fleet-description-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.fleet-description-text-style {
+  flex: 0 0 auto;
+  align-self: stretch;
+  margin-top: 18.5px;
+  font: 400 24px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.vertical-card-container {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 350px;
+}
+
+.customer-satisfaction-section {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 7px;
+}
+
+.personalized-text-block {
+  flex: 0 0 auto;
+  align-self: stretch;
+  margin-top: 10.5px;
+  font: 400 24px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.hero-text-block {
+  flex: 0 0 auto;
+  margin-top: 4.25px;
+  font: 400 54px Jomhuria;
+  color: rgba(255, 255, 255, 1);
+  text-align: justify;
+  white-space: pre-wrap;
+  margin-top: 20px;
+}
+
+.journey-description {
+  flex: 0 0 auto;
+  padding-right: 4px;
+  padding-left: 4px;
+  margin-top: 18.5px;
+}

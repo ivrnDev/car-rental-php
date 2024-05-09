@@ -1,0 +1,101 @@
+main {
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+}
+
+.journey-card {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Journey Style */
+.highlighted-text {
+  flex: 0 0 auto;
+  font: 600 16px Inter, sans-serif;
+  color: rgba(255, 255, 255, 1);
+}
+
+.highlighted-text1 {
+  flex: 0 0 auto;
+  font: 600 16px Inter, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  white-space: pre-wrap;
+}
+
+.journey-heading-style1 {
+  flex: 1 1 auto;
+  font: italic 800 48px Inter, sans-serif;
+  /* white-space: pre-wrap; */
+  margin-top: 40px;
+  background: linear-gradient(
+    92.13deg,
+    rgba(219, 216, 227, 1) 31.55%,
+    rgba(147, 125, 205, 1) 68.64%,
+    rgba(124, 96, 198, 1) 98.17%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.journey-heading-style {
+  flex: 1 1 auto;
+  font: 900 20px Inter, sans-serif;
+  color: rgba(250, 250, 253, 1);
+  text-align: center;
+}
+
+.banner-container {
+  width: 100%;
+  height: 70%;
+}
+
+.banner-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.button-container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.explore-now-btn {
+  background-color: #007bff; /* A vibrant blue color */
+  color: white; /* White text color */
+  font-size: 16px; /* Font size of the text */
+  padding: 12px 24px; /* Top and bottom padding 12px, left and right padding 24px */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+  font-weight: bold; /* Bold font weight */
+  text-transform: uppercase; /* Uppercase text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for 3D effect */
+
+  text-decoration: none;
+}
+
+.explore-now-btn a {
+  width: 20%;
+  height: 20%;
+}
+.explore-now-btn:hover,
+.explore-now-btn:focus {
+  background-color: #0056b3; /* Darker blue on hover/focus */
+  transform: scale(1.05); /* Slightly larger on hover/focus */
+  outline: none; /* Removes the outline on focus for aesthetics */
+}
+
+.explore-now-btn:active {
+  background-color: #004088; /* Even darker blue on click */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Smaller shadow for a "pressed" effect */
+}

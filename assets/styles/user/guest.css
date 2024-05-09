@@ -1,0 +1,890 @@
+body {
+    background-color:#252f44;
+    overflow-x: hidden;
+  }
+ 
+ .header-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    min-width: 1440px;
+    height: 125px;
+    padding-right: 33px;
+    padding-left: 33px;
+ }
+ 
+ .card-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 32.39%;
+    padding-bottom: 14.5px;
+ }
+ 
+ .logo {
+    position: absolute;
+    width: 250px;
+    height: 150px;
+    left: 0;
+    top: -50px;
+    cursor: pointer;
+ }
+ 
+ .button-container {
+    text-align: right;
+ }
+ .login-button-style {
+    font-family: lato,sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #36a2eb;
+    display: inline-block;
+    padding: 5px 20px 5px 20px;
+    position: relative;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    margin-left: 130px;
+    transition: box-shadow 200ms ease-out;
+    cursor: pointer;
+ }
+ .sign-up-button-style{
+    font-family: lato,sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #36a2eb;
+    display: inline-block;
+    padding: 5px 20px 5px 20px;
+    position: relative;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    margin-right: -10px;
+    transition: box-shadow 200ms ease-out;
+    cursor: pointer;
+ }
+ 
+ 
+ /********NAVIGATION BAR***********/
+ .navigation-bar {
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+        align-items: center;
+        justify-content: flex-start;
+        width: 50%;
+        height: 220px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-left: -80px;
+        cursor: pointer;
+    }
+ 
+ .header-nav-container {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+ }
+ 
+ .header-link {
+    flex: 0 0 auto;
+    font: 600 16px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .highlighted-text {
+    flex: 0 0 auto;
+    margin-left: 21px;
+    font: 600 16px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .highlighted-text1 {
+    flex: 0 0 auto;
+    margin-left: -9.5px;
+    font: 600 16px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .circular-image-display-style {
+   box-sizing: border-box;
+   display: block;
+   width: 40px;
+   height: 40px;
+   border: none;
+   border-radius: 50%;
+   mix-blend-mode: normal;
+   object-fit: cover;
+   margin-left: 100px;
+   position: relative;
+   top: -90px;
+ }
+ .horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin-top: -80px;
+    margin-bottom: 20px;
+ }
+ /***********COVER TEXT *********/
+ .rental-heading-style{
+    border: 5em;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    -webkit-transform: translate(0);
+    transform: translate(0);
+    background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+    padding: 0.7em 2em;
+    border-radius: 1px;
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+    -webkit-transition: box-shadow 0.25s;
+    transition: box-shadow 0.25s;
+    color: white;
+ }
+ .majestic-text-gradient {
+    font: italic 800 80px Inter, sans-serif;
+    white-space: pre-wrap;
+    background: linear-gradient(
+    91.3deg,
+    rgba(219, 216, 227, 1) 0.25%,
+    rgba(148, 134, 185, 1) 97.06%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 70px;
+ }
+ .unforgettable-journey-heading {
+    margin-top: -1.25px;
+    font: 600 64px Inter, sans-serif;
+    color: rgba(231, 165, 165, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ .journey-highlight-text-style {
+    flex: 0 0 auto;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-top: 13.5px;
+    font: 900 24px Inter, sans-serif;
+    color: rgba(250, 250, 253, 1);
+    white-space: pre-wrap;
+    margin-top: -60px;
+ }
+ .journey-image-container {
+    box-sizing: border-box;
+    display: block;
+    width: 835px;
+    max-width: initial;
+    height: 474px;
+    margin-left: 600px;
+    margin-top: -350px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+ }
+ .type-selection-heading {
+    font: 900 30px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+    text-align: center;
+    margin-top: 150px;
+ }
+ .car-selection-message {
+    font: 400 16px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+    text-align: center;
+ }
+ 
+ /***************** VAN ******************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ .van-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+ }
+ .van-price-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-width: 400px;
+    max-width: 400px;
+    padding-top: 29px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-left: 1px;
+ }
+ 
+ .van {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 236px;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -10px;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+ }
+ 
+ .van-price-info-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 5px 14px 10px;
+ }
+ 
+ .van-price-details-container {
+    box-sizing: border-box;
+    width: 100%;
+    font: 600 24px Inter, sans-serif;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ 
+ .van-details-text-style {
+    font: 600 36px Inter, sans-serif; 
+    text-align: left;
+ }
+ 
+ .van-range-description {
+    font: 300 24px Inter, sans-serif;
+    text-align: left;
+ }
+ /***************** SEDAN ******************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ .sedan-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+ }
+ .sedan-price-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-width: 400px;
+    max-width: 400px;
+    padding-top: 29px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-left: 420px;
+    margin-top: -495px;
+ }
+ 
+ .sedan {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 236px;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -10px;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+ }
+ 
+ .sedan-price-info-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 5px 14px 10px;
+ }
+ 
+ .sedan-price-details-container {
+    box-sizing: border-box;
+    width: 100%;
+    font: 600 24px Inter, sans-serif;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ 
+ .sedan-details-text-style {
+    font: 600 36px Inter, sans-serif; 
+    text-align: left;
+ }
+ 
+ .sedan-range-description {
+    font: 300 24px Inter, sans-serif;
+    text-align: left;
+ }
+ /***************** SPORTS ******************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ .sports-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+ }
+ .sports-price-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-width: 400px;
+    max-width: 400px;
+    padding-top: 29px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-left: 840px;
+    margin-top: -495px;
+ }
+ 
+ .sports {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 236px;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -10px;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+ }
+ 
+ .sports-price-info-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 5px 14px 10px;
+ }
+ 
+ .sports-price-details-container {
+    box-sizing: border-box;
+    width: 100%;
+    font: 600 24px Inter, sans-serif;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ 
+ .sports-details-text-style {
+    font: 600 36px Inter, sans-serif; 
+    text-align: left;
+ }
+ 
+ .sports-range-description {
+    font: 300 24px Inter, sans-serif;
+    text-align: left;
+ }
+ /***************** SUV ******************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ .suv-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+ }
+ .suv-price-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-width: 400px;
+    max-width: 400px;
+    padding-top: 29px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-left: 1px;
+    margin-top: 35px;
+ }
+ 
+ .suv {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 236px;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -10px;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+ }
+ 
+ .suv-price-info-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 5px 14px 10px;
+ }
+ 
+ .suv-price-details-container {
+    box-sizing: border-box;
+    width: 100%;
+    font: 600 24px Inter, sans-serif;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ 
+ .suv-details-text-style {
+    font: 600 36px Inter, sans-serif; 
+    text-align: left;
+ }
+ 
+ .suv-range-description {
+    font: 300 24px Inter, sans-serif;
+    text-align: left;
+ }
+ /***************** PICK-UP ******************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ .pickup-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+ }
+ .pickup-price-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-width: 400px;
+    max-width: 400px;
+    padding-top: 29px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-left: 420px;
+    margin-top: -495px;
+ }
+ 
+ .pickup {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 236px;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -10px;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+ }
+ 
+ .pickup-price-info-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 5px 14px 10px;
+ }
+ 
+ .pickup-price-details-container {
+    box-sizing: border-box;
+    width: 100%;
+    font: 600 24px Inter, sans-serif;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ 
+ .pickup-details-text-style {
+    font: 600 36px Inter, sans-serif; 
+    text-align: left;
+ }
+ 
+ .pickup-range-description {
+    font: 300 24px Inter, sans-serif;
+    text-align: left;
+ }
+ /***************** JEEP ******************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ .jeep-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+ }
+ .jeep-price-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-width: 400px;
+    max-width: 400px;
+    padding-top: 29px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-left: 840px;
+    margin-top: -495px;
+ }
+ 
+ .jeep {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 236px;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -10px;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+ }
+ 
+ .jeep-price-info-container {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 5px 14px 10px;
+ }
+ 
+ .jeep-price-details-container {
+    box-sizing: border-box;
+    width: 100%;
+    font: 600 24px Inter, sans-serif;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+    white-space: pre-wrap;
+    margin-top: -100px;
+ }
+ 
+ .jeep-details-text-style {
+    font: 600 36px Inter, sans-serif; 
+    text-align: left;
+ }
+ 
+ .jeep-range-description {
+    font: 300 24px Inter, sans-serif;
+    text-align: left;
+ }
+ 
+ /*********** CAR BRANDS ***************/
+ .brand-title-style {
+    font: 900 40px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+    text-align: center;
+    margin-top: 200px;
+ }
+ /*****1******/
+ .div-style-72208e6d {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 216px;
+    padding: 50px 30px 47px 29px;
+    background: linear-gradient(
+    90deg,
+    rgba(92, 84, 112, 0.5) 0%,
+    rgba(219, 216, 227, 0.5) 100%
+    );
+    border-radius: 7px;
+    margin-left: 25px;
+ }
+ 
+ .one {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 72px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: cover;
+    margin-left: 10px;
+ }
+ 
+ /*****2******/
+ .div-style-5d0a274c {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 216px;
+    padding: 50px 30px 47px 29px;
+    background: linear-gradient(
+    90deg,
+    rgba(92, 84, 112, 0.5) 0%,
+    rgba(219, 216, 227, 0.5) 100%
+    );
+    border-radius: 7px;
+    margin-left: 268px;
+    margin-top: -170px;
+ }
+ 
+ .two {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 72px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    object-position: center;
+    margin-left: 10px;
+    
+ }
+ /*****3******/
+ .div-style-d695711e {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 216px;
+    padding: 50px 30px 47px 29px;
+    background: linear-gradient(
+    90deg,
+    rgba(92, 84, 112, 0.5) 0%,
+    rgba(219, 216, 227, 0.5) 100%
+    );
+    border-radius: 7px;
+    margin-left: 510px;
+    margin-top: -170px;
+ }
+ 
+ .three {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 72px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    margin-left: 10px;
+ }
+ /*****4******/
+ .div-style-4e45a4f0 {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 216px;
+    padding: 50px 30px 47px 29px;
+    background: linear-gradient(
+    90deg,
+    rgba(92, 84, 112, 0.5) 0%,
+    rgba(219, 216, 227, 0.5) 100%
+    );
+    border-radius: 7px;
+    margin-left: 760px;
+    margin-top: -170px;
+ }
+ 
+ .four {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 72px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    margin-left: 10px;
+ }
+ 
+ /*****5******/
+ .div-style-9639c30b {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 216px;
+    padding: 50px 30px 47px 29px;
+    background: linear-gradient(
+    90deg,
+    rgba(92, 84, 112, 0.5) 0%,
+    rgba(219, 216, 227, 0.5) 100%
+    );
+    border-radius: 7px;
+    margin-left: 1000px;
+    margin-top: -170px;
+ }
+ 
+ .five {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 72px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    object-position: center;
+    margin-left: 10px;
+ }
+ 
+ /**************** CAR LIST *****************/
+ element.styles {
+    display: inline-block;
+    width: 412px;
+ }
+ 
+ .majestic-heading {
+    font: 900 48px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    white-space: pre-wrap;
+    text-align: center;
+    margin-top: 200px;
+ }
+ 
+ .vehicle-card1 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-width: 100px;
+    padding: 10px 1px 1px 1px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: 35px;
+ }
+ 
+ .car-title-text-style {
+    font: 600 32px Inter, sans-serif;
+    color: rgba(48, 57, 61, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .vehicle-card-layout {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 14.5px;
+    margin-top: 10px;
+ }
+ 
+ .vehicle-info-container {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+ }
+ 
+ .image-text-container {
+    box-sizing: border-box;
+    display: block;
+    width: 45px;
+    max-width: initial;
+    height: 45px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: contain;
+ }
+ 
+ .suv-label {
+    flex: 0 0 auto;
+    margin-left: -1px;
+    font: 600 14px Inter, sans-serif;
+    color: rgba(48, 57, 61, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .vehicle-details-container {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 51px;
+ }
+ 
+ .number-text-display-style {
+    flex: 0 0 auto;
+    margin-left: 1px;
+    font: 600 14px Inter, sans-serif;
+    color: rgba(48, 57, 61, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .rental-price-info {
+    flex: 0 0 auto;
+    font: 600 20px Inter, sans-serif;
+    color: rgba(48, 57, 61, 1);
+    white-space: pre-wrap;
+ }
+ 
+ .rent-button-style {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    width: 144px;
+    min-width: 144px;
+    height: 49px;
+    margin-top: 45px;
+    font: 600 20px Inter, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    background: rgba(67, 109, 216, 1);
+    border: none;
+    border-radius: 20px;
+ }
+ 
+ .image-text-container {
+    box-sizing: border-box;
+    display: block;
+    width: 100px;
+    max-width: initial;
+    height: 45px;
+    clip-path: undefined;
+    border: none;
+    mix-blend-mode: normal;
+    object-fit: contain;
+ }
+ 
