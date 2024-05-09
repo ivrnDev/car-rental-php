@@ -110,7 +110,7 @@ $cars = getAllCars($db);
               } ?>
             </div>
             <div class="flex-cell">
-              <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?>>View</button>
+              <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?> style="display: none;">View</button>
             </div>
 
             <?php if ($car['STATUS'] == 0) : ?>

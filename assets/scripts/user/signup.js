@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const spinner = document.getElementById('loadingSpinner');
   const form = document.getElementById('signup-form');
   const submitButton = document.getElementById('signup-btn');
   const inputFields = form.querySelectorAll('input:not([type="file"])');
@@ -26,11 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   submitButton.addEventListener('click', function (event) {
     event.preventDefault();
+    spinner.style.display = 'flex';
+
     let isValid = validateForm();
 
     if (isValid) {
       form.submit();
+      spinner.style.display = 'none';
+      showMessageModal("success", "Success", "Signup successfully. We're processing your account. Please wait for the confirmation of your account")
     }
+    spinner.style.display = 'none';
+
   });
   function validateForm() {
     let hasError = false;
@@ -99,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return [year, month, day].join('-');
   };
-
 
   birthdateInput.max = formatDate(maxDate);
   birthdateInput.min = formatDate(minDate);

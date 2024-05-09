@@ -7,6 +7,7 @@ if (!$db->isConnected()) {
   die("Database connection failed");
 }
 
+$result = null;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['email_address'], $_POST['password'])) {
     $email_address = $_POST['email_address'];
@@ -29,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: /drivesation");
         exit;
       } else {
-        echo "Invalid username or password";
+        $result = "Invalid username or password";
       }
     } catch (Exception $e) {
       echo "<p>Error: " . $e->getMessage() . "</p>";
@@ -37,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="vertical-spacing-container">
                     <input type="password" placeholder="Password" class="input-box" name="password">
                     <button class="login-button">Login</button>
+                    <?php if ($result) : ?>
+                      <p style="color: red; margin-top: 20px"><?= $result ?></p>
+                      <p></p>
+                    <?php endif ?>
                   </div>
                 </div>
               </div>
@@ -95,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
     </div>
-</div>
+    </div>
 
 
 

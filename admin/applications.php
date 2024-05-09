@@ -64,13 +64,13 @@ $users = getAllApplicants($db);
             <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
             <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
             <div class="flex-cell">
-              <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
+              <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>" style="display: none;">View</button>
             </div>
             <div class="flex-cell action-btn">
-              <Button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</Button>
+              <button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</button>
             </div>
             <div class="flex-cell action-btn">
-              <Button class="reject-btn" data-status=2 data-user-id="<?= $user['USER_ID'] ?>">Reject</Button>
+              <button class="reject-btn" data-status=2 data-user-id="<?= $user['USER_ID'] ?>">Reject</button>
             </div>
           </div>
         <?php endforeach; ?>

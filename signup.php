@@ -1,6 +1,8 @@
  <?php
   require_once "utils/OracleDb.php";
   require_once "utils/upload.php";
+  require_once "assets/component/modals/message-modal.php";
+  require_once "assets/component/loading.php";
   $db = new OracleDB();
   if (!$db->isConnected()) {
     die("Database connection failed");
@@ -61,7 +63,6 @@
         oci_bind_by_name($stid, ":new_user_id", $new_user_id, -1, OCI_B_INT);
 
         oci_execute($stid);
-        echo "<p>User details saved successfully!</p>";
 
         $documents = [
           'profile_picture' => 'Profile Picture',
@@ -74,7 +75,6 @@
         $allFilesProvided = true;
         foreach ($documents as $inputName => $docType) {
           if (!isset($_FILES[$inputName]) || $_FILES[$inputName]['error'] ==         UPLOAD_ERR_NO_FILE) {
-            echo "File $docType not provided.<br>";
             $allFilesProvided = false;
           }
         }
@@ -82,8 +82,6 @@
           foreach ($documents as $inputName => $documentName) {
             uploadSignupDocuments($_FILES[$inputName], $new_user_id, $inputName, $documentName, $db);
           }
-        } else {
-          echo "All documents are required. Please upload each file.<br>";
         }
         oci_free_statement($stid);
       } catch (Exception $e) {
@@ -92,6 +90,7 @@
     }
   }
   ?>
+
  <!DOCTYPE html>
  <html lang="en">
 
@@ -212,6 +211,7 @@
 
    </main>
    <script src="assets/scripts/user/signup.js"></script>
+   <script src="assets/scripts/modal/message-modal.js"></script>
  </body>
 
  </html>

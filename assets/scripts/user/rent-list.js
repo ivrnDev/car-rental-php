@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
       .then(response => {
-        spinner.style.display = 'none'; 
+        spinner.style.display = 'none';
         if (response.ok) {
           showMessageModal('', "Success", `${convertStatusToResponse(newStatus, rentId)}`);
           return response.json();
@@ -158,25 +158,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const { profileResult, profileDocumentResult, carResult } = data;
         const profilePictureDocument = profileDocumentResult.find(doc => doc.DOCUMENT_TYPE === 'profile_picture');
 
-        profileView.innerHTML = `
-     <h1>Profile</h1>
-      <img id="profile-image" src="${profilePictureDocument.FILE_LINK}" alt="profile-picture">
-      <p>User ID: ${profileResult.USER_ID}</p>
-      <p>${profileResult.FULL_NAME}</p>
-      <p>${profileResult.ADDRESS}</p>
-      <p>${profileResult.CONTACT_NUMBER}</p>
-      <p>${profileResult.EMAIL_ADDRESS}</p>`
+        profileView.innerHTML = ` 
+    <div class="profile-card">
+    <img src=${profilePictureDocument.FILE_LINK} class="profile-img">
+    <div class="profile-info">
+      <h1 class="name">${profileResult.FULL_NAME}</h1>
+      <p class="id">ID: ${profileResult.USER_ID}</p>
+      <p class="address">Address: ${profileResult.ADDRESS}</p>
+      <p class="phone">Phone: ${profileResult.CONTACT_NUMBER}</p>
+      <p class="email">Email: ${profileResult.EMAIL_ADDRESS}</p>
+    </div>
+  </div>`
 
         carView.innerHTML = `
-      <h1>Profile</h1>
-      <img id="profile-image" src="${carResult.FILE_LINK}" alt="profile-picture">
-      <p>User ID: ${carResult.USER_ID}</p>
-      <p>Car ID: ${carResult.CAR_ID}</p>
-      <p>${carResult.CAR_TITLE}</p>
-      <p>${carResult.CAR_MODEL}</p>
-      <p>${carResult.CAR_BRAND}</p>
-      <p>${carResult.CAR_TYPE}</p>
-      <p>₱ ${parseInt(carResult.AMOUNT).toLocaleString()}</p>
+       <div class="car-card">
+    <img src="${carResult.FILE_LINK}" class="car-img">
+    <div class="car-info">
+      <h1 class="title">${carResult.TITLE}</h1>
+      <p class="car-type">Type: ${carResult.CAR_TYPE} </p>
+      <p class="car-model">Model: ${carResult.MODEL}</p>
+      <p class="gas">Fuel Type: ${carResult.CAR_TYPE}</p>
+      <p class="seat-cap"> Seat Capacity: ${carResult.SEAT_CAPACITY} Seaters</p>
+      <p class="plate">Plate Number: ${carResult.PLATE_NUMBER}</p>
+    </div>
+  </div>
       `
       })
       .catch(error => {

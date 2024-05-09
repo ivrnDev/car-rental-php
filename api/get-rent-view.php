@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['userId'], $_POST['carI
 
     $profileDocumentSql = "SELECT document_type, file_link from \"DOCUMENT\" WHERE user_id = :user_id";
 
-    $carSql = "SELECT d.file_link, c.car_id, c.car_title, c.car_model, c.car_brand, c.amount, c.car_type
+    $carSql = "SELECT d.file_link, c.*
     FROM \"DOCUMENT\" d
     JOIN car c ON d.car_id = c.car_id
     WHERE c.car_id = :car_id AND d.document_type = 'car_image'";

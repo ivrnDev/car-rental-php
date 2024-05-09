@@ -116,7 +116,7 @@ nav ul li a {
   z-index: 100;
   align-items: center;
   padding-inline: 4%;
-  background-color: green;
+  background-color: var(--primary-color);
 }
 
 /* MAIN */

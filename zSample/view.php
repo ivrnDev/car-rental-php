@@ -144,16 +144,7 @@
 
 <body>
 
-  <div class="profile-card">
-    <img src="https://i.pinimg.com/736x/54/72/d1/5472d1b09d3d724228109d381d617326.jpg" class="profile-img">
-    <div class="profile-info">
-      <h1 class="name">Justine Mendiola</h1>
-      <p class="id">ID: 001-0213</p>
-      <p class="address">Address: Dito dito lang</p>
-      <p class="phone">Phone: 09213192742 </p>
-      <p class="email">Email: mendiola@gmail.com </p>
-    </div>
-  </div>
+ 
 
   <div class="car-card">
     <img src="https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg" class="car-img">

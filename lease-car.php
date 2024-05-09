@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="assets/styles/component/button.css">
     <link rel="stylesheet" href="assets/styles/component/table.css">
     <link rel="stylesheet" href="assets/styles/user/lease-car.css">
+    <link rel="stylesheet" href="assets/styles/views/rent-list-view.css">
   </head>
 
   <body>
@@ -42,7 +43,6 @@
         <p>Input the required fields</p>
 
         <form id="createCarForm" method="POST" action="functions/create-car.php" enctype="multipart/form-data">
-
           <div class="left-column">
             <div class="input-container">
               <input id="car_title" name="car_title" type="text" placeholder="Car Title" autocomplete="off">
@@ -194,7 +194,7 @@
                 </div>
                 <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
                 <div class="flex-cell view-car">
-                  <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>">View</button>
+                  <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" style="display: none;">View</button>
                 </div>
                 <div class="flex-cell delete-car">
                   <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>

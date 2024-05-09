@@ -6,16 +6,21 @@ main {
 }
 .left-column {
   flex: 1 1 25%;
-  /* background-color: blue; */
+  padding: 20px;
+  color: white;
 }
+
 .right-column {
   flex: 1 1 75%;
   overflow-x: hidden;
 }
 .left-column img {
   width: 100px;
-  height: auto;
+  height: 100px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 20px;
 }
 .left-column ul {
   color: white;
@@ -34,7 +39,8 @@ main {
   color: white;
 }
 
-#rentHistory, #carListed {
+#rentHistory,
+#carListed {
   background-color: var(--profile-color);
   height: 90%;
   border-radius: 10px;
