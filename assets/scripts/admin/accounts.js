@@ -39,14 +39,17 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then(data => {
 
+        const profile = data[0];
+        const document = data[1];
+        const profileImage = document.find(data => data.DOCUMENT_TYPE === 'profile_picture');
         viewProfile.innerHTML = `
         <h1>Profile</h1>
-        <img id="profile-image" src="/drivesation/${profileInfo.FILE_LINK}" alt="profile-picture">
-        <p>User ID: ${profileInfo.USER_ID}</p>
-        <p>${profileInfo.FULL_NAME}</p>
-        <p>${profileInfo.ADDRESS}</p>
-        <p>${profileInfo.CONTACT_NUMBER}</p>
-        <p>${profileInfo.EMAIL_ADDRESS}</p>`
+        <img id="profile-image" width=50 height=50 src="/drivesation/${profileImage.FILE_LINK}" alt="profile-picture">
+        <p>User ID: ${profile.USER_ID}</p>
+        <p>${profile.FULL_NAME}</p>
+        <p>${profile.ADDRESS}</p>
+        <p>${profile.CONTACT_NUMBER}</p>
+        <p>${profile.EMAIL_ADDRESS}</p>`
 
       })
       .catch(error => {

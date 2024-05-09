@@ -174,9 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
        <div class="car-card">
     <img src="${carResult.FILE_LINK}" class="car-img">
     <div class="car-info">
-      <h1 class="title">${carResult.TITLE}</h1>
+      <h1 class="title">${carResult.CAR_TITLE}</h1>
       <p class="car-type">Type: ${carResult.CAR_TYPE} </p>
-      <p class="car-model">Model: ${carResult.MODEL}</p>
+      <p class="car-model">Model: ${carResult.CAR_MODEL}</p>
       <p class="gas">Fuel Type: ${carResult.CAR_TYPE}</p>
       <p class="seat-cap"> Seat Capacity: ${carResult.SEAT_CAPACITY} Seaters</p>
       <p class="plate">Plate Number: ${carResult.PLATE_NUMBER}</p>

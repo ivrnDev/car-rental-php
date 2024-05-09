@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['car_id'])) {
     $data = [':car_id' => $car_id];
     $carStid = $db->executeQuery($carSql, $data);
     $carDocumentStid = $db->executeQuery($carDocumentSql, $data);
-
+    
     $carData = $db->fetchRow($carStid);
     $carDocument = $db->fetchAll($carDocumentStid);
     http_response_code(200);
