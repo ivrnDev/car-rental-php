@@ -77,7 +77,7 @@ $users = getAllClients($db);
               <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
               <div class="flex-cell"><?= $user['GENDER'] == 0 ? "Male" : "Female" ?></div>
               <div class="flex-cell">
-                <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>" style="display: none;">View</button>
+                <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
               </div>
             </div>
           <?php endforeach; ?>

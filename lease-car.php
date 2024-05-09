@@ -102,8 +102,6 @@
 
           </div>
 
-
-
           <input required type="file" name="car_image" id="car_image">
           <input required type="file" name="orcr" id="orcr">
         </form>
@@ -194,7 +192,7 @@
                 </div>
                 <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
                 <div class="flex-cell view-car">
-                  <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" style="display: none;">View</button>
+                  <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>">View</button>
                 </div>
                 <div class="flex-cell delete-car">
                   <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>
@@ -263,7 +261,7 @@
                   ?>
                 </div>
                 <div class="flex-cell view-rent">
-                  <Button class="view-btn" data-car-id="<?= $rent['CAR_ID'] ?>" data-user-id="<?= $rent['USER_ID'] ?>" data-rent-id="<?= $rent['RENT_ID'] ?>">View</Button>
+                  <button class="view-btn" data-car-id="<?= $rent['CAR_ID'] ?>" data-user-id="<?= $rent['USER_ID'] ?>" data-rent-id="<?= $rent['RENT_ID'] ?>">View</button>
                 </div>
 
                 <?php if ($rent['STATUS'] == 0) :

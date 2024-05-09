@@ -21,7 +21,6 @@ function uploadSignupDocuments($file, $userId, $documentType, $documentName, $db
       oci_bind_by_name($stid, ":file_link", $target_file);
       oci_bind_by_name($stid, ":user_id", $userId);
       oci_execute($stid);
-      echo "Uploaded and saved: $documentName<br>";
     } catch (Exception $e) {
       echo "<p>Error: " . $e->getMessage() . "</p>";
     }

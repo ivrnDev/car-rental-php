@@ -20,6 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
       $db->executeQuery($rejectStatusSql, [':car_id' => $car_id, ':rent_id' => $rent_id]);
     }
 
+    //Update Car Availability
+    if ($new_status == 6) {
+      $updateCarAvailability = "UPDATE Car SET availability_status = 1 WHERE car_id = :car_id";
+      $db->executeQuery($updateCarAvailability, [':car_id' => $car_id]);
+    }
+
     http_response_code(200);
     echo json_encode(['message' => 'Success']);
     exit;

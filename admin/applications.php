@@ -64,7 +64,7 @@ $users = getAllApplicants($db);
             <div class="flex-cell"><?= $user['CONTACT_NUMBER'] ?></div>
             <div class="flex-cell"><?= $user['EMAIL_ADDRESS'] ?></div>
             <div class="flex-cell">
-              <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>" style="display: none;">View</button>
+              <button class="view-btn" data-user-id="<?= $user['USER_ID'] ?>">View</button>
             </div>
             <div class="flex-cell action-btn">
               <button class="accept-btn" data-status=1 data-user-id="<?= $user['USER_ID'] ?>">Accept</button>

@@ -22,7 +22,8 @@ function getAllClients($db)
   try {
     $sql = "SELECT u.*, d.file_link FROM \"DOCUMENT\" d
     JOIN \"USER\" u ON d.user_id = u.user_id 
-    WHERE d.document_type = 'profile_picture'";
+    WHERE d.document_type = 'profile_picture' AND u.status = 1
+    ORDER BY u.user_id ASC";
     $stid = $db->executeQuery($sql);
     $result = $db->fetchAll($stid);
     if ($result && count($result) > 0) {

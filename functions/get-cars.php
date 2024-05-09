@@ -91,7 +91,7 @@ function getUserCarList($userId, $db)
 function getAllCars($db)
 {
   try {
-    $sql = "SELECT c.*, d.file_link from Car c JOIN \"DOCUMENT\" d ON c.car_Id = d.car_id WHERE d.document_type = 'car_image'";
+    $sql = "SELECT c.*, d.file_link from Car c JOIN \"DOCUMENT\" d ON c.car_Id = d.car_id WHERE d.document_type = 'car_image' AND is_deleted = 0";
     $stid = $db->executeQuery($sql);
     $result = $db->fetchAll($stid);
     if ($result && count($result) > 0) {

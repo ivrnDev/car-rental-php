@@ -17,6 +17,7 @@ require_once "../functions/get-cars.php";
 
 $db = new OracleDB();
 $cars = getAllCars($db);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $cars = getAllCars($db);
 
 <body id="admin-body">
   <main>
-    <h2>Application</h2>
+    <h2>Car List</h2>
     <div class="flex-table">
       <div class="flex-row header">
         <div class="flex-cell"></div>
@@ -49,7 +50,7 @@ $cars = getAllCars($db);
         <div class="flex-cell"></div>
         <div class="flex-cell"></div>
       </div>
-      <?php if (empty($rentList)) : ?>
+      <?php if (empty($cars)) : ?>
         <div class="flex-row no-data-row">
           <div class="flex-cell" colspan="9">No available data</div>
         </div>
@@ -110,7 +111,7 @@ $cars = getAllCars($db);
               } ?>
             </div>
             <div class="flex-cell">
-              <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?> style="display: none;">View</button>
+              <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?>>View</button>
             </div>
 
             <?php if ($car['STATUS'] == 0) : ?>
