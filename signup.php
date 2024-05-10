@@ -84,7 +84,7 @@
           }
         }
 
-        
+
         oci_free_statement($stid);
       } catch (Exception $e) {
         echo "<p>Error: " . $e->getMessage() . "</p>";
@@ -118,34 +118,34 @@
        <form id="signup-form" method="POST" enctype="multipart/form-data">
          <div class="left-column">
            <div class="input-container">
-             <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off">
+             <input id="lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="off" minlength="3" maxlength="50">
              <span class="error-message" id="lastname-error"></span>
            </div>
 
            <div class="input-container">
-             <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off">
+             <input id="firstname" name="firstname" type="text" placeholder="First Name" autocomplete="off" minlength="3" maxlength="50">
              <span class="error-message" id="firstname-error"></span>
            </div>
 
            <div class="input-container">
-             <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off">
+             <input id="middlename" name="middlename" type="text" placeholder="Middle Name" autocomplete="off" minlength="3" maxlength="50">
              <span class="error-message" id="middlename-error"></span>
            </div>
 
            <div class="input-container">
-             <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off">
+             <input id="contact_number" name="contact_number" type="text" placeholder="Contact" autocomplete="off" maxlength="11" minlength="11" pattern="^\d{11}$">
              <span class="error-message" id="contact_number-error"></span>
            </div>
 
            <div class="input-container">
-             <input id="address" name="address" type="text" placeholder="Address" autocomplete="off">
+             <input id="address" name="address" type="text" placeholder="Address" autocomplete="off" minlength="15" maxlength="75">
              <span class="error-message" id="address-error"></span>
            </div>
 
            <div class="birthdate-container">
              <label for="birthdate">Birthdate</label>
              <div id="birthdate-input-container">
-               <input id="birthdate" name="birthdate" type="date" autocomplete="off">
+               <input id="birthdate" name="birthdate" type="date" autocomplete="off" onkeydown="return false">
                <span class="error-message" id="birthdate-error"></span>
              </div>
            </div>
@@ -193,17 +193,17 @@
 
          <div class="right-column">
            <div class="input-container">
-             <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off">
+             <input id="email_address" name="email_address" type="text" placeholder="Email" autocomplete="off" minlength="1" maxlength="50">
              <span class="error-message" id="email_address-error"></span>
            </div>
 
            <div class="input-container">
-             <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+             <input id="password" name="password" type="password" placeholder="Password" autocomplete="off" minlength="8" maxlength="30">
              <span class="error-message" id="password-error"></span>
            </div>
 
            <div class="input-container">
-             <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off">
+             <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" autocomplete="off" minlength="8" maxlength="30">
              <span class="error-message" id="confirm-password-error"></span>
            </div>
            <button id="signup-btn" type="submit">SIGN UP</button>

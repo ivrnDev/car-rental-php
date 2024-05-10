@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   inputFields.forEach(input => {
     input.addEventListener('input', function () {
       clearError(input);
+      validateInput(input)
     });
   });
 
@@ -39,6 +40,32 @@ document.addEventListener("DOMContentLoaded", function () {
     spinner.style.display = 'none';
 
   });
+
+  function validateInput(input) {
+    const errorSpanId = input.id + '-error';
+    const errorSpan = document.getElementById(errorSpanId);
+    if (!input.checkValidity()) {
+      input.classList.add('input-error');
+      errorSpan.textContent = getCustomMessage(input);
+    } else {
+      input.classList.remove('input-error');
+      errorSpan.textContent = '';
+    }
+  }
+
+
+  function getCustomMessage(input) {
+    if (input.validity.valueMissing) {
+      return 'Please fill out this field.';
+    } else if (input.validity.patternMismatch) {
+      return input.id === 'contact_number' ? 'Contact number must be exactly 11 digits.' : 'Please match the requested format.';
+    } else if (input.validity.tooShort) {
+      return `Please enter at least ${input.getAttribute('minlength')} characters.`;
+    } else if (input.validity.tooLong) {
+      return `Please enter no more than ${input.getAttribute('maxlength')} characters.`;
+    }
+    return 'Invalid input';
+  }
   function validateForm() {
     let hasError = false;
     const inputFields = form.querySelectorAll('input:not([type="file"])');
@@ -55,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorSpan = document.getElementById(errorSpanId);
         if (errorSpan) {
           input.classList.add('input-error');
-          errorSpan.textContent = 'This field is required';
+          errorSpan.textContent = input.validationMessage || 'This field is required';
           hasError = true;
         }
       }
