@@ -52,7 +52,7 @@ $userId = $_SESSION['user_id'];
           <div class="form-group">
             <div class="time input-container">
               <label for="pick_up_time" id="pick_up_time_label">Pick up Time</label>
-              <input id="pick_up_time" name="pick_up_time" type="time">
+              <input id="pick_up_time" name="pick_up_time" type="time" onkeydown="return false">
             </div>
             <span class="error-message" id="pick_up_time-error"></span>
           </div>
@@ -60,7 +60,7 @@ $userId = $_SESSION['user_id'];
           <div class="form-group">
             <div class="date input-container">
               <label for="rent_date_from" id="rent_date_from_label">Pick up Date</label>
-              <input id="rent_date_from" name="rent_date_from" type="date">
+              <input id="rent_date_from" name="rent_date_from" type="date" onkeydown="return false">
             </div>
             <span class="error-message" id="rent_date_from-error"></span>
           </div>
@@ -68,11 +68,10 @@ $userId = $_SESSION['user_id'];
           <div class="form-group">
             <div class="return-date input-container">
               <label for="rent_date_to" id="rent_date_to_label">Return Date</label>
-              <input id="rent_date_to" name="rent_date_to" type="date">
+              <input id="rent_date_to" name="rent_date_to" type="date" onkeydown="return false">
             </div>
             <span class="error-message" id="rent_date_to-error"></span>
           </div>
-
 
           <div class="carowner">
             <p>CAR OWNER </p>

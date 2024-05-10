@@ -22,11 +22,11 @@ describe "DOCUMENT";
 describe "USER";
 describe rent;
 
-alter sequence user_seq restart start with 1001 increment by 1
-alter sequence rent_seq restar start with 10000 increment by 1
-alter sequence car_seq restart start with 1 increment by 1
-alter sequence document_seq restart start with 1 increment by 1
-alter sequence rate_seq restart start with 1 increment by 1
+alter sequence user_seq restart start with 1001 increment by 1;
+alter sequence rent_seq restart start with 10000 increment by 1;
+alter sequence car_seq restart start with 1 increment by 1;
+alter sequence document_seq restart start with 1 increment by 1;
+alter sequence rate_seq restart start with 1 increment by 1;
 
 CREATE TABLE "USER" (
 user_id int PRIMARY KEY,
