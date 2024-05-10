@@ -6,22 +6,23 @@ Rent Status: 0 = Pending, 1 = Approve, 2 = Rejected, 3 = Contact Processing, 4 =
 
 User Status = 0 Pending, 1 Approve, 2 Rejected, 3- BlackListed
 
-
-
 select _ from car;
 select _ from "DOCUMENT";
 select _ from "USER";
 select _ from rent;
+select \_ from rate;
 
 delete from car;
 delete from "DOCUMENT";
 delete from "USER" where user_id != 1000;
 delete from rent;
+delete from rate;
 
 describe car;
 describe "DOCUMENT";
 describe "USER";
 describe rent;
+describe rate;
 
 alter sequence user_seq restart start with 1001 increment by 1;
 alter sequence rent_seq restart start with 10000 increment by 1;

@@ -45,7 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const rentId = currentButton.getAttribute('data-rent-id');
     const status = currentButton.getAttribute('data-status');
     const carId = currentButton.getAttribute('data-car-id');
-    updateRentStatus(rentId, carId, status);
+    updateRentStatus(rentId, carId, status, () => {
+      if (status === "8") {
+        showReviewModal();
+      }
+    });
+
     popup.style.display = 'none';
   })
 
@@ -53,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.style.display = 'none';
   });
 
-  const updateRentStatus = (rent_id, car_id, status) => {
+  const updateRentStatus = (rent_id, car_id, status, callback) => {
     spinner.style.display = 'flex'; // Show spinner
 
     fetch('/drivesation/api/update-rent-status.php', {
@@ -76,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
           throw new Error(data.error);
         }
         showMessageModal(convertStatusHeaderColor(status), convertStatusHeaderResponse(status), convertStatusToResponse(status, rent_id));
+        callback();
       })
       .catch(error => {
         spinner.style.display = 'none';
@@ -188,9 +194,75 @@ document.addEventListener('DOMContentLoaded', function () {
 
   }
 
+  //Reviews
+  const reviewContainer = document.querySelector('.wrapper-background');
+  const reviewBtn = document.querySelectorAll('.review-btn')
+  const reviewForm = document.querySelector('.wrapper-background form');
+  const cancelBtn = document.querySelector('.btn.cancel');
+  const allStars = document.querySelectorAll('.rating .star');
+  const ratingValue = document.querySelector('input[name="rating"]');
 
+  reviewBtn.forEach(button => {
+    button.addEventListener('click', function () {
+      currentReviewBtn = this;
+      showReviewModal();
+    });
+  })
 
+  function showReviewModal() {
+    reviewContainer.style.display = 'flex';
+  }
+  function hideReviewModal() {
+    reviewContainer.style.display = 'none';
+  }
 
+  cancelBtn.addEventListener('click', () => {
+    hideReviewModal()
+  })
+
+  reviewForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const carId = currentButton.getAttribute('data-car-id');
+    const userId = currentButton.getAttribute('data-user-id');
+
+    formData.append('car_id', carId);
+    formData.append('user_id', userId);
+    fetch('/drivesation/api/rate-car.php', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        reviewContainer.style.display = 'none'; // Close the modal
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  });
+
+  allStars.forEach((item, idx) => {
+    item.addEventListener('click', function () {
+      let click = 0
+      ratingValue.value = idx + 1
+
+      allStars.forEach(i => {
+        i.classList.replace('bxs-star', 'bx-star')
+        i.classList.remove('active')
+      })
+      for (let i = 0; i < allStars.length; i++) {
+        if (i <= idx) {
+          allStars[i].classList.replace('bx-star', 'bxs-star')
+          allStars[i].classList.add('active')
+        } else {
+          allStars[i].style.setProperty('--i', click)
+          click++
+        }
+      }
+    })
+
+  })
 
 
 

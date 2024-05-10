@@ -3,6 +3,7 @@
   require_once "assets/component/modals/confirmation-modal.php";
   require_once "assets/component/modals/message-modal.php";
   require_once "assets/component/loading.php";
+  require_once "assets/component/reviews.php";
   require_once "functions/get-cars.php";
   require_once "utils/OracleDb.php";
   require_once "assets/component/profile-page-view/view-car-info.php";
@@ -28,6 +29,7 @@
    <link rel="stylesheet" href="assets/styles/user/profile.css">
    <link rel="stylesheet" href="assets/styles/component/table.css">
    <link rel="stylesheet" href="assets/styles/component/button.css">
+   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
  </head>
 
  <body>
@@ -146,7 +148,7 @@
                  </div>
                <?php elseif ($rent['STATUS'] == 7) : ?>
                  <div class="flex-cell action-btn">
-                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=8 data-car-id=<?= $rent['CAR_ID'] ?>>Mark as Completed</button>
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=8 data-car-id=<?= $rent['CAR_ID'] ?> data-user-id=<?= $rent['USER_ID'] ?>>Mark as Completed</button>
                  </div>
                  <div class="flex-cell action-btn">
                  </div>

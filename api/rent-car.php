@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $car_id = $_POST['car_id'];
       $owner_id = $_POST['owner_id'];
 
-      $sql = "INSERT INTO Rent (rent_id, user_id, owner_id, car_id, pick_up_time, rent_date_from, rent_date_to, status, transaction_date) VALUES (rent_seq.NEXTVAL, :user_id, :owner_id, :car_id, :pick_up_time, TO_DATE(:rent_date_from, 'YYYY-MM-DD'), TO_DATE(:rent_date_to, 'YYYY-MM-DD'), 0, SYSDATE)";
+      $sql = "INSERT INTO Rent (rent_id, user_id, owner_id, car_id, pick_up_time, rent_date_from, rent_date_to, status, transaction_date) VALUES (rent_seq.NEXTVAL, :user_id, :owner_id, :car_id, :pick_up_time, TO_DATE(:rent_date_from, 'YYYY-MM-DD'), TO_DATE(:rent_date_to, 'YYYY-MM-DD'), 0, SYSTIMESTAMP)";
 
       $data = [
         ':user_id' => $user_id,
