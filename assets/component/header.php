@@ -57,7 +57,7 @@
 
       <div class="signing-container">
         <a href="signin.php">Log in</a>
-        <a href="signin.php">Sign up</a>
+        <a href="signup.php">Sign up</a>
       </div>
     </header>
   <?php endif ?>
