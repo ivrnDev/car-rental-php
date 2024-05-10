@@ -75,12 +75,52 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.error) {
           throw new Error(data.error);
         }
-        showMessageModal(status == 6 ? "error" : "success", status == 6 ? "Cancelled" : "Processing", status == 6 ? "Your rent has been cancelled" : "Your rent is now processing. Please contact the owner below.");
+        showMessageModal(convertStatusHeaderColor(status), convertStatusHeaderResponse(status), convertStatusToResponse(status, rent_id));
       })
       .catch(error => {
         spinner.style.display = 'none';
         console.error('Error:', error);
       });
+  }
+
+  function convertStatusHeaderColor(code) {
+    const statusLookup = {
+      3: `initial`,
+      4: `success`,
+      5: `success`,
+      6: `initial`,
+      8: `success`,
+      9: `initial`,
+      10: `error`,
+      default: "Unknown"
+    };
+    return statusLookup[code] || statusLookup.default;
+  }
+  function convertStatusHeaderResponse(code) {
+    const statusLookup = {
+      3: `Processing`,
+      4: `Sent Success`,
+      5: `Received`,
+      6: `Returning`,
+      8: `Completed`,
+      9: `Reviewing`,
+      10: `Cancelled`,
+      default: "Unknown"
+    };
+    return statusLookup[code] || statusLookup.default;
+  }
+  function convertStatusToResponse(code, rentId) {
+    const statusLookup = {
+      3: `Rent No. ${rentId} is now processing. Please coordinate with the car owner. Click 'View' for more information and contact the owner. `,
+      4: `Rent No. ${rentId} car has been sent to client`,
+      5: `Rent No. ${rentId} car has been received. Enjoy and ride safe!`,
+      6: `Rent No. ${rentId} car is now returning, Please contact the owner for more details`,
+      8: `Your transaction in Rent No. ${rentId} has been completed. Thank you for leasing!`,
+      9: `We're now reviewing your transaction in Rent No. ${rentId}. Kindly email us for more concern`,
+      10: `Rent No. ${rentId} has been cancelled`,
+      default: "Unknown"
+    };
+    return statusLookup[code] || statusLookup.default;
   }
 
   //View Rent History

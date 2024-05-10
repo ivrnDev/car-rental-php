@@ -136,7 +136,7 @@
                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=5 data-car-id=<?= $rent['CAR_ID'] ?>>Mark as Received</button>
                  </div>
                  <div class="flex-cell action-btn">
-                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=9 data-car-id=<?= $rent['CAR_ID'] ?>>Not Received</button>
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=9 data-car-id=<?= $rent['CAR_ID'] ?>>Not Receive</button>
                  </div>
                <?php elseif ($rent['STATUS'] == 5) : ?>
                  <div class="flex-cell action-btn">

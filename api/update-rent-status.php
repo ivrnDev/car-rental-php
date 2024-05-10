@@ -15,13 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
     $db->executeQuery($sql, $data);
 
     //Reject all other rents
-    if ($new_status == 1 || $new_status == 3) {
+    if ($new_status == 3) {
       $rejectStatusSql = "UPDATE rent SET status = 2 WHERE car_id = :car_id AND rent_id != :rent_id";
       $db->executeQuery($rejectStatusSql, [':car_id' => $car_id, ':rent_id' => $rent_id]);
     }
 
     //Update Car Availability
-    if ($new_status == 6) {
+    if ($new_status == 8 || $new_status == 9) {
+      $updateCarAvailability = "UPDATE Car SET availability_status = 0 WHERE car_id = :car_id";
+      $db->executeQuery($updateCarAvailability, [':car_id' => $car_id]);
+    }
+    if ($new_status == 10) {
       $updateCarAvailability = "UPDATE Car SET availability_status = 1 WHERE car_id = :car_id";
       $db->executeQuery($updateCarAvailability, [':car_id' => $car_id]);
     }

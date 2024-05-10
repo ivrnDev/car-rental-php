@@ -296,7 +296,7 @@
 
                 <?php elseif ($rent['STATUS'] == 5) : ?>
                   <div class="flex-cell action-btn">
-                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=9 data-car-id="<?= $rent['CAR_ID'] ?>">Contact Support</button>
+                    <button class="view-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=9 data-car-id="<?= $rent['CAR_ID'] ?>">Contact Support</button>
                   </div>
                   <div class="flex-cell"></div>
 
@@ -305,7 +305,7 @@
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=7 data-car-id="<?= $rent['CAR_ID'] ?>">Mark as Received</button>
                   </div>
                   <div class="flex-cell action-btn">
-                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=9 data-car-id="<?= $rent['CAR_ID'] ?>">Mark as Not Received</button>
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=9 data-car-id="<?= $rent['CAR_ID'] ?>">Not Receive</button>
                   </div>
 
                 <?php else : ?>

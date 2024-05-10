@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(response => {
         spinner.style.display = 'none';
         if (response.ok) {
-          showMessageModal('', "Success", `${convertStatusToResponse(newStatus, rentId)}`);
+          showMessageModal(convertStatusHeaderColor(newStatus), convertStatusHeaderResponse(newStatus), convertStatusToResponse(newStatus, rentId));
           return response.json();
         } else {
-          showMessageModal('', 'Error', `Server Error`);
+          showMessageModal('error', 'Error', `Server Error`);
           throw new Error('Failed to update rent status.');
         }
       })
@@ -71,15 +71,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-
+  function convertStatusHeaderColor(code) {
+    const statusLookup = {
+      1: `success`,
+      2: `error`,
+      4: `success`,
+      5: `success`,
+      7: `initial`,
+      9: `initial`,
+      10: `error`,
+      default: "Unknown"
+    };
+    return statusLookup[code] || statusLookup.default;
+  }
+  function convertStatusHeaderResponse(code) {
+    const statusLookup = {
+      1: `Approved`,
+      2: `Rejected`,
+      4: `Sent Success`,
+      5: `Completed`,
+      7: `Returned`,
+      9: `Reviewing`,
+      10: `Cancelled`,
+      default: "Unknown"
+    };
+    return statusLookup[code] || statusLookup.default;
+  }
   function convertStatusToResponse(code, rentId) {
     const statusLookup = {
       1: `Rent No. ${rentId} has been approved`,
       2: `Rent No. ${rentId} has been rejected`,
-      3: `Rent No. ${rentId} is now processing`,
-      4: `Rent No. ${rentId} is now on going`,
+      4: `Rent No. ${rentId} car has been sent to client`,
       5: `Rent No. ${rentId} is now completed`,
-      6: `Rent No. {rentId} has been cancelled`,
+      7: `Rent No. ${rentId} car has been returned`,
+      9: `We're now reviewing your transaction in Rent No. ${rentId}. Kindly email us for more concern`,
+      10: `Rent No. ${rentId} has been cancelled`,
       default: "Unknown"
     };
     return statusLookup[code] || statusLookup.default;

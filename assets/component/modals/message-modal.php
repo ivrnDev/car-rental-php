@@ -31,7 +31,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
-    height: 20%;
+    min-height: 20%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@
   .message-modal-header {
     color: #333;
     /* Subtle text color for the header */
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   .message-modal-text {

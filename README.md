@@ -1,16 +1,17 @@
-Car Availability Status: 0 = Pending Approval, 1 = Available, 2 = On lease, 3 - Maintenance 4 - Rejected 5 - Cancelled
+Car Availability Status: 0 = Pending, 1 = Available, 2 = On lease, 3 - Maintenance 4 - Rejected 5 - Cancelled
 
-Car status = 0 = Pending Approval 1 = Approve = 2 = Rejected 3 = Cancelled
+Car status = 0 = Pending, 1 = Approve = 2 = Rejected 3 = Cancelled
 
-Rent Status: 0 = Pending, 1 = Approve, 2 = Rejected, 3 = Processing, 4 = On Going, 5 = Completed, 6 = Cancelled
+Rent Status: 0 = Pending, 1 = Approve, 2 = Rejected, 3 = Contact Processing, 4 = Transferring Process, 5 = On Going, 6 = Return Processing 7 = On Hold 8 = Completed, 9 - Under Review, 10 - Cancelled
 
-User Status = 0 Pending 1 Accept 2 Reject
+User Status = 0 Pending, 1 Approve, 2 Rejected, 3- BlackListed
 
 
-select * from car;
-select * from "DOCUMENT";
-select * from "USER";
-select * from rent;
+
+select _ from car;
+select _ from "DOCUMENT";
+select _ from "USER";
+select _ from rent;
 
 delete from car;
 delete from "DOCUMENT";
@@ -86,12 +87,12 @@ FOREIGN KEY user_id REFERENCES "USER" (user_id),
 )
 
 CREATE TABLE Rate (
-  rate_id int PRIMARY KEY,
-  car_id int,
-  user_id int,
-  rate_count int,
-  rate_comment varchar(255),
-  rate_time timestamp,
-  FOREIGN KEY (car_id) REFERENCES Car(car_id),
-  FOREIGN KEY (user_id) REFERENCES "USER"(user_id)
+rate_id int PRIMARY KEY,
+car_id int,
+user_id int,
+rate_count int,
+rate_comment varchar(255),
+rate_time timestamp,
+FOREIGN KEY (car_id) REFERENCES Car(car_id),
+FOREIGN KEY (user_id) REFERENCES "USER"(user_id)
 )
