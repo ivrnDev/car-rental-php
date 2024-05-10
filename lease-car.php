@@ -227,7 +227,7 @@
                 <div class="flex-cell status-cell">
                   <?php switch ($rent['STATUS']) {
                     case 0:
-                      echo "Pending";
+                      echo "Pending"; // 1-Accept and 2-Rejected
                       break;
                     case 1:
                       echo "Approved";
@@ -236,16 +236,28 @@
                       echo "Rejected";
                       break;
                     case 3:
-                      echo "Processing";
+                      echo "Processing"; // 4 - Mark as Sent 5 - Cancel
                       break;
                     case 4:
-                      echo "On Going";
+                      echo "Car Sent";
                       break;
                     case 5:
-                      echo "Completed";
+                      echo "On Going"; // 10 - Contact Support
                       break;
                     case 6:
-                      echo "Cancelled";
+                      echo "Receiving"; // 7-Mark as Received and 10-Contested
+                      break;
+                    case 7:
+                      echo "On Hold";
+                      break;
+                    case 8:
+                      echo "Completed";
+                      break;
+                    case 9:
+                      echo "Under Review"; //10-Contact Support
+                      break;
+                    case 10:
+                      echo "Cancelled"; 
                       break;
                     default:
                       echo "Unknown";
@@ -269,21 +281,33 @@
                   <div class=" flex-cell action-btn">
                     <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=1 data-car-id="<?= $rent['CAR_ID'] ?>">Accept</button>
                   </div>
+
                   <div class="flex-cell action-btn">
                     <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=2>Reject</button>
                   </div>
+
                 <?php elseif ($rent['STATUS'] == 3) : ?>
                   <div class="flex-cell action-btn">
-                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=4>Picked Up</button>
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=4>Mark as Sent</button>
                   </div>
                   <div class="flex-cell action-btn">
-                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=6 data-car-id="<?= $rent['CAR_ID'] ?>">Cancel</button>
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=10 data-car-id="<?= $rent['CAR_ID'] ?>">Cancel</button>
                   </div>
-                <?php elseif ($rent['STATUS'] == 4) : ?>
+
+                <?php elseif ($rent['STATUS'] == 5) : ?>
                   <div class="flex-cell action-btn">
-                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=5 data-car-id="<?= $rent['CAR_ID'] ?>">Complete</button>
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=9 data-car-id="<?= $rent['CAR_ID'] ?>">Contact Support</button>
                   </div>
                   <div class="flex-cell"></div>
+
+                <?php elseif ($rent['STATUS'] == 6) : ?>
+                  <div class="flex-cell action-btn">
+                    <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=7 data-car-id="<?= $rent['CAR_ID'] ?>">Mark as Received</button>
+                  </div>
+                  <div class="flex-cell action-btn">
+                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-value=9 data-car-id="<?= $rent['CAR_ID'] ?>">Mark as Not Received</button>
+                  </div>
+
                 <?php else : ?>
                   <div class="flex-cell"></div>
                   <div class="flex-cell"></div>

@@ -68,10 +68,10 @@
                <div class="flex-cell status-cell">
                  <?php switch ($rent['STATUS']) {
                     case 0:
-                      echo "Pending";
+                      echo "Pending"; // 1-Approve and 2-Reject
                       break;
                     case 1:
-                      echo "Approved";
+                      echo "Approved"; // 3-Process and 0-Cancel
                       break;
                     case 2:
                       echo "Rejected";
@@ -80,12 +80,24 @@
                       echo "Processing";
                       break;
                     case 4:
-                      echo "On Going";
+                      echo "Receiving"; // 5- Mark as Received, 0-Contested
                       break;
                     case 5:
-                      echo "Completed";
+                      echo "On Going"; // 6-Return
                       break;
                     case 6:
+                      echo "Returning";
+                      break;
+                    case 7:
+                      echo "On Hold"; //8- Mark as Complete
+                      break;
+                    case 8:
+                      echo "Completed";
+                      break;
+                    case 9:
+                      echo "Under Review";
+                      break;
+                    case 10:
                       echo "Cancelled";
                       break;
                     default:
@@ -108,15 +120,35 @@
                <?php if ($rent['STATUS'] == 0) :
                 ?>
                  <div class="flex-cell action-btn">
-                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=6 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=10 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
                  </div>
                  <div class="flex-cell"></div>
+
                <?php elseif ($rent['STATUS'] == 1) : ?>
                  <div class="flex-cell action-btn">
-                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=3 data-car-id=<?= $rent['CAR_ID'] ?>>Process</button>
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=3 data-car-id=<?= $rent['CAR_ID'] ?>>Process Now</button>
                  </div>
                  <div class="flex-cell action-btn">
-                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=6 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=10 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
+                 </div>
+               <?php elseif ($rent['STATUS'] == 4) : ?>
+                 <div class="flex-cell action-btn">
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=5 data-car-id=<?= $rent['CAR_ID'] ?>>Mark as Received</button>
+                 </div>
+                 <div class="flex-cell action-btn">
+                   <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=9 data-car-id=<?= $rent['CAR_ID'] ?>>Not Received</button>
+                 </div>
+               <?php elseif ($rent['STATUS'] == 5) : ?>
+                 <div class="flex-cell action-btn">
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=6 data-car-id=<?= $rent['CAR_ID'] ?>>Return Car</button>
+                 </div>
+                 <div class="flex-cell">
+                 </div>
+               <?php elseif ($rent['STATUS'] == 7) : ?>
+                 <div class="flex-cell action-btn">
+                   <button class="accept-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=8 data-car-id=<?= $rent['CAR_ID'] ?>>Mark as Completed</button>
+                 </div>
+                 <div class="flex-cell action-btn">
                  </div>
                <?php else : ?>
                  <div class="flex-cell"></div>
