@@ -16,6 +16,7 @@
   require_once "assets/component/modals/create-car-modal.php";
   require_once "assets/component/lease-car-page-view/view-rent-info.php";
   require_once "assets/component/lease-car-page-view/view-car-info.php";
+  require_once "assets/component/lease-car-page-view/payment-info.php";
 
 
   $db = new OracleDB();
@@ -97,13 +98,19 @@
               <input required id="amount" name="amount" type="number" placeholder="Amount" autocomplete="off">
               <span class="error-message" id="amount-error"></span>
             </div>
+            <label class="file-label" for="payment_proof" id="payment_proof_label">
+              Proof of Payment
+              <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof"></label>
+            </label>
 
-            <button id="createCarBtn" class="accept-btn" type="submit">CONFIRM</button>
+            <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
 
+            <button id="createCarBtn" class="accept-btn" type="submit">Confirm</button>
           </div>
 
           <input required type="file" name="car_image" id="car_image">
           <input required type="file" name="orcr" id="orcr">
+          <input required type="file" name="payment_proof" id="payment_proof">
         </form>
       </div>
 

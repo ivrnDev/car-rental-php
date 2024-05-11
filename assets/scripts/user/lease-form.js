@@ -36,9 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   createCarYes.addEventListener('click', function (e) {
-    createCarPopup.style.display = 'none';
     e.preventDefault();
+    e.stopPropagation();
     createCar()
+    createCarPopup.style.display = 'none';
   });
 
   createCarNo.addEventListener('click', function () {
@@ -100,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     return !hasError
   }
+
   function clearError(input) {
     const errorSpanId = input.id + '-error';
     const errorSpan = document.getElementById(errorSpanId);
@@ -109,6 +111,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  //View Payment
+  const viewPaymentBtn = document.getElementById('view-payment-method');
+  const viewPaymentExit = document.querySelector('.view-payment-x');
+  const viewPaymentOverlay = document.querySelector('.view-payment-overlay');
 
+  viewPaymentExit.addEventListener('click', () => {
+    viewPaymentOverlay.style.display = 'none';
+  })
 
+  viewPaymentBtn.addEventListener('click', () => {
+    viewPaymentOverlay.style.display = 'flex';
+  })
 });

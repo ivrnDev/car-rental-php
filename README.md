@@ -2,7 +2,7 @@ Car Availability Status: 0 = Pending, 1 = Available, 2 = On lease, 3 - Maintenan
 
 Car status = 0 = Pending, 1 = Approve = 2 = Rejected 3 = Cancelled
 
-Car Payment Status = 0 - Pending, 1 =Paid, 2 = Unpaid
+Car Payment Status = 0 - Pending, 1 = Processing 2 =Paid, 3 = Unpaid
 
 Rent Status: 0 = Pending, 1 = Approve, 2 = Rejected, 3 = Contact Processing, 4 = Transferring Process, 5 = On Going, 6 = Return Processing 7 = On Hold 8 = Completed, 9 - Under Review, 10 - Cancelled
 

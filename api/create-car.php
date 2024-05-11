@@ -25,8 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_POST['seat_capacity'],
     $_POST['car_type'],
     $_POST['amount'],
+    $_FILES['payment_proof'],
     $_FILES['orcr'],
-    $_FILES['car_image']
+    $_FILES['car_image'],
   )) {
     try {
       $car_title = $_POST['car_title'];
@@ -41,8 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $amount = $_POST['amount'];
       $orcr = $_FILES['orcr'];
       $car_image = $_FILES['car_image'];
+      $payment_proof = $_FILES['payment_proof'];
 
-      $sql = "INSERT INTO Car (car_id, car_title, car_description, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id) VALUES (car_seq.NEXTVAL, :car_title, :car_description, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id) RETURNING car_id INTO :new_car_id";
+      $sql = "INSERT INTO Car (car_id, car_title, car_description, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id, payment_status) VALUES (car_seq.NEXTVAL, :car_title, :car_description, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id, :payment_status) RETURNING car_id INTO :new_car_id";
 
       $data = [
         ':car_title' => $car_title,
@@ -58,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ':availability_status' => 0,
         ':status' => 0,
         ':owner_id' => $owner_id,
+        ':payment_status' => 0
       ];
 
       $stid = $db->prepareStatement($sql);
@@ -78,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $documents = [
         'orcr' => 'ORCR',
         'car_image' => 'Car Image',
+        'payment_proof' => 'Payment Proof'
       ];
 
       $allFilesProvided = true;
