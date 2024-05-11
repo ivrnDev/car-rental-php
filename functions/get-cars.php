@@ -55,6 +55,7 @@ function getUserCarList($userId, $db)
     c.CAR_TYPE,              
     c.CAR_TITLE,             
     c.CAR_DESCRIPTION,
+    c.PAYMENT_STATUS,
     LISTAGG(d.file_link, ', ') WITHIN GROUP (ORDER BY d.file_link) AS file_links
     FROM Car c
     JOIN \"DOCUMENT\" d ON d.car_id = c.CAR_ID
@@ -73,7 +74,8 @@ function getUserCarList($userId, $db)
     c.AMOUNT,                
     c.CAR_TYPE,              
     c.CAR_TITLE,             
-    c.CAR_DESCRIPTION
+    c.CAR_DESCRIPTION,
+    c.PAYMENT_STATUS
     ";
     $data = [':user_id' => $userId];
     $stid = $db->executeQuery($sql, $data);
