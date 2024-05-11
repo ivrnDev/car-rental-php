@@ -112,14 +112,14 @@
         <div class="flex-table">
           <div class="flex-row header">
             <div class="flex-cell"></div>
-            <div class="flex-cell">ID</div>
+            <div class="flex-cell">Car ID</div>
+            <div class="flex-cell">Plate No.</div>
             <div class="flex-cell">Title</div>
-            <div class="flex-cell">Type</div>
-            <div class="flex-cell">Model</div>
-            <div class="flex-cell">Brand</div>
             <div class="flex-cell">Availability</div>
             <div class="flex-cell">Status</div>
             <div class="flex-cell">Amount</div>
+            <div class="flex-cell">Payment Status</div>
+            <div class="flex-cell"></div>
             <div class="flex-cell"></div>
             <div class="flex-cell"></div>
 
@@ -142,10 +142,8 @@
                   ?>
                 </div>
                 <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
+                <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
                 <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
-                <div class="flex-cell"><?= $car['CAR_TYPE'] ?></div>
-                <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
-                <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
                 <div class="flex-cell">
                   <?php switch ($car['AVAILABILITY_STATUS']) {
                     case 0:
@@ -191,8 +189,27 @@
                   } ?>
                 </div>
                 <div class="flex-cell"><?= "₱" . number_format($car['AMOUNT']) ?></div>
+                <div class="flex-cell">
+                  <?php switch ($car['PAYMENT_STATUS']) {
+                    case 0:
+                      echo "Pending";
+                      break;
+                    case 1:
+                      echo "Paid";
+                      break;
+                    case 2:
+                      echo "Unpaid";
+                      break;
+                    default:
+                      echo "Unknown";
+                      break;
+                  } ?>
+                </div>
                 <div class="flex-cell view-car">
                   <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>">View</button>
+                </div>
+                <div class="flex-cell view-car">
+                  <button class="accept-btn" data-car-id="<?= $car['CAR_ID'] ?>">Update</button>
                 </div>
                 <div class="flex-cell delete-car">
                   <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>
