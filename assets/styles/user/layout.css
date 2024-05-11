@@ -34,6 +34,8 @@ body {
   z-index: 100;
   align-items: center;
   padding-inline: 4%;
+  background-color: var(--primary-color);
+
 }
 
 .logo {

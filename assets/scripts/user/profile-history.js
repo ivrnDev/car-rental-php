@@ -224,6 +224,8 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
 
     const formData = new FormData(this);
+    
+    
     const carId = currentButton.getAttribute('data-car-id');
     const userId = currentButton.getAttribute('data-user-id');
 

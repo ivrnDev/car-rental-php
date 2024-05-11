@@ -22,10 +22,10 @@ function uploadSignupDocuments($file, $userId, $documentType, $documentName, $db
       oci_bind_by_name($stid, ":user_id", $userId);
       oci_execute($stid);
     } catch (Exception $e) {
-      echo "<p>Error: " . $e->getMessage() . "</p>";
+      json_encode(['error', $e->getMessage()]);
     }
   } else {
-    echo "Failed to upload $documentType<br>";
+    json_encode(['error', "Failed to upload"]);
   }
 }
 function uploadCarDocuments($file, $carId, $documentType, $documentName, $db)
@@ -50,11 +50,10 @@ function uploadCarDocuments($file, $carId, $documentType, $documentName, $db)
       oci_bind_by_name($stid, ":file_link", $target_file);
       oci_bind_by_name($stid, ":car_id", $carId);
       oci_execute($stid);
-      echo "Uploaded and saved: $documentName<br>";
     } catch (Exception $e) {
-      echo "<p>Error: " . $e->getMessage() . "</p>";
+      json_encode(['error', $e->getMessage()]);
     }
   } else {
-    echo "Failed to upload $documentType<br>";
+    json_encode(['error', "Failed to upload"]);
   }
 }

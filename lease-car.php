@@ -13,6 +13,7 @@
   require_once "assets/component/loading.php";
   require_once "assets/component/modals/delete-car-modal.php";
   require_once "assets/component/modals/confirmation-modal.php";
+  require_once "assets/component/modals/create-car-modal.php";
   require_once "assets/component/lease-car-page-view/view-rent-info.php";
   require_once "assets/component/lease-car-page-view/view-car-info.php";
 
@@ -33,7 +34,6 @@
     <link rel="stylesheet" href="assets/styles/component/button.css">
     <link rel="stylesheet" href="assets/styles/component/table.css">
     <link rel="stylesheet" href="assets/styles/user/lease-car.css">
-    <link rel="stylesheet" href="assets/styles/views/rent-list-view.css">
   </head>
 
   <body>
@@ -42,7 +42,7 @@
         <h1>Lease Car</h1>
         <p>Input the required fields</p>
 
-        <form id="createCarForm" method="POST" action="functions/create-car.php" enctype="multipart/form-data">
+        <form id="createCarForm" method="POST" enctype="multipart/form-data">
           <div class="left-column">
             <div class="input-container">
               <input id="car_title" name="car_title" type="text" placeholder="Car Title" autocomplete="off">
@@ -257,7 +257,7 @@
                       echo "Under Review"; //10-Contact Support
                       break;
                     case 10:
-                      echo "Cancelled"; 
+                      echo "Cancelled";
                       break;
                     default:
                       echo "Unknown";

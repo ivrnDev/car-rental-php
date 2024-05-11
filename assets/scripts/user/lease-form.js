@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitButton = document.getElementById('createCarBtn');
   const inputFields = form.querySelectorAll('input:not([type="file"])');
   const fileInputFields = form.querySelectorAll('input[type="file"]');
+  const spinner = document.getElementById('loadingSpinner');
+  const createCarPopup = document.getElementById('createCarPopup');
+  const createCarYes = document.getElementById('createCarYes');
+  const createCarNo = document.getElementById('createCarNo');
 
   // Check file inputs and update labels
   fileInputFields.forEach(input => {
@@ -24,15 +28,44 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
-  submitButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    let isValid = validateForm();
-    console.log(isValid)
-    if (isValid) {
-      form.submit();
+  submitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (validateForm()) {
+      createCarPopup.style.display = 'flex'
     }
   });
+
+  createCarYes.addEventListener('click', function (e) {
+    createCarPopup.style.display = 'none';
+    e.preventDefault();
+    createCar()
+  });
+
+  createCarNo.addEventListener('click', function () {
+    createCarPopup.style.display = 'none';
+  });
+
+  function createCar() {
+    const formData = new FormData(form);
+    spinner.style.display = 'flex';
+    fetch('/drivesation/api/create-car.php', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        spinner.style.display = 'none';
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        showMessageModal('success', 'Success', 'Your car request has been sent');
+      })
+      .catch(error => {
+        spinner.style.display = 'none';
+        console.error('Error:', error);
+        showMessageModal('error', 'Error', 'An error occurred');
+      });
+  }
   function validateForm() {
     let hasError = false;
     const inputFields = form.querySelectorAll('input:not([type="file"])');

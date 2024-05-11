@@ -6,11 +6,13 @@ Rent Status: 0 = Pending, 1 = Approve, 2 = Rejected, 3 = Contact Processing, 4 =
 
 User Status = 0 Pending, 1 Approve, 2 Rejected, 3- BlackListed
 
-select _ from car;
-select _ from "DOCUMENT";
-select _ from "USER";
-select _ from rent;
-select \_ from rate;
+Role = 0 - Admin, 
+
+select * from car;
+select * from "DOCUMENT";
+select * from "USER";
+select * from rent;
+select * from rate;
 
 delete from car;
 delete from "DOCUMENT";
@@ -96,4 +98,14 @@ rate_comment varchar(255),
 rate_time timestamp,
 FOREIGN KEY (car_id) REFERENCES Car(car_id),
 FOREIGN KEY (user_id) REFERENCES "USER"(user_id)
+)
+
+CREATE TABLE Payment (
+    payment_id int PRIMARY KEY,
+    car_id int,
+    payment_amount int,
+    paid_amount int,
+    payment_status int,
+    transaction_date timestamp,
+    FOREIGN KEY (car_id) REFERENCES Car (car_id)
 )
