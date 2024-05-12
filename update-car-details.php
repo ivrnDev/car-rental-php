@@ -43,7 +43,7 @@ $hasFreeTrial = getUserTrial($userId, $db);
 
 <body>
   <main>
-    <h1>Update Car</h1>
+    <h1 style="color: white">Update Car</h1>
     <form id="updateCarForm" method="POST" enctype="multipart/form-data">
       <div class="left-column">
         <div class="input-container">
@@ -99,37 +99,22 @@ $hasFreeTrial = getUserTrial($userId, $db);
           <span class="error-message" id="amount-error"></span>
         </div>
 
-        <?php if ($hasFreeTrial['FREE_TRIAL'] == 0) : ?>
-          <label class="file-label" for="payment_proof" id="payment_proof_label">
-            Proof of Payment
-            <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
-          </label>
-          <div class="processing-fee-container">
-            <h1>
-              Processing Fee
-            </h1>
-            <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
-              <?= "₱ " . number_format($car['AMOUNT'] * 0.05, 2) ?>
-            </span>
-          </div>
-          <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
+        <label class="file-label" for="payment_proof" id="payment_proof_label">
+          Proof of Payment
+          <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
+        </label>
+        <div class="processing-fee-container" style="color: white">
+          <h1>
+            Processing Fee
+          </h1>
+          <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
+            <?= "₱ " . number_format($car['AMOUNT'] * 0.05, 2) ?>
+          </span>
+        </div>
+        <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
 
-        <?php else : ?>
-          <label class="file-label disabled" id="payment_proof_label ">
-            Proof of Payment
-            <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
-          </label>
-          <div class="processing-fee-container">
-            <h1>
-              Processing Fee
-            </h1>
-            <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
-              FREE
-            </span>
-          </div>
-          <button id="view-payment-method" class="view-btn disabled" type="button" disabled>Payment Method</button>
-        <?php endif; ?>
         <button id="updateCarBtn" class="accept-btn" type="submit">Update</button>
+        <p style="color: red;">WARNING: Updating your car will reset the status of your car to pending. </p>
       </div>
 
       <input required type="file" name="car_image" id="car_image">
