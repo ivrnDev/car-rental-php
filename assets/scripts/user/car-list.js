@@ -116,4 +116,64 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
   }
+
+  const trashBtn = document.getElementById('trash-btn');
+  const trashOverlay = document.querySelector('.trash-car-overlay');
+  const trashExit = document.querySelector('.trash-car-x');
+  const restoreBtn = document.querySelectorAll('.restore-trash');
+  let currentRestoreButton
+  trashExit.addEventListener('click', () => {
+    trashOverlay.style.display = 'none';
+  })
+
+  trashBtn.addEventListener('click', () => {
+    trashOverlay.style.display = 'flex';
+  })
+
+  restoreBtn.forEach(button => {
+    button.addEventListener('click', () => {
+      currentRestoreButton = button
+      confirmDeleteModal.style.display = 'flex';
+    })
+  })
+
+  confirmDeleteYes.addEventListener('click', function () {
+    const car_id = currentRestoreButton.getAttribute('data-car-id');
+    confirmDeleteModal.style.display = 'none';
+    restoreCar(car_id);
+  })
+
+  confirmDeleteNo.addEventListener('click', function () {
+    confirmDeleteModal.style.display = 'none';
+  });
+
+
+  function restoreCar(car_id) {
+    spinner.style.display = 'flex';
+    fetch('api/update-car-delete.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `car_id=${encodeURIComponent(car_id)}&delete_status=0`
+
+    })
+      .then(response => {
+        spinner.style.display = 'none';
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        showMessageModal('error', "Restored", "Car has been restored successfully");
+        return response.json();
+      })
+      .then(data => {
+      })
+      .catch(error => {
+        spinner.style.display = 'none';
+        console.error('Error:', error);
+      });
+
+  }
+
 })

@@ -1,7 +1,7 @@
 <div id="confirmDeletePopUp" class="popup-overlay" style="display: none;">
   <div class="delete-popup-content">
     <h4>Confirm Action</h4>
-    <p>Are you sure you want to delete car?</p>
+    <p>Are you sure you want to proceed?</p>
     <button id="confirmDeleteYes" class="popup-button">Yes</button>
     <button id="confirmDeleteNo" class="popup-button">No</button>
   </div>

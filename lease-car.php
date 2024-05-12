@@ -17,6 +17,9 @@
   require_once "assets/component/lease-car-page-view/view-rent-info.php";
   require_once "assets/component/lease-car-page-view/payment-info.php";
   require_once "assets/component/lease-car-page-view/view-car-info.php";
+  $trashCars = getAllDeletedCars($userId, $db);
+
+  require_once "assets/component/lease-car-page-view/trash.php";
 
 
   $db = new OracleDB();
@@ -143,6 +146,7 @@
 
       <div class="car-list container">
         <h1>List of Cars</h1>
+        <img id="trash-btn" src="assets/images/trash-icon.svg" alt="Trash">
         <div class="flex-table">
           <div class="flex-row header">
             <div class="flex-cell"></div>
@@ -226,6 +230,9 @@
                       break;
                     case 4:
                       echo "Free Trial";
+                      break;
+                    case 5:
+                      echo "Cancelled";
                       break;
                     default:
                       echo "Unknown";

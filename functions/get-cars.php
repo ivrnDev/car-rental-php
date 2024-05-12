@@ -71,3 +71,21 @@ function getAllCars($db)
     return false;
   }
 }
+function getAllDeletedCars($user_id, $db)
+{
+  try {
+    $sql = "SELECT c.*, d.file_link FROM \"DOCUMENT\" d
+    JOIN car c ON d.car_id = c.car_id 
+    WHERE d.document_type = 'car_image' AND c.owner_id = :owner_id AND is_deleted = 1";
+    $data = [':owner_id' => $user_id];
+    $stid = $db->executeQuery($sql, $data);
+    $result = $db->fetchAll($stid);
+    if ($result && count($result) > 0) {
+      return $result;
+    }
+    return [];
+  } catch (Exception $e) {
+    error_log($e->getMessage());
+    return false;
+  }
+}

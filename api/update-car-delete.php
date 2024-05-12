@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_status'], $_POS
   $delete_status = (int)$_POST['delete_status'];
   $car_id = (int)$_POST['car_id'];
   try {
-    $sql = "UPDATE Car set is_deleted = :delete_status WHERE car_id = :car_id";
+    $sql = "UPDATE Car set is_deleted = :delete_status, payment_status = 0 WHERE car_id = :car_id";
     $data = [':delete_status' => $delete_status, ':car_id' => $car_id];
     $stid = $db->executeQuery($sql, $data);
     http_response_code(200);

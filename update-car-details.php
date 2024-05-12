@@ -43,6 +43,9 @@ $hasFreeTrial = getUserTrial($userId, $db);
 
 <body>
   <main>
+    <a href="lease-car.php">
+      <img id="back-btn" src="assets/images/backButton.png" alt="Back">
+    </a>
     <h1 style="color: white">Update Car</h1>
     <form id="updateCarForm" method="POST" enctype="multipart/form-data">
       <div class="left-column">
