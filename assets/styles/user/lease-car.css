@@ -178,6 +178,20 @@ textarea {
   height: 85%;
 }
 
+
+/* Free Trial */
+.file-label.disabled,
+.view-btn.disabled {
+  opacity: 0.5; 
+  cursor: not-allowed;
+  pointer-events: none; 
+}
+
+label:disabled, button:disabled {
+  background-color: #ccc; /* Light grey background */
+  color: #666; /* Darker text */
+}
+
 /* List of Cars */
 .rent-list .flex-cell:nth-child(1) {
   flex: 0.5;

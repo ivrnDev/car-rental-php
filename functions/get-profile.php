@@ -73,3 +73,16 @@ function getUserTrial($user_id, $db)
     return false;
   }
 }
+
+function removeUserTrial($user_id, $db)
+{
+  try {
+    $sql = "UPDATE \"USER\" set free_trial = 0 WHERE user_id = :user_id";
+    $data = [':user_id' => $user_id];
+    $stid = $db->executeQuery($sql, $data);
+    return true;
+  } catch (Exception $e) {
+    error_log($e->getMessage());
+    return false;
+  }
+}

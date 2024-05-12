@@ -83,8 +83,6 @@
             uploadSignupDocuments($_FILES[$inputName], $new_user_id, $inputName, $documentName, $db);
           }
         }
-
-
         oci_free_statement($stid);
       } catch (Exception $e) {
         echo "<p>Error: " . $e->getMessage() . "</p>";

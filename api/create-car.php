@@ -1,6 +1,7 @@
 <?php
 require_once "../utils/OracleDb.php";
 require_once "../utils/upload.php";
+require_once "../functions/get-profile.php";
 
 header('Content-Type: application/json');
 $db = new OracleDB();
@@ -25,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_POST['seat_capacity'],
     $_POST['car_type'],
     $_POST['amount'],
-    $_FILES['payment_proof'],
     $_FILES['orcr'],
     $_FILES['car_image'],
   )) {
@@ -42,7 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $amount = $_POST['amount'];
       $orcr = $_FILES['orcr'];
       $car_image = $_FILES['car_image'];
-      $payment_proof = $_FILES['payment_proof'];
+
+      if (isset($_FILES['payment_proof'])) {
+        $documents['payment_proof'] = 'Payment Proof';
+        $payment_proof = $_FILES['payment_proof'];
+      }
+
+      $documents = [
+        'orcr' => 'ORCR',
+        'car_image' => 'Car Image',
+      ];
 
       $sql = "INSERT INTO Car (car_id, car_title, car_description, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id, payment_status) VALUES (car_seq.NEXTVAL, :car_title, :car_description, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id, :payment_status) RETURNING car_id INTO :new_car_id";
 
@@ -60,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ':availability_status' => 0,
         ':status' => 0,
         ':owner_id' => $owner_id,
-        ':payment_status' => 0
+        ':payment_status' => isset($_FILES['payment_proof']) ? 0 : 4
       ];
 
       $stid = $db->prepareStatement($sql);
@@ -78,12 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         throw new Exception('Execute Error: ' . $e['message']);
       }
 
-      $documents = [
-        'orcr' => 'ORCR',
-        'car_image' => 'Car Image',
-        'payment_proof' => 'Payment Proof'
-      ];
-
       $allFilesProvided = true;
       foreach ($documents as $inputName => $docType) {
         if (!isset($_FILES[$inputName]) || $_FILES[$inputName]['error'] == UPLOAD_ERR_NO_FILE) {
@@ -96,6 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       }
 
+      removeUserTrial($owner_id, $db);
       http_response_code(200);
       echo json_encode(['message', "Success"]);
       exit;

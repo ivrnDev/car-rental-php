@@ -99,27 +99,45 @@
               <input required id="amount" name="amount" type="number" placeholder="Amount" autocomplete="off">
               <span class="error-message" id="amount-error"></span>
             </div>
-            <label class="file-label" for="payment_proof" id="payment_proof_label">
-              Proof of Payment
-              <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
-            </label>
-            <div class="processing-fee-container">
-              <h1>
-                Processing Fee
-              </h1>
-              <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
-                <?= $hasFreeTrial['FREE_TRIAL'] == 0 ? "₱ 0.00" : "FREE" ?>
-              </span>
-            </div>
-            <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
 
+            <?php if ($hasFreeTrial['FREE_TRIAL'] == 0) : ?>
+              <label class="file-label" for="payment_proof" id="payment_proof_label">
+                Proof of Payment
+                <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
+              </label>
+              <div class="processing-fee-container">
+                <h1>
+                  Processing Fee
+                </h1>
+                <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
+                  ₱ 0.00
+                </span>
+              </div>
+              <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
 
+            <?php else : ?>
+              <label class="file-label disabled" id="payment_proof_label ">
+                Proof of Payment
+                <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
+              </label>
+              <div class="processing-fee-container">
+                <h1>
+                  Processing Fee
+                </h1>
+                <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
+                  FREE
+                </span>
+              </div>
+              <button id="view-payment-method" class="view-btn disabled" type="button" disabled>Payment Method</button>
+            <?php endif; ?>
             <button id="createCarBtn" class="accept-btn" type="submit">Confirm</button>
           </div>
 
           <input required type="file" name="car_image" id="car_image">
           <input required type="file" name="orcr" id="orcr">
-          <input required type="file" name="payment_proof" id="payment_proof">
+          <?php if ($hasFreeTrial['FREE_TRIAL'] == 0) : ?>
+            <input required type="file" name="payment_proof" id="payment_proof">
+          <?php endif; ?>
         </form>
       </div>
 
@@ -143,20 +161,7 @@
           <div class="flex-body">
             <?php foreach ($carList as $car) : ?>
               <div class="flex-row">
-                <div class="flex-cell">
-                  <?php
-                  $fileLinks = $car['FILE_LINKS'];
-                  $links = explode(',', $fileLinks);
-                  $links = array_map('trim', $links);
-                  if (count($links) >= 2) {
-                  ?>
-                    <img src="<?= htmlspecialchars($links[0]) ?>" alt="Car Image">
-                  <?php
-                  } else {
-                    echo "<p>Image links are missing.</p>";
-                  }
-                  ?>
-                </div>
+                <div class="flex-cell"><img src="<?= $car['FILE_LINK'] ?>" alt="<?= $car['CAR_TITLE'] ?>"></div>
                 <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
                 <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
                 <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
@@ -211,10 +216,16 @@
                       echo "Pending";
                       break;
                     case 1:
-                      echo "Paid";
+                      echo "Processing";
                       break;
                     case 2:
+                      echo "Paid";
+                      break;
+                    case 3:
                       echo "Unpaid";
+                      break;
+                    case 4:
+                      echo "Free Trial";
                       break;
                     default:
                       echo "Unknown";

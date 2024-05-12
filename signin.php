@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <div class="vertical-button-container">
                 <div class="vertical-flex-container">
                   <div class="content-wrapper">
-                    <input type="text" placeholder="Email" class="input-box" name="email_address">
+                    <input type="text" placeholder="Email" class="input-box" name="email_address" autocomplete="off">
                   </div>
                   <div class="vertical-spacing-container">
                     <input type="password" placeholder="Password" class="input-box" name="password">
