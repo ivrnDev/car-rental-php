@@ -53,8 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $payment_proof = $_FILES['payment_proof'];
       }
 
-
-
       $sql = "INSERT INTO Car (car_id, car_title, car_description, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id, payment_status) VALUES (car_seq.NEXTVAL, :car_title, :car_description, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id, :payment_status) RETURNING car_id INTO :new_car_id";
 
       $data = [

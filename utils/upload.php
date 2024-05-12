@@ -113,7 +113,6 @@ function uploadCarDocuments($file, $carId, $documentType, $documentName, $db)
 //   }
 // }
 
-
 function updateCarDocuments($file, $carId, $documentType, $db)
 {
 

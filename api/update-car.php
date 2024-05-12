@@ -33,12 +33,6 @@ if (isset(
     $seat_capacity = $_POST['seat_capacity'];
     $amount = $_POST['amount'];
 
-    // $documents = [
-    //   'orcr' => 'ORCR',
-    //   'car_image' => 'Car Image',
-    // ];
-
-
     $sql = "UPDATE Car 
             SET car_title = :car_title,
                 car_description = :car_description,
@@ -46,8 +40,7 @@ if (isset(
                 seat_capacity = :seat_capacity,
                 amount = :amount,
                 status = :status,
-                availability_status = :availability_status,
-                payment_status = :payment_status
+                availability_status = :availability_status
             WHERE car_id = :car_id";
 
     $data = [
@@ -59,7 +52,6 @@ if (isset(
       ':amount' => $amount,
       ':availability_status' => 0,
       ':status' => 0,
-      ':payment_status' => isset($_FILES['payment_proof']) ? 1 : 4
     ];
 
     $updateStid = $db->executeQuery($sql, $data);
@@ -72,6 +64,17 @@ if (isset(
       if (isset($_FILES[$fieldName]) && $_FILES[$fieldName]['error'] == UPLOAD_ERR_OK) {
         updateCarDocuments($_FILES[$fieldName], $car_id, $fieldName, $db);
       }
+    }
+
+    //Update Car Status 
+    $resetCarStatus = "UPDATE car SET status = 0, availability_status = 0 WHERE car_id = :car_id";
+    $db->executeQuery($resetCarStatus, [':car_id' => $car_id]);
+
+
+    //Update Payment Status
+    if (isset($_FILES['payment_proof'])) {
+      $processPayment = "UPDATE car SET payment_status = 1 WHERE car_id = :car_id";
+      $db->executeQuery($processPayment, [':car_id' => $car_id]);
     }
 
     http_response_code(200);
