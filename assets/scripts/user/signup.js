@@ -26,20 +26,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  submitButton.addEventListener('click', function (event) {
+  submitButton.addEventListener('click', async function (event) {
     event.preventDefault();
     spinner.style.display = 'flex';
 
+    const formData = new FormData(form);
+    const email = formData.get('email_address');
+
+    const isUnique = await isUserUnique(email);
+    spinner.style.display = 'none';
     let isValid = validateForm();
 
     if (isValid) {
-      form.submit();
-      spinner.style.display = 'none';
-      showMessageModal("success", "Success", "Signup successfully. We're processing your account. Please wait for the confirmation of your account")
-    }
-    spinner.style.display = 'none';
 
+      if (isUnique) {
+        form.submit();
+        showMessageModal("success", "Success", "Signup successfully. We're processing your account. Please wait for the confirmation of your account");
+      } else {
+        showMessageModal("error", "Failed", "User Exist. Please log in");
+      }
+    }
   });
+
 
   function validateInput(input) {
     const errorSpanId = input.id + '-error';
@@ -136,4 +144,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   birthdateInput.max = formatDate(maxDate);
   birthdateInput.min = formatDate(minDate);
+
+
+  async function isUserUnique(email) {
+    try {
+      const response = await fetch('/drivesation/api/validate-user-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `email_address=${encodeURIComponent(email)}`
+      });
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      return data.isUnique === 1; // Assuming the backend sends { isUnique: 1 } for unique emails
+    } catch (error) {
+      console.error('Failed to check if user is unique:', error);
+      return false; // Consider how to handle errors, e.g., re-throw or handle differently
+    }
+  }
+
 });
