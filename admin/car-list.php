@@ -40,13 +40,12 @@ $cars = getAllCars($db);
         <div class="flex-cell"></div>
         <div class="flex-cell">Car ID</div>
         <div class="flex-cell">Plate Number</div>
-        <div class="flex-cell">Title</div>
-        <div class="flex-cell">Car Model</div>
-        <div class="flex-cell">Car Brand</div>
         <div class="flex-cell">Amount</div>
+        <div class="flex-cell">Expected Fee</div>
         <div class="flex-cell">Availability</div>
         <div class="flex-cell">Status</div>
-        <div class="flex-cell">Owner</div>
+        <div class="flex-cell">Payment</div>
+        <div class="flex-cell"></div>
         <div class="flex-cell"></div>
         <div class="flex-cell"></div>
       </div>
@@ -62,10 +61,8 @@ $cars = getAllCars($db);
             </div>
             <div class="flex-cell"><?= $car['CAR_ID'] ?></div>
             <div class="flex-cell"><?= $car['PLATE_NUMBER'] ?></div>
-            <div class="flex-cell"><?= $car['CAR_TITLE'] ?></div>
-            <div class="flex-cell"><?= $car['CAR_MODEL'] ?></div>
-            <div class="flex-cell"><?= $car['CAR_BRAND'] ?></div>
-            <div class="flex-cell"><?= "₱ " . number_format($car['AMOUNT']) ?></div>
+            <div class="flex-cell"><?= "₱ " . number_format($car['AMOUNT'], 2) ?></div>
+            <div class="flex-cell"><?= "₱ " . number_format($car['AMOUNT'] * 0.05, 2) ?></div>
             <div class="flex-cell">
               <?php switch ($car['AVAILABILITY_STATUS']) {
                 case 0:
@@ -111,31 +108,70 @@ $cars = getAllCars($db);
               } ?>
             </div>
             <div class="flex-cell">
+              <?php switch ($car['PAYMENT_STATUS']) {
+                case 0:
+                  echo "Pending";
+                  break;
+                case 1:
+                  echo "Processing";
+                  break;
+                case 2:
+                  echo "Paid";
+                  break;
+                case 3:
+                  echo "Unpaid";
+                  break;
+                case 4:
+                  echo "Free Trial";
+                  break;
+                case 5:
+                  echo "Cancelled";
+                  break;
+                default:
+                  echo "Unknown";
+                  break;
+              } ?>
+            </div>
+            <div class="flex-cell">
               <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>" data-owner-id=<?= $car['OWNER_ID'] ?>>View</button>
             </div>
 
-            <?php if ($car['STATUS'] == 0) : ?>
+            <?php if ($car['STATUS'] == 0 && $car['PAYMENT_STATUS'] == 1)  : ?>
               <div class="flex-cell action-btn">
-                <button class="accept-btn" data-status=1 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=1>Accept</button>
+                <button class="accept-btn" data-status=1 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=1 data-payment="<?= $car['PAYMENT_STATUS'] == 4 ? 4 : 2 ?>">
+                  Accept</button>
               </div>
               <div class="flex-cell action-btn">
-                <button class="reject-btn" data-status=2 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=4>Reject</button>
+                <button class="reject-btn" data-status=2 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=4 data-payment=3>Reject</button>
               </div>
 
             <?php elseif ($car['STATUS'] == 1) : ?>
               <div class="flex-cell action-btn">
-                <button class="reject-btn" data-status=3 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=5>Cancel</button>
+                <button class="reject-btn" data-status=3 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=5 data-payment=5>Cancel</button>
               </div>
-            <?php else : ?>
+              <div class="flex-cell"></div>
+
+            <?php elseif ($car['STATUS'] == 2) : ?>
               <div class="flex-cell action-btn">
+                <button class="accept-btn" data-status=0 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=0>Restore</button>
               </div>
+              <div class="flex-cell"></div>
+            <?php elseif ($car['STATUS'] == 3) : ?>
               <div class="flex-cell action-btn">
+                <button class="accept-btn" data-status=0 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=0>Restore</button>
               </div>
-            <?php endif; ?>
+              <div class="flex-cell"></div>
+
+              <?php else : ?>
+                <div class="flex-cell action-btn">
+                </div>
+                <div class="flex-cell action-btn">
+                </div>
+              <?php endif; ?>
+              </div>
+            <?php endforeach; ?>
+          <?php endif ?>
           </div>
-        <?php endforeach; ?>
-      <?php endif ?>
-    </div>
 
   </main>
   <script src="../assets/scripts/admin/car-list.js"></script>

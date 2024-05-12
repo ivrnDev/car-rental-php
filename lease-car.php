@@ -15,8 +15,8 @@
   require_once "assets/component/modals/confirmation-modal.php";
   require_once "assets/component/modals/create-car-modal.php";
   require_once "assets/component/lease-car-page-view/view-rent-info.php";
-  require_once "assets/component/lease-car-page-view/view-car-info.php";
   require_once "assets/component/lease-car-page-view/payment-info.php";
+  require_once "assets/component/lease-car-page-view/view-car-info.php";
 
 
   $db = new OracleDB();
@@ -235,8 +235,10 @@
                 <div class="flex-cell view-car">
                   <button class="view-btn" data-car-id="<?= $car['CAR_ID'] ?>">View</button>
                 </div>
-                <div class="flex-cell view-car">
-                  <button class="accept-btn" data-car-id="<?= $car['CAR_ID'] ?>">Update</button>
+                <div class="flex-cell">
+                  <a href="update-car-details.php?car_id=<?= urlencode($car['CAR_ID']) ?>">
+                    <button class="accept-btn" data-car-id="<?= $car['CAR_ID'] ?>">Update</button>
+                  </a>
                 </div>
                 <div class="flex-cell delete-car">
                   <button class="reject-btn" data-delete-status=1 data-car-id="<?= $car['CAR_ID'] ?>">Delete</button>

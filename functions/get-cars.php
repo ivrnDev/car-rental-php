@@ -42,7 +42,7 @@ function getUserCarList($userId, $db)
   try {
     $sql = "SELECT c.*, d.file_link FROM \"DOCUMENT\" d
     JOIN car c ON d.car_id = c.car_id 
-    WHERE d.document_type = 'car_image' AND c.owner_id = :owner_id";
+    WHERE d.document_type = 'car_image' AND c.owner_id = :owner_id AND is_deleted = 0";
     $data = [':owner_id' => $userId];
     $stid = $db->executeQuery($sql, $data);
     $carResult = $db->fetchAll($stid);

@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const carId = currentButton.getAttribute('data-car-id');
     const status = currentButton.getAttribute('data-status');
     const availability = currentButton.getAttribute('data-availability-status');
-    updateCarStatus(carId, status, availability);
+    const paymentStatus = currentButton.getAttribute('data-payment');
+    updateCarStatus(carId, status, availability, paymentStatus);
     popup.style.display = 'none';
   })
 
@@ -28,14 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     popup.style.display = 'none';
   });
 
-  const updateCarStatus = (car_id, status, availability) => {
+  const updateCarStatus = (car_id, status, availability, paymentStatus) => {
     spinner.style.display = 'flex'; // Show spinner
     fetch('/drivesation/api/update-car-status.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `car_id=${encodeURIComponent(car_id)}&status=${encodeURIComponent(status)}&availability=${encodeURIComponent(availability)}`
+      body: `car_id=${encodeURIComponent(car_id)}&status=${encodeURIComponent(status)}&availability=${encodeURIComponent(availability)}&payment_status=${encodeURIComponent(paymentStatus)}`
     }).then(response => {
       spinner.style.display = 'none';
       if (response.ok) {
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.error) {
           throw new Error(data.error);
         }
-        showMessageModal(data.status == 1 ? "success" : "error", `${data.header}`, `${data.body}`);
+        showMessageModal(data.status == 1 || data.status == 0 ? "success" : "error", `${data.header}`, `${data.body}`);
 
       })
       .catch(error => {

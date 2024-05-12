@@ -7,7 +7,7 @@
 .view-btn {
   background-color: var(--a-view-btn);
 }
-.accept-btn {
+.accept-btn, .update-btn {
   background-color: var(--a-accept-btn);
 }
 .reject-btn {
@@ -16,7 +16,7 @@
 
 
 
-.accept-btn, .view-btn, .reject-btn {
+.accept-btn, .view-btn, .reject-btn, .update-btn {
   border-radius: 20px;
   border: none;
   padding: 7px; 

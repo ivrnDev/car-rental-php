@@ -43,15 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $orcr = $_FILES['orcr'];
       $car_image = $_FILES['car_image'];
 
+      $documents = [
+        'orcr' => 'ORCR',
+        'car_image' => 'Car Image',
+      ];
+
       if (isset($_FILES['payment_proof'])) {
         $documents['payment_proof'] = 'Payment Proof';
         $payment_proof = $_FILES['payment_proof'];
       }
 
-      $documents = [
-        'orcr' => 'ORCR',
-        'car_image' => 'Car Image',
-      ];
+
 
       $sql = "INSERT INTO Car (car_id, car_title, car_description, car_model, plate_number, car_color, car_brand, availability_status, status, gas_type, seat_capacity, car_type, amount, owner_id, payment_status) VALUES (car_seq.NEXTVAL, :car_title, :car_description, :car_model, :plate_number, :car_color, :car_brand, :availability_status, :status, :gas_type, :seat_capacity, :car_type, :amount, :owner_id, :payment_status) RETURNING car_id INTO :new_car_id";
 
@@ -69,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ':availability_status' => 0,
         ':status' => 0,
         ':owner_id' => $owner_id,
-        ':payment_status' => isset($_FILES['payment_proof']) ? 0 : 4
+        ':payment_status' => isset($_FILES['payment_proof']) ? 1 : 4
       ];
 
       $stid = $db->prepareStatement($sql);

@@ -2,17 +2,45 @@
 header('Content-Type: application/json');
 require_once "../utils/OracleDb.php";
 $db = new OracleDB();
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['car_id'], $_POST['availability'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['status'], $_POST['car_id'], $_POST['availability'], $_POST['payment_status'])) {
   $status = (int)$_POST['status'];
   $car_id = (int)$_POST['car_id'];
   $availability = (int)$_POST['availability'];
+  $payment_status = (int)$_POST['payment_status'];
+
   try {
-    $sql = "UPDATE Car set status = :status, availability_status = :availability WHERE car_id = :car_id";
-    $data = [':status' => $status, ':car_id' => $car_id, ':availability' => $availability];
+    $sql = "UPDATE Car set status = :status, availability_status = :availability, payment_status = :payment_status WHERE car_id = :car_id";
+    $data = [
+      ':status' => $status,
+      ':car_id' => $car_id,
+      ':availability' => $availability,
+      ':payment_status' => $payment_status,
+    ];
     $stid = $db->executeQuery($sql, $data);
 
-    $responseHeader = $status == 1 ? "Approved" : ($status == 2 ? "Rejected" : "Cancelled");
-    $responseBody = $status == 1 ? "Car No. " . $car_id . " has been approved." : ($status == 2 ? "Car No. " . $car_id . " has been rejected." : "Car No. " . $car_id . " has been cancelled.");
+    switch ($status) {
+    case 0:
+        $responseHeader = "Restored";
+        $responseBody = "Car No. " . $car_id . " has been restored.";
+        break;
+    case 1:
+        $responseHeader = "Approved";
+        $responseBody = "Car No. " . $car_id . " has been approved.";
+        break;
+    case 2:
+        $responseHeader = "Rejected";
+        $responseBody = "Car No. " . $car_id . " has been rejected.";
+        break;
+    case 3: // Assuming status 3 means cancelled
+        $responseHeader = "Cancelled";
+        $responseBody = "Car No. " . $car_id . " has been cancelled.";
+        break;
+    default:
+        $responseHeader = "Unknown Status";
+        $responseBody = "Car No. " . $car_id . " has an unknown status.";
+        break;
+}
+
     echo json_encode(["header" => $responseHeader, "body" => $responseBody, 'status' => $status]);
     exit;
   } catch (Exception $e) {

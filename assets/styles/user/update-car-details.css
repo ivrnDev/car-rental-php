@@ -178,6 +178,7 @@ textarea {
   height: 85%;
 }
 
+
 /* Free Trial */
 .file-label.disabled,
 .view-btn.disabled {
@@ -191,28 +192,3 @@ label:disabled, button:disabled {
   color: #666; /* Darker text */
 }
 
-/* List of Cars */
-.rent-list .flex-cell:nth-child(1) {
-  flex: 0.5;
-} /* ID column */
-.rent-list .flex-cell:nth-child(2) {
-  flex: 1;
-} /* Pick Up Time column */
-.rent-list .flex-cell:nth-child(3) {
-  flex: 1;
-} /* Rent Date */
-.rent-list .flex-cell:nth-child(4) {
-  flex: 1;
-} /* Return Date */
-.rent-list .flex-cell:nth-child(5) {
-  flex: 1;
-} /* Status */
-.rent-list .flex-cell:nth-child(6) {
-  flex: 1.5;
-} /* Transaction Date */
-.rent-list .flex-cell:nth-child(7) {
-  flex: 1;
-} /* Client */
-.rent-list .flex-cell:nth-child(8) {
-  flex: 1;
-} /* View Button */
