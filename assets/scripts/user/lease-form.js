@@ -123,4 +123,20 @@ document.addEventListener("DOMContentLoaded", function () {
   viewPaymentBtn.addEventListener('click', () => {
     viewPaymentOverlay.style.display = 'flex';
   })
+
+  //Update Processing Fee
+
+  const displayProcessingFee = document.getElementById('processing-fee');
+  const amountInput = document.getElementById('amount');
+
+  amountInput.addEventListener('input', () => {
+    const amountValue = parseFloat(amountInput.value);
+    const processingFee = (isNaN(amountValue) || amountValue === 0) ? 0 : amountValue * 0.05;
+    displayProcessingFee.textContent = `₱ ${processingFee.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    })}`;
+  })
+
+
 });

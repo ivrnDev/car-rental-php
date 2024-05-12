@@ -43,8 +43,28 @@ form h3 {
   min-height: 50px;
 }
 .right-column label {
-  flex: 1 1 100%;
+  flex: 1 1 50%;
+  padding-left: 5px;
 }
+/* Processing Fee */
+.processing-fee-container {
+  flex: 1 1 45%;
+  /* background-color: red; */
+  /* height: fit-content ; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px
+}
+.processing-fee-container h1 {
+  font-size: 20px;
+}
+.processing-fee-container span {
+  font-size: 22px;
+}
+
+
+
 .right-column .input-container {
   min-height: 50px;
   flex: 1 1 47%;

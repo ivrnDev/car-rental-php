@@ -100,10 +100,16 @@
             </div>
             <label class="file-label" for="payment_proof" id="payment_proof_label">
               Proof of Payment
-              <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof"></label>
+              <span id="payment_proof_name">No file chosen</span><img src="assets/images/add-image.png" alt="Add Proof">
             </label>
-
+            <div class="processing-fee-container">
+              <h1>
+                Processing Fee
+              </h1>
+              <span id="processing-fee">₱ 0.00</span>
+            </div>
             <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
+
 
             <button id="createCarBtn" class="accept-btn" type="submit">Confirm</button>
           </div>
