@@ -124,19 +124,29 @@ document.addEventListener("DOMContentLoaded", function () {
     viewPaymentOverlay.style.display = 'flex';
   })
 
-  //Update Processing Fee
 
+  //Free Trial User
   const displayProcessingFee = document.getElementById('processing-fee');
+
+  const hasFreeTrial = displayProcessingFee.getAttribute('data-trial');
+
+  //Update Processing Fee
   const amountInput = document.getElementById('amount');
 
-  amountInput.addEventListener('input', () => {
-    const amountValue = parseFloat(amountInput.value);
-    const processingFee = (isNaN(amountValue) || amountValue === 0) ? 0 : amountValue * 0.05;
-    displayProcessingFee.textContent = `₱ ${processingFee.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    })}`;
-  })
+  if (parseInt(hasFreeTrial) === 0) {
+    amountInput.addEventListener('input', () => {
+      const amountValue = parseFloat(amountInput.value);
+      const processingFee = isNaN(amountValue) || amountValue === 0 ? 0 : amountValue * 0.05;
+      displayProcessingFee.innerHTML = `₱ ${processingFee.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}`;
+    })
+  } else {
+    displayProcessingFee.textContent = 'FREE';
+  }
+
+
 
 
 });

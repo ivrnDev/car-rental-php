@@ -57,3 +57,19 @@ function getProfileRentHistory($user_id, $db)
     return false;
   }
 }
+function getUserTrial($user_id, $db)
+{
+  try {
+    $sql = "SELECT free_trial from \"USER\" WHERE user_id = :user_id";
+    $data = [':user_id' => $user_id];
+    $stid = $db->executeQuery($sql, $data);
+    $result = $db->fetchRow($stid);
+    if ($result && count($result) > 0) {
+      return $result;
+    }
+    return [];
+  } catch (Exception $e) {
+    error_log($e->getMessage());
+    return false;
+  }
+}

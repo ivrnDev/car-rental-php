@@ -22,6 +22,7 @@
   $db = new OracleDB();
   $carList = getUserCarList($userId, $db);
   $rentList = getRentersLists($userId, $db);
+  $hasFreeTrial = getUserTrial($userId, $db);
   ?>
 
   <!DOCTYPE html>
@@ -106,7 +107,9 @@
               <h1>
                 Processing Fee
               </h1>
-              <span id="processing-fee">₱ 0.00</span>
+              <span id="processing-fee" data-trial="<?= $hasFreeTrial['FREE_TRIAL'] ?>">
+                <?= $hasFreeTrial['FREE_TRIAL'] == 0 ? "₱ 0.00" : "FREE" ?>
+              </span>
             </div>
             <button id="view-payment-method" class="view-btn" type="button">Payment Method</button>
 
