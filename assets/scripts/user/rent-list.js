@@ -186,32 +186,60 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const { profileResult, profileDocumentResult, carResult } = data;
         const profilePictureDocument = profileDocumentResult.find(doc => doc.DOCUMENT_TYPE === 'profile_picture');
-
         profileView.innerHTML = ` 
-    <div class="profile-card">
-    <img src=${profilePictureDocument.FILE_LINK} class="profile-img">
-    <div class="profile-info">
-      <h1 class="name">${profileResult.FULL_NAME}</h1>
-      <p class="id">ID: ${profileResult.USER_ID}</p>
-      <p class="address">Address: ${profileResult.ADDRESS}</p>
-      <p class="phone">Phone: ${profileResult.CONTACT_NUMBER}</p>
-      <p class="email">Email: ${profileResult.EMAIL_ADDRESS}</p>
-    </div>
-  </div>`
+      <div class="rent-profile-container">
+        <img src="${profilePictureDocument.FILE_LINK}" alt="${profileResult.CAR_TITLE}">
+      </div>
+      <div class="profile-details">
+        <div>
+          <h2>Customer ID</h2>
+          <p>${profileResult.USER_ID}</p>
+        </div>
+        <div>
+          <h2>Customer Name</h2>
+          <p>${profileResult.FULL_NAME}</p>
+        </div>
+        <div>
+          <h2>Address</h2>
+          <p>${profileResult.ADDRESS}</p>
+        </div>
+        <div>
+          <h2>Contact Address</h2>
+          <p>${profileResult.CONTACT_NUMBER}</p>
+        </div>
+        <div>
+          <h2>Email Address</h2>
+          <p>${profileResult.EMAIL_ADDRESS}</p>
+        </div>
+      </div>`
 
         carView.innerHTML = `
-       <div class="car-card">
-    <img src="${carResult.FILE_LINK}" class="car-img">
-    <div class="car-info">
-      <h1 class="title">${carResult.CAR_TITLE}</h1>
-      <p class="car-type">Type: ${carResult.CAR_TYPE} </p>
-      <p class="car-model">Model: ${carResult.CAR_MODEL}</p>
-      <p class="gas">Fuel Type: ${carResult.CAR_TYPE}</p>
-      <p class="seat-cap"> Seat Capacity: ${carResult.SEAT_CAPACITY} Seaters</p>
-      <p class="plate">Plate Number: ${carResult.PLATE_NUMBER}</p>
-    </div>
-  </div>
-      `
+      <div class="rent-car-container">
+        <img src="${carResult.FILE_LINK}" alt="${carResult.CAR_TITLE}">
+      </div>
+      <div class="car-details">
+        <div>
+          <h2>Car ID</h2>
+          <p>${carResult.CAR_ID}</p>
+        </div>
+        <div>
+          <h2>Car Title</h2>
+          <p>${carResult.CAR_TITLE}</p>
+        </div>
+        <div>
+          <h2>Car Brand</h2>
+          <p>${carResult.CAR_BRAND}</p>
+        </div>
+        <div>
+          <h2>Car Model</h2>
+          <p>${carResult.CAR_MODEL}</p>
+        </div>
+        <div>
+          <h2>Plate Number</h2>
+          <p>${carResult.PLATE_NUMBER}</p>
+        </div>
+      </div>
+        `
       })
       .catch(error => {
         console.error('Error:', error);

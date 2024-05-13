@@ -95,21 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const { carData, carDocument } = data;
         const carImage = carDocument.find(data => data.DOCUMENT_TYPE === "car_image");
         const carORCR = carDocument.find(data => data.DOCUMENT_TYPE === "orcr");
-        viewCar.innerHTML = `
-        <h1>Car Details</h1>
-        <img src="${carImage.FILE_LINK}" alt="${carData.CAR_TITLE} car-image">
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_TITLE}</p>
-        <p>${carData.PLATE_NUMBER}</p>
-        <p>${carData.SEAT_CAPACITY}</p>
-        <p>${carData.GAS_TYPE}</p>
-        <p>${carData.CAR_COLOR}</p>
-        <p>${carData.CAR_DESCRIPTION}</p>
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_ID}</p>
-        <img src="${carORCR.FILE_LINK}" alt="${carData.CAR_TITLE} orcr" id="orcr-img">
-        `
+        // viewCar.innerHTML = `
+        // <h1>Car Details</h1>
+        // <img src="${carImage.FILE_LINK}" alt="${carData.CAR_TITLE} car-image">
+        // <p>${carData.CAR_ID}</p>
+        // <p>${carData.CAR_TITLE}</p>
+        // <p>${carData.PLATE_NUMBER}</p>
+        // <p>${carData.SEAT_CAPACITY}</p>
+        // <p>${carData.GAS_TYPE}</p>
+        // <p>${carData.CAR_COLOR}</p>
+        // <p>${carData.CAR_DESCRIPTION}</p>
+        // <p>${carData.CAR_ID}</p>
+        // `
       })
       .catch(error => {
         console.error('Error:', error);

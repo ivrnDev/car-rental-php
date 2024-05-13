@@ -1,13 +1,15 @@
 <div class="view-rent-overlay" style="display: none;">
   <div class="content">
-    <button class="x">X</button>
+    <span class="x">x</span>
 
+    <h1>Profile Information</h1>
     <div class="profile-view">
-
+    
     </div>
 
+    <h1>Car Information</h1>
     <div class="car-view">
-
+     
     </div>
   </div>
 
@@ -15,6 +17,43 @@
 
 
 <style>
+  .profile-view,
+  .car-view {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    margin-top: 2%;
+  }
+
+  .profile-details,
+  .car-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin-left: 2%;
+  }
+
+  .content h1 {
+    margin-top: 2%;
+  }
+  .content p {
+    font-size: 20px;
+    margin-top: 1%;
+  }
+
+  .rent-profile-container, .rent-car-container {
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+  }
+
+  .content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   .view-rent-overlay {
     position: fixed;
     top: 0;
@@ -32,7 +71,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 70%;
+    height: 90%;
     width: 80%;
     transform: translate(-50%, -50%);
     background: white;
@@ -42,143 +81,25 @@
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
-  }
-
-  button.x {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 25px;
-    height: 25px;
-  }
-
-  .view-rent-overlay #profile-image {
-    width: 20%;
-    height: auto;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #252f44;
-  }
-
-  .profile-card,
-  .car-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 400px;
-    height: 700px;
-    margin: 0 20px;
-    display: flex;
     flex-direction: column;
-    background-color: #FFFFFF;
-    flex: 1;
+    padding: 0 3% 3% 3%;
+
   }
 
-  .profile-info,
-  .car-info {
-    padding: 20px;
-    flex-grow: 1;
-  }
-
-  .profile-img,
-  .car-img {
-    width: 100%;
-    height: auto;
-  }
-
-  .name {
-    margin: 0;
-    font-size: 20px;
-  }
-
-  .id,
-  .address,
-  .phone,
-  .email,
-  .car-type,
-  .car-model,
-  .gas,
-  .car-des,
-  .plate,
-  .owner,
-  .seat-cap,
-  .contact {
-    margin: 5px 0;
-    padding: 8px;
-    font-size: 16px;
-  }
-
-  .car-des {
+  span.x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
+
   }
 
-  .car-type::before,
-  .car-model::before,
-  .gas::before,
-  .car-des::before,
-  .plate::before,
-  .owner::before,
-  .seat-cap::before,
-  .contact::before {
-    content: attr(class) ": ";
-    font-weight: bold;
-  }
-
-  .car-type::before {
-    content: "Type: ";
-  }
-
-  .car-model::before {
-    content: "Model: ";
-  }
-
-  .gas::before {
-    content: "Fuel Type: ";
-  }
-
-  .car-des::before {
-    content: "Description: ";
-  }
-
-  .plate::before {
-    content: "Plate Number: ";
-  }
-
-  .owner::before {
-    content: "Owner: ";
-  }
-
-  .seat-cap::before {
-    content: "Seat Capacity: ";
-  }
-
-  .contact::before {
-    content: "Contact: ";
-  }
-
-  .id,
-  .address,
-  .phone,
-  .email {
-    background-color: #dbd8e3;
-  }
-
-  .car-type,
-  .car-model,
-  .gas,
-  .car-des,
-  .plate,
-  .owner,
-  .seat-cap,
-  .contact {
-    background-color: #d3d3d3;
+  span.x:hover,
+  span.x:focus {
+    color: black;
+    text-decoration: none;
   }
 </style>
