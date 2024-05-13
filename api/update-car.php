@@ -70,9 +70,8 @@ if (isset(
     $resetCarStatus = "UPDATE car SET status = 0, availability_status = 0 WHERE car_id = :car_id";
     $db->executeQuery($resetCarStatus, [':car_id' => $car_id]);
 
-
     //Update Payment Status
-    if (isset($_FILES['payment_proof'])) {
+    if (isset($_FILES['payment_proof']) && $_FILES['payment_proof']['error'] === UPLOAD_ERR_OK) {
       $processPayment = "UPDATE car SET payment_status = 1 WHERE car_id = :car_id";
       $db->executeQuery($processPayment, [':car_id' => $car_id]);
     }

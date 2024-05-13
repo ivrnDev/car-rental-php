@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rent_id'], $_POST['new
 
     //Update Car Availability
     if ($new_status == 8 || $new_status == 9) {
-      $updateCarAvailability = "UPDATE Car SET availability_status = 0, payment_status = 0 WHERE car_id = :car_id";
+      $updateCarAvailability = "UPDATE Car SET status = 0, availability_status = 0, payment_status = 0 WHERE car_id = :car_id";
       $db->executeQuery($updateCarAvailability, [':car_id' => $car_id]);
     }
     if ($new_status == 10) {

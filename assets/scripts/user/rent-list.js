@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       4: `success`,
       5: `success`,
       7: `initial`,
+      8: `success`,
       9: `initial`,
       10: `error`,
       default: "Unknown"
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       4: `Sent Success`,
       5: `Completed`,
       7: `Returned`,
+      8: `Completed`,
       9: `Reviewing`,
       10: `Cancelled`,
       default: "Unknown"
@@ -104,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       4: `Rent No. ${rentId} car has been sent to client`,
       5: `Rent No. ${rentId} is now completed`,
       7: `Rent No. ${rentId} car has been returned`,
+      8: `Rent No. ${rentId} is now completed`,
       9: `We're now reviewing your transaction in Rent No. ${rentId}. Kindly email us for more concern`,
       10: `Rent No. ${rentId} has been cancelled`,
       default: "Unknown"

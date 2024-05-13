@@ -2,7 +2,7 @@
   <div class="trash-car-content">
     <span class="trash-car-x">x</span>
     <div class="trash-car-list">
-      <h1>Trash Cars </h1>
+      <h1>Archive</h1>
       <div class="flex-table">
         <div class="flex-row header">
           <div class="flex-cell"></div>

@@ -9,18 +9,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const createCarNo = document.getElementById('createCarNo');
 
   // Check file inputs and update labels
-  // fileInputFields.forEach(input => {
-  //   input.addEventListener('change', function () {
-  //     const labelSpan = document.getElementById(input.id + '_name');
-  //     labelSpan.textContent = input.files.length > 0 ? input.files[0].name : 'No file chosen';
-  //     if (input.files.length > 0) {
-  //       const inputLabel = document.getElementById(input.id + '_label')
-  //       const labelSpan = document.getElementById(input.id + '_name')
-  //       labelSpan.style.color = 'initial';
-  //       inputLabel.classList.remove('input-error');
-  //     }
-  //   });
-  // });
+  fileInputFields.forEach(input => {
+    input.addEventListener('change', function () {
+      const labelSpan = document.getElementById(input.id + '_name');
+      labelSpan.textContent = input.files.length > 0 ? input.files[0].name : 'No file chosen';
+      if (input.files.length > 0) {
+        const inputLabel = document.getElementById(input.id + '_label')
+        const labelSpan = document.getElementById(input.id + '_name')
+        labelSpan.style.color = 'initial';
+        inputLabel.classList.remove('input-error');
+      }
+    })
+  });
 
   inputFields.forEach(input => {
     input.addEventListener('input', function () {
