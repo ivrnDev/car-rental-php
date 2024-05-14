@@ -173,20 +173,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const carImage = carDocument.find(data => data.DOCUMENT_TYPE === "car_image");
         const carORCR = carDocument.find(data => data.DOCUMENT_TYPE === "orcr");
         viewCar.innerHTML = `
-        <h1>Car Details</h1>
-        <img src="${carImage.FILE_LINK}" alt="${carData.CAR_TITLE} car-image">
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_TITLE}</p>
-        <p>${carData.PLATE_NUMBER}</p>
-        <p>${carData.SEAT_CAPACITY}</p>
-        <p>${carData.GAS_TYPE}</p>
-        <p>${carData.CAR_COLOR}</p>
-        <p>${carData.CAR_DESCRIPTION}</p>
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_ID}</p>
-        <img src="${carORCR.FILE_LINK}" alt="${carData.CAR_TITLE} orcr" id="orcr-img">
+        <div class="car-image-container" >
+        <img src="/drivesation/${carImage.FILE_LINK}" alt="car picture">
+      </div>
+      <div class="car-details">
+        <p><strong>Car ID:</strong>${carData.CAR_ID}</p>
+        <p><strong>Title:</strong>${carData.CAR_TITLE}</p>
+        <p><strong>Car Model:</strong>${carData.CAR_MODEL}</p>
+        <p><strong>Car Color:</strong>${carData.CAR_COLOR}</p>
+        <p><strong>Plate Number:</strong>${carData.PLATE_NUMBER}</p>
+        <p><strong>Seat Capacity:</strong>${carData.SEAT_CAPACITY}</p>
+        <p><strong>Gas Type:</strong>${carData.GAS_TYPE}</p>
+        <p><strong>Car Type:</strong>${carData.CAR_TYPE}</p>
+        <p><strong>Description:</strong>${carData.CAR_DESCRIPTION}</p>
+      </div>
+        
         `
+
       })
       .catch(error => {
         console.error('Error:', error);
@@ -224,8 +227,8 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
 
     const formData = new FormData(this);
-    
-    
+
+
     const carId = currentButton.getAttribute('data-car-id');
     const userId = currentButton.getAttribute('data-user-id');
 

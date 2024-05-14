@@ -106,26 +106,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const { carData, carDocument, profileInfo } = data;
         const carImage = carDocument.find(data => data.DOCUMENT_TYPE === "car_image");
         const carORCR = carDocument.find(data => data.DOCUMENT_TYPE === "orcr");
+        const payment = carDocument.find(data => data.DOCUMENT_TYPE === "payment_proof");
+        let paymentProofHtml = payment && payment.FILE_LINK ? `
+      <div class="document">
+        <p>Payment Proof</p>
+        <img src="/drivesation/${payment.FILE_LINK}" alt="Payment Proof">
+      </div>` : '';
+
         viewCar.innerHTML = `
-        <h1>Car Details</h1>
-        <p>${carData.CAR_ID}</p>
-        <p>${carData.CAR_TITLE}</p>
-        <p>${carData.PLATE_NUMBER}</p>
-        <p>${carData.SEAT_CAPACITY}</p>
-        <p>${carData.GAS_TYPE}</p>
-        <p>${carData.CAR_COLOR}</p>
-        <p>${carData.CAR_DESCRIPTION}</p>
-        <p>${carData.CAR_MODEL}</p>
-        <img src="/drivesation/${carORCR.FILE_LINK}" alt="${carData.CAR_TITLE} orcr" id="orcr-img">
-        `
-        viewProfile.innerHTML = `
-        <h1>Profile</h1>
-        <img id="profile-image" src="/drivesation/${profileInfo.FILE_LINK}" alt="profile-picture">
-        <p>User ID: ${profileInfo.USER_ID}</p>
-        <p>${profileInfo.FULL_NAME}</p>
-        <p>${profileInfo.ADDRESS}</p>
-        <p>${profileInfo.CONTACT_NUMBER}</p>
-        <p>${profileInfo.EMAIL_ADDRESS}</p>`
+       <div class="car-image-container">
+        <img src="/drivesation/${carImage.FILE_LINK}" alt="car picture">
+      </div>
+      <div class="car-details">
+        <p><strong>Car ID:</strong>${carData.CAR_ID}</p>
+        <p><strong>Title:</strong>${carData.CAR_TITLE}</p>
+        <p><strong>Car Model:</strong>${carData.CAR_MODEL}</p>
+        <p><strong>Car Color:</strong>${carData.CAR_COLOR}</p>
+        <p><strong>Plate Number:</strong>${carData.PLATE_NUMBER}</p>
+        <p><strong>Seat Capacity:</strong>${carData.SEAT_CAPACITY}</p>
+        <p><strong>Gas Type:</strong>${carData.GAS_TYPE}</p>
+        <p><strong>Car Type:</strong>${carData.CAR_TYPE}</p>
+        <p><strong>Description:</strong>${carData.CAR_DESCRIPTION}</p>
+      </div>
+      <div class="documents-container">
+        <div class="document">
+          <p>ORCR</p>
+          <img src="/drivesation/${carORCR.FILE_LINK}" alt="Driver's License">
+        </div>
+      ${paymentProofHtml}
+      </div>`
 
       })
       .catch(error => {

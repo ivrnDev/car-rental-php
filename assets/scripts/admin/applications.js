@@ -102,14 +102,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const profile = data[0];
         const document = data[1];
         const profileImage = document.find(data => data.DOCUMENT_TYPE === 'profile_picture');
+        const selfieId = document.find(data => data.DOCUMENT_TYPE === 'selfie_with_id');
+        const license = document.find(data => data.DOCUMENT_TYPE === 'drivers_license');
+        const billing = document.find(data => data.DOCUMENT_TYPE === 'proof_of_billing');
+        const validId = document.find(data => data.DOCUMENT_TYPE === 'valid_id');
+
         viewProfile.innerHTML = `
-        <h1>Profile</h1>
-        <img id="profile-image" width=50 height=50 src="/drivesation/${profileImage.FILE_LINK}" alt="profile-picture">
-        <p>User ID: ${profile.USER_ID}</p>
-        <p>${profile.FULL_NAME}</p>
-        <p>${profile.ADDRESS}</p>
-        <p>${profile.CONTACT_NUMBER}</p>
-        <p>${profile.EMAIL_ADDRESS}</p>`
+         <div class="profile-image-container">
+        <img src="/drivesation/${profileImage.FILE_LINK}" alt="Profile picture">
+      </div>
+      <div class="profile-details">
+        <p><strong>User ID:</strong>${profile.USER_ID}</p>
+        <p><strong>Name:</strong>${profile.FULLNAME}</p>
+        <p><strong>Address:</strong>${profile.ADDRESS}</p>
+        <p><strong>Phone:</strong>${profile.CONTACT_NUMBER}</p>
+        <p><strong>Email:</strong>${profile.EMAIL_ADDRESS}</p>
+        <p><strong>Birthdate:</strong>${profile.BIRTHDATE}</p>
+        <p><strong>Gender:</strong>${profile.GENDER == 0 ? 'Male' : 'Female'}</p>
+      </div>
+      <div class="documents-container">
+        <div class="document">
+          <p>Driver's License</p>
+          <img src="/drivesation/${license.FILE_LINK}" alt="Driver's License">
+        </div>
+        <div class="document">
+          <p>Proof of Billing</p>
+          <img src="/drivesation/${billing.FILE_LINK}" alt="Proof of Billing">
+        </div>
+        <div class="document">
+          <p>Valid ID</p>
+          <img src="/drivesation/${validId.FILE_LINK}" alt="Valid ID">
+        </div>
+        <div class="document">
+          <p>Selfie with ID</p>
+          <img src="/drivesation/${selfieId.FILE_LINK}" alt="Selfie with ID">
+        </div>
+      </div>
+        `
 
       })
       .catch(error => {

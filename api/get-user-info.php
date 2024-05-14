@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id'])) {
   $user_id = (int)$_POST['user_id'];
   try {
     $profileSql = "SELECT  
-    NVL(FIRST_NAME, '') || ' ' || NVL(MIDDLE_NAME, '') || ' ' || NVL(LAST_NAME, '') AS FULLNAME, USER_ID, ADDRESS, CONTACT_NUMBER, EMAIL_ADDRESS, BIRTHDATE FROM \"USER\"
+    NVL(FIRST_NAME, '') || ' ' || NVL(MIDDLE_NAME, '') || ' ' || NVL(LAST_NAME, '') AS FULLNAME, USER_ID, ADDRESS, CONTACT_NUMBER, EMAIL_ADDRESS, BIRTHDATE, GENDER FROM \"USER\"
     WHERE user_id = :user_id";
 
     $documentSql = "SELECT document_type, file_link FROM \"DOCUMENT\" WHERE user_id = :user_id";

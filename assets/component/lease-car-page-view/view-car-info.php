@@ -1,28 +1,56 @@
-<div class="view-car-overlay" style="display: none;">
+<div class="view-car-overlay" style="display: none ;">
   <div class="view-car-content">
     <span class="view-car-x">x</span>
+    <h1>Car Details</h1>
     <div class="view-car">
-      <h1>Car Details</h1>
-      <div class="image-container">
-        <img src="assets/images/car_in_log_in.png" alt="car-image">
-      </div>
-
     </div>
   </div>
 </div>
 
 <style>
-  .image-container {
-    width: 40%;
-    height: 40%;
-    border: 1px solid black;
+  .car-details-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+
   }
 
-  .image-container img {
+  .car-details-container div {
+    flex: 1 1 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .car-details-container div p {
+    font-size: 20px;
+  }
+
+  .images {
+    display: flex;
+    gap: 4%;
+  }
+
+  .images-container {
+    flex: 1 1 50%;
+    margin-top: 20px
+  }
+
+  .car-image-container,
+  .orcr-image-container {
     width: 100%;
-    height: 100%;
+    /* max-height: 50%; */
+    border-radius: 8px;
+  }
+
+  .car-image-container img,
+  .orcr-image-container img {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
     object-fit: contain;
-    object-position: center;
   }
 
   .view-car-overlay {
