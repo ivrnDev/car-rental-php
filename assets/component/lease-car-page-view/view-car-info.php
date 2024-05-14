@@ -1,4 +1,4 @@
-<div class="view-car-overlay" style="display: none ;">
+<div class="view-car-overlay" style="display: none;">
   <div class="view-car-content">
     <span class="view-car-x">x</span>
     <h1>Car Details</h1>
@@ -8,51 +8,6 @@
 </div>
 
 <style>
-  .car-details-container {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-
-  }
-
-  .car-details-container div {
-    flex: 1 1 25%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .car-details-container div p {
-    font-size: 20px;
-  }
-
-  .images {
-    display: flex;
-    gap: 4%;
-  }
-
-  .images-container {
-    flex: 1 1 50%;
-    margin-top: 20px
-  }
-
-  .car-image-container,
-  .orcr-image-container {
-    width: 100%;
-    /* max-height: 50%; */
-    border-radius: 8px;
-  }
-
-  .car-image-container img,
-  .orcr-image-container img {
-    width: 100%;
-    height: 300px;
-    border-radius: 8px;
-    object-fit: contain;
-  }
-
   .view-car-overlay {
     position: fixed;
     top: 0;
@@ -67,18 +22,70 @@
   }
 
   .view-car-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 90%;
-    width: 80%;
-    transform: translate(-50%, -50%);
-    background: white;
+    position: relative;
+    width: 60%;
+    max-height: 80%;
+    background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    overflow-x: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+  }
+
+  .view-car-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .view-car-x:hover {
+    color: #000;
+  }
+
+  .car-image-container {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .car-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .car-details p {
+    margin: 5px 0;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  .documents-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 20px;
+  }
+
+  .documents-container img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 5px;
+  }
+
+  .documents-container p {
+    font-weight: bold;
   }
 
   .view-car-x {
