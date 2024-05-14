@@ -144,6 +144,14 @@ $cars = getAllCars($db);
               <div class="flex-cell action-btn">
                 <button class="reject-btn" data-status=2 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=4 data-payment=3>Reject</button>
               </div>
+            <?php elseif ($car['STATUS'] == 0 && $car['PAYMENT_STATUS'] == 4)  : ?>
+              <div class="flex-cell action-btn">
+                <button class="accept-btn" data-status=1 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=1 data-payment="<?= $car['PAYMENT_STATUS'] == 4 ? 4 : 2 ?>">
+                  Accept</button>
+              </div>
+              <div class="flex-cell action-btn">
+                <button class="reject-btn" data-status=2 data-car-id="<?= $car['CAR_ID'] ?>" data-availability-status=4 data-payment=3>Reject</button>
+              </div>
 
             <?php elseif ($car['STATUS'] == 1) : ?>
               <div class="flex-cell action-btn">

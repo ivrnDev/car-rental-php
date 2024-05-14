@@ -23,3 +23,20 @@ function getAnalytics($db)
     return false;
   }
 }
+
+function getCarRatings($car_id, $db)
+{
+  try {
+    $sql = "SELECT * FROM rate where car_id = :car_id";
+    $data = ['car_id' => $car_id];
+    $stid = $db->executeQuery($sql, $data);
+    $result = $db->fetchAll($stid);
+    if ($result && count($result) > 0) {
+      return $result;
+    }
+    return [];
+  } catch (Exception $e) {
+    error_log($e->getMessage());
+    return false;
+  }
+}

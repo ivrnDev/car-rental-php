@@ -7,6 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
   require_once "assets/component/modals/message-modal.php";
   require_once "assets/component/loading.php";
   require_once "assets/component/modals/confirmation-modal.php";
+  require_once "functions/analytics.php";
 
   if (isset($_GET['car_id'])) {
     $car_id = htmlspecialchars($_GET['car_id']);
@@ -20,6 +21,8 @@ if (session_status() == PHP_SESSION_NONE) {
   }
 }
 $userId = $_SESSION['user_id'];
+$rating = getCarRatings($car_id, $db);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +40,9 @@ $userId = $_SESSION['user_id'];
   <main>
     <form method="POST" id="rent-car">
       <div class="card">
-        <img id="car_image" src="<?= $result['FILE_LINK']; ?>" alt="<?= $result['CAR_TITLE'] ?>">
+        <div class="car-image-container">
+          <img id="car_image" src="<?= $result['FILE_LINK']; ?>" alt="<?= $result['CAR_TITLE'] ?>">
+        </div>
         <div class="info">
           <div class="first-line">
             <div class="type">
@@ -83,11 +88,6 @@ $userId = $_SESSION['user_id'];
             <p class="email"><?= htmlspecialchars($result['EMAIL_ADDRESS']) ?></p>
             <p class="contact"><?= htmlspecialchars($result['CONTACT_NUMBER']) ?></p>
           </div>
-
-
-
-
-
           <div class="rent">
             <div class="price">
               <p>PRICE </p>
@@ -99,24 +99,32 @@ $userId = $_SESSION['user_id'];
               <button id="rentCarBtn" data-user-id="<?= $userId ?>" data-owner-id="<?= $result['OWNER_ID'] ?>" data-car-id="<?= $result['CAR_ID'] ?>" <?php if ($result['OWNER_ID'] == $userId) echo "disabled" ?>>Rent a Car</button>
             </div>
           </div>
-
-
-          <div class="car-title">
-            <p class="contact"><?= htmlspecialchars($result['CAR_TITLE']) ?></p>
-          </div>
-
-          <div class="description">
-            <div class="text">
-              <p>CAR DESCRIPTION</p>
-            </div>
-            <p class="contact"><?= htmlspecialchars($result['CAR_DESCRIPTION']) ?></p>
-          </div>
         </div>
       </div>
-      </div>
+      <div class="title-desc">
+        <div class="car-title">
+          <p class="contact"><?= htmlspecialchars($result['CAR_TITLE']) ?></p>
+        </div>
+
+        <div class="description">
+          <p class="contact"><?= htmlspecialchars($result['CAR_DESCRIPTION']) ?></p>
+        </div>
       </div>
 
-      </div>
+      <?php if (!empty($rating)) : ?>
+        <div class="ratings-container">
+          <h3>Ratings and Reviews:</h3>
+          <?php foreach ($rating as $rate) : ?>
+            <div class="rating-entry">
+              <p><strong>Rating:</strong> <?= htmlspecialchars($rate['RATE_COUNT']) ?> / 5</p>
+              <p><strong>Comment:</strong> <?= htmlspecialchars($rate['RATE_COMMENT']) ?></p>
+              <p><strong>Rated on:</strong> <?= date("F j, Y, g:i a", strtotime($rate['RATE_TIME'])) ?></p>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
+
     </form>
 
   </main>
