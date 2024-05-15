@@ -113,12 +113,19 @@ $rating = getCarRatings($car_id, $db);
 
       <?php if (!empty($rating)) : ?>
         <div class="ratings-container">
-          <h3>Ratings and Reviews:</h3>
+          <h1>Ratings and Reviews:</h1>
           <?php foreach ($rating as $rate) : ?>
             <div class="rating-entry">
-              <p><strong>Rating:</strong> <?= htmlspecialchars($rate['RATE_COUNT']) ?> / 5</p>
-              <p><strong>Comment:</strong> <?= htmlspecialchars($rate['RATE_COMMENT']) ?></p>
-              <p><strong>Rated on:</strong> <?= date("F j, Y, g:i a", strtotime($rate['RATE_TIME'])) ?></p>
+              <p><strong>Full Name: </strong> <?= htmlspecialchars($rate['FULLNAME']) ?></p>
+              <p><strong>Rating: </strong> <?= htmlspecialchars($rate['RATE_COUNT']) ?> / 5</p>
+              <p><strong>Comment: </strong> <?= htmlspecialchars($rate['RATE_COMMENT']) ?></p>
+              <p><strong>Rated on: </strong>
+                <?php
+                $originalFormat = 'd-M-y h.i.s.u A';
+                $dateTime = DateTime::createFromFormat($originalFormat, $rate['RATE_TIME']);
+                echo $dateTime->format('M d, Y g:i A')
+                ?>
+              </p>
             </div>
           <?php endforeach; ?>
         </div>

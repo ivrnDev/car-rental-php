@@ -145,7 +145,14 @@ function updateCarDocuments($file, $carId, $documentType, $db)
   // Attempt to move the uploaded file
   if (move_uploaded_file($file["tmp_name"], "../uploads/car/" . $carId . "/" . $document_name)) {
     // Update the document record, replacing the existing one
-    $sqlUpdate = "UPDATE \"DOCUMENT\" SET file_link = :file_link, document_name = :document_name WHERE car_id = :car_id AND document_type = :document_type";
+    if ($existing) {
+      // Update the existing document record
+      $sqlUpdate = "UPDATE \"DOCUMENT\" SET file_link = :file_link, document_name = :document_name WHERE car_id = :car_id AND document_type = :document_type";
+    } else {
+      // Insert a new document record
+      $sqlUpdate = "INSERT INTO \"DOCUMENT\" (document_id, car_id, document_type, file_link, document_name) VALUES (document_seq.NEXTVAL, :car_id, :document_type, :file_link, :document_name)";
+    }
+
     $params = [
       ':file_link' => $target_file,
       ':document_name' => $document_name,

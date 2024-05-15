@@ -27,7 +27,9 @@ function getAnalytics($db)
 function getCarRatings($car_id, $db)
 {
   try {
-    $sql = "SELECT * FROM rate where car_id = :car_id";
+    $sql = "SELECT r.*, NVL(u.FIRST_NAME, '') || ' ' || NVL(u.MIDDLE_NAME, '') || ' ' || NVL(u.LAST_NAME, '') AS FULLNAME FROM rate r
+    JOIN \"USER\" u ON r.user_id = u.user_id
+     where car_id = :car_id";
     $data = ['car_id' => $car_id];
     $stid = $db->executeQuery($sql, $data);
     $result = $db->fetchAll($stid);

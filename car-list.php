@@ -39,7 +39,7 @@ $result = getAvailableCars($db);
 
 
             <p><?= "₱" . htmlspecialchars(number_format($car['AMOUNT'])) . "/ day" ?></p>
-
+      
           </div>
         </div>
 
