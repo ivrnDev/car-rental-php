@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
       })
       .then(data => {
-        const { carData, carDocument } = data;
+        const { carData, carDocument, profileData } = data;
         const carImage = carDocument.find(data => data.DOCUMENT_TYPE === "car_image");
         const carORCR = carDocument.find(data => data.DOCUMENT_TYPE === "orcr");
         viewCar.innerHTML = `
@@ -177,17 +177,18 @@ document.addEventListener('DOMContentLoaded', function () {
         <img src="/drivesation/${carImage.FILE_LINK}" alt="car picture">
       </div>
       <div class="car-details">
-        <p><strong>Car ID:</strong>${carData.CAR_ID}</p>
-        <p><strong>Title:</strong>${carData.CAR_TITLE}</p>
-        <p><strong>Car Model:</strong>${carData.CAR_MODEL}</p>
-        <p><strong>Car Color:</strong>${carData.CAR_COLOR}</p>
-        <p><strong>Plate Number:</strong>${carData.PLATE_NUMBER}</p>
-        <p><strong>Seat Capacity:</strong>${carData.SEAT_CAPACITY}</p>
-        <p><strong>Gas Type:</strong>${carData.GAS_TYPE}</p>
-        <p><strong>Car Type:</strong>${carData.CAR_TYPE}</p>
-        <p><strong>Description:</strong>${carData.CAR_DESCRIPTION}</p>
+        <p><strong>Car ID: </strong>${carData.CAR_ID}</p>
+        <p><strong>Title: </strong>${carData.CAR_TITLE}</p>
+        <p><strong>Car Model: </strong>${carData.CAR_MODEL}</p>
+        <p><strong>Car Color: </strong>${carData.CAR_COLOR}</p>
+        <p><strong>Plate Number: </strong>${carData.PLATE_NUMBER}</p>
+        <p><strong>Seat Capacity: </strong>${carData.SEAT_CAPACITY}</p>
+        <p><strong>Gas Type: </strong>${carData.GAS_TYPE}</p>
+        <p><strong>Car Type: </strong>${carData.CAR_TYPE}</p>
+        <p><strong>Owner Email: </strong>${profileData.EMAIL_ADDRESS}</p>
+        <p><strong>Owner Contact: </strong>0${profileData.CONTACT_NUMBER}</p>
+        <p><strong>Description: </strong>${carData.CAR_DESCRIPTION}</p>
       </div>
-        
         `
 
       })

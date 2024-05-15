@@ -19,7 +19,7 @@ main {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px black;
-  height: 60%;
+  height: 350px;
   flex: 0 0 calc(25% - 20px);
   overflow: hidden;
   width: 400px; 
@@ -37,7 +37,7 @@ main {
 
 .card img {
   width: 100%;
-  height: auto;
+  height: 150px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -72,12 +72,12 @@ main {
 }
 
 #rent-button {
-  position: absolute; /* Position the button absolutely */
-  bottom: 10px; /* Adjust bottom spacing */
-  right: 10px; /* Adjust right spacing */
-  padding: 10px 20px; /* Adjust padding */
+  /* position: absolute;  */
+  bottom: 10px; 
+  right: 10px; 
+  padding: 10px 20px; 
   background-color: #007bff;
-  color: white; /* Change text color to white */
+  color: white; 
   text-align: center;
   text-decoration: none;
   border-radius: 15px;
@@ -85,4 +85,17 @@ main {
 
 #rent-button:hover {
   background-color: #0056b3;
+}
+
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  padding-bottom: 20px;
+}
+
+.card-footer p {
+  font-weight: bold;
 }

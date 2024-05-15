@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const carImage = carDocument.find(data => data.DOCUMENT_TYPE === "car_image");
         const carORCR = carDocument.find(data => data.DOCUMENT_TYPE === "orcr");
         const payment = carDocument.find(data => data.DOCUMENT_TYPE === "payment_proof");
-        console.log(data)
         let paymentProofHtml = payment && payment.FILE_LINK ? `
       <div class="document">
         <p>Payment Proof</p>

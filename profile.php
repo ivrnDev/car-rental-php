@@ -16,6 +16,7 @@
   $profile_info = getProfileInfo($userId, $db);
   $rent_history = getProfileRentHistory($userId, $db);
   $carList = getUserCarList($userId, $db);
+
   ?>
 
  <!DOCTYPE html>
@@ -117,11 +118,11 @@
                </div>
 
                <div class="flex-cell">
-                 <button class="view-btn" data-car-id=<?= $rent['CAR_ID'] ?>>View</button>
+                 <button class="view-btn" data-car-id="<?= $rent['CAR_ID'] ?>" data-user-id="<?= $rent['OWNER_ID'] ?>" data-rent-id="<?= $rent['RENT_ID'] ?>">View</button>
                </div>
                <?php if ($rent['STATUS'] == 0) :
                 ?>
-                 <div class="flex-cell action-btn">
+                 <div class=" flex-cell action-btn">
                    <button class="reject-btn" data-rent-id="<?= $rent['RENT_ID'] ?>" data-status=10 data-car-id=<?= $rent['CAR_ID'] ?>>Cancel</button>
                  </div>
                  <div class="flex-cell"></div>

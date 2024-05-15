@@ -36,18 +36,19 @@ $result = getAvailableCars($db);
               <i class="material-icons" style="font-size:36px">event_seat</i>
               <p><?= htmlspecialchars($car['SEAT_CAPACITY']) ?></p>
             </div>
-
-
-            <p><?= "₱" . htmlspecialchars(number_format($car['AMOUNT'])) . "/ day" ?></p>
-      
           </div>
         </div>
+        <div class="card-footer">
+          <p><?= "₱" . htmlspecialchars(number_format($car['AMOUNT']) . ' / day') ?></p>
 
-        <?php if (empty($userId)) : ?>
-          <a id="rent-button" href="signin.php">Rent</a>
-        <?php else : ?>
-          <a id="rent-button" href="car-details.php?car_id=<?= urlencode($car['CAR_ID']) ?>">Rent</a>
-        <?php endif  ?>
+          <?php if (empty($userId)) : ?>
+            <a id="rent-button" href="signin.php">Rent</a>
+          <?php else : ?>
+            <a id="rent-button" href="car-details.php?car_id=<?= urlencode($car['CAR_ID']) ?>">Rent</a>
+          <?php endif  ?>
+        </div>
+        
+
 
       </div>
       </div>
